@@ -5,7 +5,8 @@
         "nyholm/psr7-server": "^1.0",
         "twig/twig": "^3.0",
         "doctrine/orm": "^2.13",
-        "symfony/cache": "^6.1"
+        "symfony/cache": "^6.1",
+        "gettext/gettext": "^5.7"
     },
     "autoload": {
       "psr-4": {
