@@ -2,10 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\User;
+use App\Entity\Cart;
 use Doctrine\ORM\EntityRepository;
 
-class UserRepository extends EntityRepository
+class CartRepository extends EntityRepository
 {
 
 }

@@ -2,10 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\User;
+use App\Entity\Categ;
 use Doctrine\ORM\EntityRepository;
 
-class UserRepository extends EntityRepository
+class CategRepository extends EntityRepository
 {
 
 }

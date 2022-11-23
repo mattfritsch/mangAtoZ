@@ -4,9 +4,9 @@ return [
     'ENTITY_PATH' => dirname(__DIR__) . '/src/App/Entity',
     'DATABASE_CONFIG' => [
         'driver' => 'pdo_mysql',
-        'dbname' => 'tests',
+        'dbname' => 'manga',
         'user' => 'root',
-        'password' => 'toor',
+        'password' => '',
         'host' => '127.0.0.1',
     ],
 ];
