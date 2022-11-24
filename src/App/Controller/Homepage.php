@@ -28,7 +28,6 @@ class Homepage
       // $users = $userRepository->findAll();
       $user = $userRepository->findOneByEmail('cerati.boris@gmail.com');
       echo '<pre>';
-      print_r($user);die;
       return new Response('home.html.twig');
   }
 }
