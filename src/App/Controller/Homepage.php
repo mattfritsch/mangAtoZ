@@ -2,17 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Repository\UserRepository;
-use Doctrine\ORM\EntityRepository;
-use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 
 class Homepage
 {
   public function __invoke()
   {
-        $em = EntityManager::getInstance();
+//        $em = EntityManager::getInstance();
 
         /*$user = new User();
         $user
@@ -23,10 +19,30 @@ class Homepage
         $em->persist($user);
         $em->flush();*/
 
-        /** @var UserRepository$userRepository */
-      $userRepository = $em->getRepository(User::class);
-      // $users = $userRepository->findAll();
-      $user = $userRepository->findOneByEmail('cerati.boris@gmail.com');
-      return new Response('home.html.twig');
+//        /** @var UserRepository$userRepository */
+//      $userRepository = $em->getRepository(User::class);
+//      // $users = $userRepository->findAll();
+//      $user = $userRepository->findOneByEmail('cerati.boris@gmail.com');
+
+      function getTextLangue(string $language, string $file){
+          $fr = require_once dirname(dirname(dirname(__DIR__))). '/locale/fr.php';
+          $en = require_once dirname(dirname(dirname(__DIR__))). '/locale/en.php';
+
+          if ($language === 'fr' ){
+              $l = $fr;
+          }
+          else{
+              $l = $en;
+          }
+
+          return $l[$file];
+      }
+
+
+      $args = ['lang' => getTextLangue('en', 'HOME')];
+      return new Response('home.html.twig', $args);
   }
 }
+
+
+
