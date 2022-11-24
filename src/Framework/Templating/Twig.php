@@ -24,4 +24,6 @@ class Twig implements TemplatingInterface
     {
         return $this->twig->render($response->getTemplate(), $response->getArgs());
     }
+
+
 }
