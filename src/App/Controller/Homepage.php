@@ -42,7 +42,7 @@ class Homepage
 
 
 
-      $args = ['lang' => getTextLangue('en', 'HOME')];
+      $args = ['lang' => getTextLangue('en')];
       return new Response('home.html.twig', $args);
   }
 }
