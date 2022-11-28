@@ -41,7 +41,7 @@ class Homepage
 //      }
 
 
-//      $args = ['lang' => getTextLangue('en', 'HOME')];
+
       $args = ['lang' => getTextLangue('en', 'HOME')];
       return new Response('home.html.twig', $args);
   }
