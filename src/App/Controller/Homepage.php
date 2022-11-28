@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+
 use Framework\Response\Response;
+use function App\getTextLangue;
 
 class Homepage
 {
@@ -24,21 +26,22 @@ class Homepage
 //      // $users = $userRepository->findAll();
 //      $user = $userRepository->findOneByEmail('cerati.boris@gmail.com');
 
-      function getTextLangue(string $language, string $file){
-          $fr = require_once dirname(dirname(dirname(__DIR__))). '/locale/fr.php';
-          $en = require_once dirname(dirname(dirname(__DIR__))). '/locale/en.php';
+//      function getTextLangue(string $language, string $file){
+//          $fr = require_once dirname(dirname(dirname(__DIR__))). '/locale/fr.php';
+//          $en = require_once dirname(dirname(dirname(__DIR__))). '/locale/en.php';
+//
+//          if ($language === 'fr' ){
+//              $l = $fr;
+//          }
+//          else{
+//              $l = $en;
+//          }
+//
+//          return $l[$file];
+//      }
 
-          if ($language === 'fr' ){
-              $l = $fr;
-          }
-          else{
-              $l = $en;
-          }
 
-          return $l[$file];
-      }
-
-
+//      $args = ['lang' => getTextLangue('en', 'HOME')];
       $args = ['lang' => getTextLangue('en', 'HOME')];
       return new Response('home.html.twig', $args);
   }

@@ -15,3 +15,9 @@ function getTextLangue(string $language, string $file){
 
     return $l[$file];
 }
+
+function displayErrors(array $errors, string $field): void {
+    foreach($errors[$field] ?? [] as $error) {
+        echo sprintf('<div class="invalid-feedback">%s</div>', $error);
+    }
+}
