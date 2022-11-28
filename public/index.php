@@ -10,4 +10,6 @@ $kernel = new Kernel(new Twig());
 
 $response = $kernel->handleRequest(Request::fromGlobals());
 
-$kernel->display($response);
+if($response != null){
+    $kernel->display($response);
+}
