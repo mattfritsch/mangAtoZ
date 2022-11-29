@@ -8,29 +8,31 @@
 </head>
 <body>
 {% block loginform %}
-    <main class="text-center" style="margin-right: 35%; margin-left: 35%; height: 100%">
-        <form action="/connection" method="post">
-            <img class="m-4" src="" alt="sign-in logo" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">{{ lang.LOGIN_SIGNIN }}</h1>
-            <div class="form-floating mb-2">
-                <input type="email" class="form-control" id="email" name="email" placeholder="{{ lang.LOGIN_EMAIL_EXAMPLE }}">
-                <label for="email">{{ lang.LOGIN_EMAIL }}</label>
-            </div>
-            <div class="form-floating mb-2">
-                <input type="password" class="form-control" id="password" name="password" placeholder="{{ lang.LOGIN_PASSWORD }}">
-                <label for="password">{{ lang.LOGIN_PASSWORD }}</label>
-            </div>
-            <div class="checkbox m-3">
-                <label>
-                    <input type="checkbox" value="1" checked="checked" id="remember_me" name="remember_me">
-                    {{ lang.LOGIN_REMEMBER }}
-                </label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">
-                {{ lang.LOGIN_SIGNIN }}
-            </button>
-        </form>
-        <button  class="w-100 btn btn-lg btn-primary" type="button">Retour</button>
+    <main class="d-flex justify-content-center flex-column" >
+        <div class="text-center" style="margin-right: 35%; margin-left: 35%; height: 100%">
+            <form action="/connection" method="post">
+                <img class="m-4" src="" alt="sign-in logo" width="72" height="57">
+                <h1 class="h3 mb-3 fw-normal">{{ lang.LOGIN_SIGNIN }}</h1>
+                <div class="form-floating mb-2">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="{{ lang.LOGIN_EMAIL_EXAMPLE }}">
+                    <label for="email">{{ lang.LOGIN_EMAIL }}</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="{{ lang.LOGIN_PASSWORD }}">
+                    <label for="password">{{ lang.LOGIN_PASSWORD }}</label>
+                </div>
+                <div class="checkbox m-3">
+                    <label>
+                        <input type="checkbox" value="1" checked="checked" id="remember_me" name="remember_me">
+                        {{ lang.LOGIN_REMEMBER }}
+                    </label>
+                </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">
+                    {{ lang.LOGIN_SIGNIN }}
+                </button>
+            </form>
+            <button  class="w-100 btn btn-lg btn-primary" type="button">Retour</button>
+        </div>
     </main>
 {% endblock %}
 </body>

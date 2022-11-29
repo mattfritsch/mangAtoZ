@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="add home and login templates">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locale/en.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locale/fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/fr.php" afterDir="false" />
+    <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="refont login.html.twig">
       <change beforePath="$PROJECT_DIR$/templates/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +150,7 @@
       <workItem from="1669619411595" duration="12000" />
       <workItem from="1669644680462" duration="972000" />
       <workItem from="1669645771521" duration="8802000" />
-      <workItem from="1669726532781" duration="11063000" />
+      <workItem from="1669726532781" duration="11943000" />
     </task>
     <task id="LOCAL-00001" summary="add getText librairies">
       <created>1669212369028</created>
@@ -183,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669646765939</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="refont login.html.twig">
+      <created>1669738684243</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669738684243</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,6 +219,7 @@
     <MESSAGE value="add getText librairies" />
     <MESSAGE value="add getText folders" />
     <MESSAGE value="add home and login templates" />
-    <option name="LAST_COMMIT_MESSAGE" value="add home and login templates" />
+    <MESSAGE value="refont login.html.twig" />
+    <option name="LAST_COMMIT_MESSAGE" value="refont login.html.twig" />
   </component>
 </project>
