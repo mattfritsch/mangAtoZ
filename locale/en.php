@@ -3,6 +3,8 @@
 return [
     'HOME' => 'Home',
     'CATEGORY' => 'Category',
+    'STORE' => 'Store',
+    'PROFILE' => 'Profile',
     'SEARCH' => 'Search',
     'LOGIN' => 'Log-in',
     'SIGNUP' => 'Sign-up',
@@ -24,5 +26,4 @@ return [
     'BIRTHDAY'=> 'Birthday',
     'TERM_CONDITIONS'=> 'I do accept the Terms and Conditions of the website.',
     'REGISTER'=> 'Register',
-
 ];
