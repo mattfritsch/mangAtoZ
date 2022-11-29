@@ -10,9 +10,10 @@ return [
     'SIGNUP' => 'Sign-up',
     //Log-in
     'LOGIN_EMAIL' => 'E-mail',
+    'LOGIN_EMAIL_EXAMPLE' => 'name@example.com',
     'LOGIN_PASSWORD' => 'Password',
     'LOGIN_REMEMBER' => 'Remember me',
-    'LOGIN_OTHER_LOGIN' => 'Log-in with',
+    'LOGIN_SIGNIN' => 'Sign-in',
     //Registration
     'GENERAL'=> 'General information',
     'MAIL'=> 'E-mail',

@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="add home and login templates">
-      <change beforePath="$PROJECT_DIR$/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locale/en.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locale/fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/fr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Controller/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/Login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Controller/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/Registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,12 +37,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="registration" />
-                    <option name="lastUsedInstant" value="1669647698" />
+                    <option name="branchName" value="dev" />
+                    <option name="lastUsedInstant" value="1669734324" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1669647510" />
+                    <option name="branchName" value="footer" />
+                    <option name="lastUsedInstant" value="1669732257" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="registration" />
+                    <option name="lastUsedInstant" value="1669647698" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="master" />
@@ -152,7 +153,7 @@
       <workItem from="1669619411595" duration="12000" />
       <workItem from="1669644680462" duration="972000" />
       <workItem from="1669645771521" duration="8802000" />
-      <workItem from="1669726532781" duration="5085000" />
+      <workItem from="1669726532781" duration="11063000" />
     </task>
     <task id="LOCAL-00001" summary="add getText librairies">
       <created>1669212369028</created>
