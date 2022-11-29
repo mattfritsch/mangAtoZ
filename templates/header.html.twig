@@ -1,28 +1,61 @@
 {% block header %}
-    <header class="p-3 bg-dark text-white">
-        <div class="container">
-            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-                </a>
-
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#" class="nav-link px-2 text-secondary">{{ lang.HOME }}</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">{{ lang.CATEGORY }}</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand ">MangAtoZ</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 p-2">
+                    <li class="nav-item" id="">
+                        <a href="#" class="nav-link">
+                            {{ lang.HOME }}
+                        </a>
+                    </li>
+                    <li class="nav-item" id="">
+                        <a href="#" class="nav-link">
+                            {{ lang.CATEGORY }}
+                        </a>
+                    </li>
+                    <li class="nav-item" id="">
+                        <a href="#" class="nav-link">
+                            {{ lang.STORE }}
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown" id="">
+                        <a href="#" class="nav-link dropdown-toggle" id="profileDropDown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ lang.PROFILE }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropDown">
+                            <li>
+                                <a href="#" class="dropdown-item"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-item"></a>
+                            </li>
+                            <li>
+                                <a href="#" class="dropdown-item"></a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a href="#" class="dropdown-item"></a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
-
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark" placeholder="{{ lang.SEARCH }}" aria-label="Search">
+                <form class="d-flex p-2">
+                    <input type="search" class="form-controle me-2" placeholder="{{ lang.SEARCH }}"
+                           aria-label="{{ lang.SEARCH }}">
+                    <button class="btn btn-outline-success me-2" type="submit">{{ lang.SEARCH }}</button>
                 </form>
-
-                <div class="text-end">
-                    <button type="button" class="btn btn-outline-light me-2">{{ lang.LOGIN }}</button>
-                    <button type="button" class="btn btn-warning">{{ lang.SIGNUP }}</button>
+                <div class="d-flex justify-content-start border-start border-3 p-2">
+                    <button class="btn btn-outline-success me-2">{{ lang.LOGIN }}</button>
+                    <button class="btn btn-outline-success me-2">{{ lang.SIGNUP }}</button>
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
 {% endblock %}

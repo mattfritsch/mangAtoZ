@@ -2,7 +2,7 @@
 
 namespace App;
 
-function getTextLangue(string $language, string $file){
+function getTextLangue(string $language){
     $fr = require_once dirname(dirname(__DIR__)). '/locale/fr.php';
     $en = require_once dirname(dirname(__DIR__)). '/locale/en.php';
 
@@ -13,7 +13,7 @@ function getTextLangue(string $language, string $file){
         $l = $en;
     }
 
-    return $l[$file];
+    return $l;
 }
 
 function displayErrors(array $errors, string $field): void {
