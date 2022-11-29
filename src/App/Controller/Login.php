@@ -9,7 +9,7 @@ class Login{
     public function __invoke()
     {
 
-        $args = ['lang' => getTextLangue('fr', 'LOGIN')];
+        $args = ['lang' => getTextLangue('en')];
         return new Response('login.html.twig', $args);
     }
 }

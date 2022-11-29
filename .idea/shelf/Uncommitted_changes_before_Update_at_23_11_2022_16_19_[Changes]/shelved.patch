@@ -1,0 +1,91 @@
+Index: config/database.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nreturn [\r\n    'ENTITY_PATH' => dirname(__DIR__) . '/src/App/Entity',\r\n    'DATABASE_CONFIG' => [\r\n        'driver' => 'pdo_mysql',\r\n        'dbname' => 'tests',\r\n        'user' => 'root',\r\n        'password' => 'toor',\r\n        'host' => '127.0.0.1',\r\n    ],\r\n];\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/database.php b/config/database.php
+--- a/config/database.php	(revision e72b8314a622cfee0bf33d9254b33a522e484743)
++++ b/config/database.php	(date 1669213645879)
+@@ -4,9 +4,9 @@
+     'ENTITY_PATH' => dirname(__DIR__) . '/src/App/Entity',
+     'DATABASE_CONFIG' => [
+         'driver' => 'pdo_mysql',
+-        'dbname' => 'tests',
++        'dbname' => 'manga',
+         'user' => 'root',
+-        'password' => 'toor',
++        'password' => '',
+         'host' => '127.0.0.1',
+     ],
+ ];
+Index: config/db.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nreturn [\r\n    'DB_USER' => 'root',\r\n    'DB_HOST' => '127.0.0.1',\r\n    'DB_PORT' => 3306,\r\n    'DB_PASSWORD' => 'toor',\r\n];\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/db.php b/config/db.php
+--- a/config/db.php	(revision e72b8314a622cfee0bf33d9254b33a522e484743)
++++ b/config/db.php	(date 1669213645916)
+@@ -4,5 +4,5 @@
+     'DB_USER' => 'root',
+     'DB_HOST' => '127.0.0.1',
+     'DB_PORT' => 3306,
+-    'DB_PASSWORD' => 'toor',
++    'DB_PASSWORD' => '',
+ ];
+Index: src/Framework/Templating/Twig.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace Framework\\Templating;\r\n\r\nuse Framework\\Config\\Config;\r\nuse Framework\\Response\\Response;\r\nuse Twig\\Environment;\r\nuse Twig\\Loader\\FilesystemLoader;\r\n\r\nclass Twig implements TemplatingInterface\r\n{\r\n    protected FilesystemLoader $loader;\r\n    protected Environment $twig;\r\n\r\n    public function __construct()\r\n    {\r\n        $this->loader = new FilesystemLoader(Config::get('TEMPLATES_PATH'));\r\n        $this->twig = new Environment($this->loader, [\r\n            //'cache' => '/path/to/compilation_cache',\r\n        ]);\r\n    }\r\n\r\n    public function render(Response $response): string\r\n    {\r\n        return $this->twig->render($response->getTemplate(), $response->getArgs());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Framework/Templating/Twig.php b/src/Framework/Templating/Twig.php
+--- a/src/Framework/Templating/Twig.php	(revision e72b8314a622cfee0bf33d9254b33a522e484743)
++++ b/src/Framework/Templating/Twig.php	(date 1669216293236)
+@@ -24,4 +24,6 @@
+     {
+         return $this->twig->render($response->getTemplate(), $response->getArgs());
+     }
++
++
+ }
+Index: public/index.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nuse Framework\\Kernel\\Kernel;\r\nuse Framework\\Request\\Request;\r\nuse Framework\\Templating\\Twig;\r\n\r\nrequire '../vendor/autoload.php';\r\n\r\n$kernel = new Kernel(new Twig());\r\n$response = $kernel->handleRequest(Request::fromGlobals());\r\n\r\n$kernel->display($response);\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/public/index.php b/public/index.php
+--- a/public/index.php	(revision e72b8314a622cfee0bf33d9254b33a522e484743)
++++ b/public/index.php	(date 1669216026786)
+@@ -6,8 +6,10 @@
+ 
+ require '../vendor/autoload.php';
+ 
++
+ $kernel = new Kernel(new Twig());
+ $response = $kernel->handleRequest(Request::fromGlobals());
+ 
+ $kernel->display($response);
+ 
++
+Index: templates/home.html.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Hello World!\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/home.html.twig b/templates/home.html.twig
+--- a/templates/home.html.twig	(revision e72b8314a622cfee0bf33d9254b33a522e484743)
++++ b/templates/home.html.twig	(date 1669216026767)
+@@ -1,1 +1,2 @@
+-Hello World!
++<p><?= _('Accueil') ?></p>
++<?= ?>
