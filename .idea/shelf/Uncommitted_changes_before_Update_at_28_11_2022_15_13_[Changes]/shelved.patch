@@ -1,0 +1,28 @@
+Index: .idea/php.xml
+===================================================================
+diff --git a/.idea/php.xml b/.idea/php.xml
+--- a/.idea/php.xml	
++++ b/.idea/php.xml	
+@@ -37,8 +37,6 @@
+       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+-      <path value="$PROJECT_DIR$/vendor/gettext/gettext" />
+-      <path value="$PROJECT_DIR$/vendor/gettext/languages" />
+     </include_path>
+   </component>
+   <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
+Index: .idea/mangAtoZ.iml
+===================================================================
+diff --git a/.idea/mangAtoZ.iml b/.idea/mangAtoZ.iml
+--- a/.idea/mangAtoZ.iml	
++++ b/.idea/mangAtoZ.iml	
+@@ -41,8 +41,6 @@
+       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />
+       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
+       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+-      <excludeFolder url="file://$MODULE_DIR$/vendor/gettext/gettext" />
+-      <excludeFolder url="file://$MODULE_DIR$/vendor/gettext/languages" />
+     </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
