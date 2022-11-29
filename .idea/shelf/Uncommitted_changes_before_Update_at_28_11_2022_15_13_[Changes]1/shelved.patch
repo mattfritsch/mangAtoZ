@@ -1,0 +1,554 @@
+Index: locale/fr.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/locale/fr.php b/locale/fr.php
+--- a/locale/fr.php	
++++ b/locale/fr.php	
+@@ -3,5 +3,18 @@
+ return [
+     'HOME' => [
+         'HELLO' => 'coucou les boys',
++        'HOME' => 'Accueil',
++        'CATEGORY' => 'Catégorie',
++        'LOGIN' => 'Se connecter',
++        'SIGNUP' => 'S\'inscrire',
++        'COPYRIGHT' => '© 2022 LPWMCE, BECKER Arthur, DESTREMONT Adrien, FRITSCH Matthieu',
++    ],
++    'LOGIN' => [
++        'LOGIN' => 'Se connecter',
++        'USERNAME' => 'Nom d\'utilisateur',
++        'PASSWORD' => 'Mot de passe',
++        'REMEMBER' => 'Se souvenir de moi',
++        'SIGNUP' => 'S\'inscrire',
++        'OTHER_LOGIN' => 'Connectez vous avec',
+     ]
+ ];
+\ No newline at end of file
+Index: locale/en.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/locale/en.php b/locale/en.php
+--- a/locale/en.php	
++++ b/locale/en.php	
+@@ -3,5 +3,18 @@
+ return [
+     'HOME' => [
+         'HELLO' => 'hello guys',
++        'HOME' => 'Home',
++        'CATEGORY' => 'Category',
++        'LOGIN' => 'Log-in',
++        'SIGNUP' => 'Sign-up',
++        'COPYRIGHT' => '© 2022 LPWMCE, BECKER Arthur, DESTREMONT Adrien, FRITSCH Matthieu',
++    ],
++    'LOGIN' => [
++        'LOGIN' => 'Log-in',
++        'USERNAME' => 'Username',
++        'PASSWORD' => 'Password',
++        'REMEMBER' => 'Remember me',
++        'SIGNUP' => 'Register if you don\'t have an account',
++        'OTHER_LOGIN' => 'Or log-in with',
+     ]
+ ];
+\ No newline at end of file
+Index: templates/home.html.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/home.html.twig b/templates/home.html.twig
+--- a/templates/home.html.twig	
++++ b/templates/home.html.twig	
+@@ -1,1 +1,16 @@
+-<p> {{ lang.HELLO }} </p>
+\ No newline at end of file
++<!DOCTYPE html>
++<html lang="fr">
++<head>
++    <meta charset="UTF-8">
++    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
++          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
++    <title>{{ lang.HOME }}</title>
++</head>
++<body>
++{% include 'header.html.twig' %}
++{% block home %}
++    {{ lang.HELLO }}
++{% endblock %}
++{% include 'footer.html.twig' %}
++</body>
++</html>
+\ No newline at end of file
+Index: src/App/Controller/Homepage.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/App/Controller/Homepage.php b/src/App/Controller/Homepage.php
+--- a/src/App/Controller/Homepage.php	
++++ b/src/App/Controller/Homepage.php	
+@@ -39,7 +39,7 @@
+       }
+ 
+ 
+-      $args = ['lang' => getTextLangue('en', 'HOME')];
++      $args = ['lang' => getTextLangue('fr', 'HOME')];
+       return new Response('home.html.twig', $args);
+   }
+ }
+Index: src/App/Controller/Login.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/App/Controller/Login.php b/src/App/Controller/Login.php
+new file mode 100644
+--- /dev/null	
++++ b/src/App/Controller/Login.php	
+@@ -0,0 +1,28 @@
++<?php
++
++namespace App\Controller;
++
++use Framework\Response\Response;
++
++class Login{
++    public function __invoke()
++    {
++        function getTextLangue(string $language, string $file){
++            $fr = require_once dirname(dirname(dirname(__DIR__))). '/locale/fr.php';
++            $en = require_once dirname(dirname(dirname(__DIR__))). '/locale/en.php';
++
++            if ($language === 'fr' ){
++                $l = $fr;
++            }
++            else{
++                $l = $en;
++            }
++
++            return $l[$file];
++        }
++
++
++        $args = ['lang' => getTextLangue('fr', 'LOGIN')];
++        return new Response('login.html.twig', $args);
++    }
++}
+Index: templates/login.html.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/login.html.twig b/templates/login.html.twig
+new file mode 100644
+--- /dev/null	
++++ b/templates/login.html.twig	
+@@ -0,0 +1,61 @@
++<!DOCTYPE html>
++<html lang="fr">
++<head>
++    <meta charset="UTF-8">
++    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
++          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
++    <title>{{ lang.HOME }}</title>
++</head>
++<body>
++{% block loginform %}
++    <div class="content">
++        <div class="container">
++            <div class="row">
++                <div class="col-md-6">
++                    <img src="images/undraw_remotely_2j6y.svg" alt="Image" class="img-fluid">
++                </div>
++                <div class="col-md-6 contents">
++                    <div class="row justify-content-center">
++                        <div class="col-md-8">
++                            <div class="mb-4">
++                                <h3>{{ lang.LOGIN }}</h3>
++                            </div>
++                            <form action="#" method="post">
++                                <div class="form-group first">
++                                    <label for="username">{{ lang.USERNAME }}</label>
++                                    <input type="text" class="form-control" id="username">
++                                </div>
++                                <div class="form-group last mb-4">
++                                    <label for="password">{{ lang.PASSWORD }}</label>
++                                    <input type="password" class="form-control" id="password">
++                                </div>
++                                <div class="d-flex mb-5 align-items-center">
++                                    <label class="control control--checkbox mb-0"><span class="caption">{{ lang.REMEMBER }}</span>
++                                        <input type="checkbox" checked="checked">
++                                        <div class="control__indicator"></div>
++                                    </label>
++                                    <span class="ml-auto"><a href="#" class="sign-up">{{ lang.SIGNUP }}</a></span>
++                                </div>
++                                <input type="submit" value="{{ lang.LOGIN }}" class="btn btn-block btn-primary">
++                                <span class="d-block text-left my-4 text-muted">{{ lang.OTHER_LOGIN }}</span>
++                                <div class="social-login">
++                                    <a href="#" class="facebook">
++                                        <span class="icon-facebook mr-3"></span>
++                                    </a>
++                                    <a href="#" class="twitter">
++                                        <span class="icon-twitter mr-3"></span>
++                                    </a>
++                                    <a href="#" class="google">
++                                        <span class="icon-google mr-3"></span>
++                                    </a>
++                                </div>
++                            </form>
++                        </div>
++                    </div>
++                </div>
++            </div>
++        </div>
++    </div>
++{% endblock %}
++</body>
++</html>
+\ No newline at end of file
+Index: templates/footer.html.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/footer.html.twig b/templates/footer.html.twig
+new file mode 100644
+--- /dev/null	
++++ b/templates/footer.html.twig	
+@@ -0,0 +1,12 @@
++{% block footer %}
++    <footer>
++        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
++            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">{{ lang.HOME }}</a></li>
++            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">{{ lang.CATEGORY }}</a></li>
++            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
++            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
++            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
++        </ul>
++        <p class="text-center text-muted">{{ lang.COPYRIGHT }}</p>
++    </footer>
++{% endblock %}
+\ No newline at end of file
+Index: templates/header.html.twig
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/templates/header.html.twig b/templates/header.html.twig
+new file mode 100644
+--- /dev/null	
++++ b/templates/header.html.twig	
+@@ -0,0 +1,28 @@
++{% block header %}
++    <header class="p-3 bg-dark text-white">
++        <div class="container">
++            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
++                <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
++                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
++                </a>
++
++                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
++                    <li><a href="#" class="nav-link px-2 text-secondary">{{ lang.HOME }}</a></li>
++                    <li><a href="#" class="nav-link px-2 text-white">{{ lang.CATEGORY }}</a></li>
++                    <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
++                    <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
++                    <li><a href="#" class="nav-link px-2 text-white">About</a></li>
++                </ul>
++
++                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
++                    <input type="search" class="form-control form-control-dark" placeholder="{{ lang.SEARCH }}" aria-label="Search">
++                </form>
++
++                <div class="text-end">
++                    <button type="button" class="btn btn-outline-light me-2">{{ lang.LOGIN }}</button>
++                    <button type="button" class="btn btn-warning">{{ lang.SIGNUP }}</button>
++                </div>
++            </div>
++        </div>
++    </header>
++{% endblock %}
+\ No newline at end of file
+Index: package-lock.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package-lock.json b/package-lock.json
+new file mode 100644
+--- /dev/null	
++++ b/package-lock.json	
+@@ -0,0 +1,58 @@
++{
++  "name": "mangatoz",
++  "version": "1.0.0",
++  "lockfileVersion": 2,
++  "requires": true,
++  "packages": {
++    "": {
++      "name": "mangatoz",
++      "version": "1.0.0",
++      "license": "ISC",
++      "dependencies": {
++        "bootstrap": "^5.2.3"
++      }
++    },
++    "node_modules/@popperjs/core": {
++      "version": "2.11.6",
++      "resolved": "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz",
++      "integrity": "sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==",
++      "peer": true,
++      "funding": {
++        "type": "opencollective",
++        "url": "https://opencollective.com/popperjs"
++      }
++    },
++    "node_modules/bootstrap": {
++      "version": "5.2.3",
++      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-5.2.3.tgz",
++      "integrity": "sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==",
++      "funding": [
++        {
++          "type": "github",
++          "url": "https://github.com/sponsors/twbs"
++        },
++        {
++          "type": "opencollective",
++          "url": "https://opencollective.com/bootstrap"
++        }
++      ],
++      "peerDependencies": {
++        "@popperjs/core": "^2.11.6"
++      }
++    }
++  },
++  "dependencies": {
++    "@popperjs/core": {
++      "version": "2.11.6",
++      "resolved": "https://registry.npmjs.org/@popperjs/core/-/core-2.11.6.tgz",
++      "integrity": "sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==",
++      "peer": true
++    },
++    "bootstrap": {
++      "version": "5.2.3",
++      "resolved": "https://registry.npmjs.org/bootstrap/-/bootstrap-5.2.3.tgz",
++      "integrity": "sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==",
++      "requires": {}
++    }
++  }
++}
+Index: config/routes.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/config/routes.php b/config/routes.php
+--- a/config/routes.php	
++++ b/config/routes.php	
+@@ -1,10 +1,12 @@
+ <?php
+ 
+ use App\Controller\Homepage;
++use App\Controller\Login;
+ use Framework\Routing\Route;
+ 
+ return [
+     'routing' => [
+         new Route('GET', '/', Homepage::class),
++        new Route('GET', '/login', Login::class),
+     ]
+ ];
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+new file mode 100644
+--- /dev/null	
++++ b/package.json	
+@@ -0,0 +1,22 @@
++{
++  "name": "mangatoz",
++  "version": "1.0.0",
++  "description": "",
++  "main": "index.js",
++  "scripts": {
++    "test": "echo \"Error: no test specified\" && exit 1"
++  },
++  "repository": {
++    "type": "git",
++    "url": "git+https://github.com/mattfritsch/mangAtoZ.git"
++  },
++  "author": "",
++  "license": "ISC",
++  "bugs": {
++    "url": "https://github.com/mattfritsch/mangAtoZ/issues"
++  },
++  "homepage": "https://github.com/mattfritsch/mangAtoZ#readme",
++  "dependencies": {
++    "bootstrap": "^5.2.3"
++  }
++}
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	
++++ b/.gitignore	
+@@ -1,2 +1,3 @@
+ vendor
+ config/*.local.php
++node_modules
+Index: composer.lock
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/composer.lock b/composer.lock
+--- a/composer.lock	
++++ b/composer.lock	
+@@ -1092,65 +1092,6 @@
+             "time": "2022-10-18T15:00:10+00:00"
+         },
+         {
+-            "name": "gettext/php-scanner",
+-            "version": "v1.3.1",
+-            "source": {
+-                "type": "git",
+-                "url": "https://github.com/php-gettext/PHP-Scanner.git",
+-                "reference": "989a2cffa1d0f43d13b14c83a50429119b5eb8e4"
+-            },
+-            "dist": {
+-                "type": "zip",
+-                "url": "https://api.github.com/repos/php-gettext/PHP-Scanner/zipball/989a2cffa1d0f43d13b14c83a50429119b5eb8e4",
+-                "reference": "989a2cffa1d0f43d13b14c83a50429119b5eb8e4",
+-                "shasum": ""
+-            },
+-            "require": {
+-                "gettext/gettext": "^5.5.0",
+-                "nikic/php-parser": "^4.2",
+-                "php": ">=7.2"
+-            },
+-            "require-dev": {
+-                "friendsofphp/php-cs-fixer": "^2.15",
+-                "oscarotero/php-cs-fixer-config": "^1.0",
+-                "phpunit/phpunit": "^8.0",
+-                "squizlabs/php_codesniffer": "^3.0"
+-            },
+-            "type": "library",
+-            "autoload": {
+-                "psr-4": {
+-                    "Gettext\\Scanner\\": "src"
+-                }
+-            },
+-            "notification-url": "https://packagist.org/downloads/",
+-            "license": [
+-                "MIT"
+-            ],
+-            "authors": [
+-                {
+-                    "name": "Oscar Otero",
+-                    "email": "oom@oscarotero.com",
+-                    "homepage": "http://oscarotero.com",
+-                    "role": "Developer"
+-                }
+-            ],
+-            "description": "PHP scanner for gettext",
+-            "homepage": "https://github.com/php-gettext/PHP-Scanner",
+-            "keywords": [
+-                "gettext",
+-                "i18n",
+-                "php",
+-                "scanner",
+-                "translation"
+-            ],
+-            "support": {
+-                "email": "oom@oscarotero.com",
+-                "issues": "https://github.com/php-gettext/PHP-Scanner/issues",
+-                "source": "https://github.com/php-gettext/PHP-Scanner/tree/v1.3.1"
+-            },
+-            "time": "2022-03-18T11:47:55+00:00"
+-        },
+-        {
+             "name": "nikic/fast-route",
+             "version": "v1.3.0",
+             "source": {
+@@ -1201,62 +1142,6 @@
+             "time": "2018-02-13T20:26:39+00:00"
+         },
+         {
+-            "name": "nikic/php-parser",
+-            "version": "v4.15.2",
+-            "source": {
+-                "type": "git",
+-                "url": "https://github.com/nikic/PHP-Parser.git",
+-                "reference": "f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc"
+-            },
+-            "dist": {
+-                "type": "zip",
+-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc",
+-                "reference": "f59bbe44bf7d96f24f3e2b4ddc21cd52c1d2adbc",
+-                "shasum": ""
+-            },
+-            "require": {
+-                "ext-tokenizer": "*",
+-                "php": ">=7.0"
+-            },
+-            "require-dev": {
+-                "ircmaxell/php-yacc": "^0.0.7",
+-                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
+-            },
+-            "bin": [
+-                "bin/php-parse"
+-            ],
+-            "type": "library",
+-            "extra": {
+-                "branch-alias": {
+-                    "dev-master": "4.9-dev"
+-                }
+-            },
+-            "autoload": {
+-                "psr-4": {
+-                    "PhpParser\\": "lib/PhpParser"
+-                }
+-            },
+-            "notification-url": "https://packagist.org/downloads/",
+-            "license": [
+-                "BSD-3-Clause"
+-            ],
+-            "authors": [
+-                {
+-                    "name": "Nikita Popov"
+-                }
+-            ],
+-            "description": "A PHP parser written in PHP",
+-            "keywords": [
+-                "parser",
+-                "php"
+-            ],
+-            "support": {
+-                "issues": "https://github.com/nikic/PHP-Parser/issues",
+-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.15.2"
+-            },
+-            "time": "2022-11-12T15:38:23+00:00"
+-        },
+-        {
+             "name": "nyholm/psr7",
+             "version": "1.5.1",
+             "source": {
+@@ -2865,9 +2750,7 @@
+     "stability-flags": [],
+     "prefer-stable": false,
+     "prefer-lowest": false,
+-    "platform": {
+-        "ext-gettext": "*"
+-    },
++    "platform": [],
+     "platform-dev": [],
+     "plugin-api-version": "2.3.0"
+ }
