@@ -12,9 +12,14 @@ class Response
     ) {
     }
 
-  public static function buildWithController(string $controller, array $args): Response
+  public static function buildWithController(string $controller, array $args): ?Response
   {
     $controller = new $controller();
+
+      if($controller === null){
+          var_dump('ok');
+          return null;
+      }
 
     if (!is_callable($controller)) {
       throw new FrameworkException('You controller is not a valid callable!');
