@@ -23,15 +23,15 @@
                             <form action="/connection" method="post">
                                 <div class="form-group first">
                                     <label for="email">{{ lang.LOGIN_EMAIL }}</label>
-                                    <input type="text" class="form-control" id="email" name="email">
+                                    <input type="text" class="form-control" name="email" value="{{ email }}">
                                 </div>
                                 <div class="form-group last mb-4">
                                     <label for="password">{{ lang.PASSWORD }}</label>
-                                    <input type="password" class="form-control" id="password" name="password">
+                                    <input type="password" class="form-control" name="password">
                                 </div>
                                 <div class="d-flex mb-5 align-items-center">
                                     <label class="control control--checkbox mb-0"><span class="caption">{{ lang.LOGIN_REMEMBER }}</span>
-                                        <input type="checkbox" checked="checked" id="remember_me" name="remember_me" value="1">
+                                        <input type="checkbox" checked="checked" name="remember_me">
                                         <div class="control__indicator"></div>
                                     </label>
                                     <span class="ml-auto"><a href="#" class="sign-up">{{ lang.SIGNUP }}</a></span>

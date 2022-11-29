@@ -8,7 +8,14 @@ use function App\getTextLangue;
 class Login{
     public function __invoke()
     {
-        $args = ['lang' => getTextLangue('fr')];
+        ?>
+        <script type="text/javascript">
+            document.cookie="email=" + localStorage.getItem('email');
+        </script>
+        <?php
+        $_COOKIE['email'] !== "null" ? $email = $_COOKIE['email'] : $email = "";
+
+        $args = ['lang' => getTextLangue('fr'), 'email' => $email];
         return new Response('login.html.twig', $args);
     }
 }
