@@ -8,8 +8,7 @@ class Registration{
     public function __invoke()
     {
 
-        $args = ['lang' => getTextLangue('en')];
-        return new Response('registration.html.twig', $args);
+        return new Response('registration.html.twig', ['lang' => getTextLangue('trad'), "" => $_SESSION["errors"]]);
     }
 }
 
