@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="refont login.html.twig">
-      <change beforePath="$PROJECT_DIR$/templates/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/en.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/fr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/Registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/Registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +38,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="registrationRefont" />
+                    <option name="lastUsedInstant" value="1669888969" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1669734324" />
+                    <option name="lastUsedInstant" value="1669888884" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="traduction" />
+                    <option name="lastUsedInstant" value="1669886648" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="footer" />
@@ -44,10 +56,6 @@
                   <RecentBranch>
                     <option name="branchName" value="registration" />
                     <option name="lastUsedInstant" value="1669647698" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1669647509" />
                   </RecentBranch>
                 </list>
               </option>
@@ -150,7 +158,8 @@
       <workItem from="1669619411595" duration="12000" />
       <workItem from="1669644680462" duration="972000" />
       <workItem from="1669645771521" duration="8802000" />
-      <workItem from="1669726532781" duration="11943000" />
+      <workItem from="1669726532781" duration="12288000" />
+      <workItem from="1669886589439" duration="763000" />
     </task>
     <task id="LOCAL-00001" summary="add getText librairies">
       <created>1669212369028</created>
@@ -187,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669738684243</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="refont login.html.twig">
+      <created>1669739363979</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669739363979</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
