@@ -10,6 +10,8 @@ use Framework\Response\Response;
 class Connection{
     public function __invoke(): void
     {
+        $_SESSION["errors"] = '';
+
         if (count($_POST)) {
             [
                 'email' => $email,
@@ -25,26 +27,33 @@ class Connection{
             $error = null;
 
             if ($user !== null) {
-//                if (password_verify($password, $user->getPassword())) {
-                if ($user->getPassword() === $password) {
+                if (password_verify($password, $user->getPassword())) {
+                    session_start();
                     $_SESSION['user'] = $user;
                     if(array_key_exists("remember_me", $_POST)){
                         ?>
                         <script type="text/javascript">
                             localStorage.setItem('email', <?php echo json_encode($email) ?>)
+                            localStorage.setItem('password', <?php echo json_encode($user->getPassword()) ?>)
                         </script>
                         <?php
-                        die;
                     }
-                    echo('connecté');
-                    header('Location: /');
+                    ?>
+                    <script type="text/javascript">
+                        window.location.href = "/";
+                    </script>
+                    <?php
+                    die;
+//                    header('Location: /');
                 } else {
-                    echo('mot de passe incorrect');
-                    $error = "Mot de passe incorrect !";
+                    $error = ["password" => "Mot de passe incorrect !"];
+                    $_SESSION["errors"] = $error;
+                    header('Location: /login');
                 }
             } else {
-                echo('mail invalide');
-                $error = "Mail non valide !";
+                $error = ["mail" => "Mail non valide !"];
+                $_SESSION["errors"] = $error;
+                header('Location: /login');
             }
         }
         else{

@@ -7,9 +7,14 @@ use function App\getTextLangue;
 class Registration{
     public function __invoke()
     {
+        if(isset($_SESSION["errors"])){
+            $errors = $_SESSION["errors"];
+        }
+        else{
+            $errors = "";
+        }
 
-        $args = ['lang' => getTextLangue('fr')];
-        return new Response('registration.html.twig', $args);
+        return new Response('registration.html.twig', ['lang' => getTextLangue('trad'), "errors" => $errors]);
     }
 }
 

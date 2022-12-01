@@ -18,7 +18,7 @@ class User
     #[ORM\Column(type: 'string', unique: true)]
     protected string $email;
     
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 1000)]
     protected string $password;
 
     #[ORM\Column(type: 'boolean')]
