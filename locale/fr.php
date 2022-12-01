@@ -19,6 +19,7 @@ return [
         'BACK' => 'Retour',
     ],
     'REGISTRATION' => [
+        'FORM' => 'Formulaire d\'inscription',
         'GENERAL'=> 'Informations générales',
         'EMAIL'=> 'E-mail',
         'PASSWORD'=> 'Mot de passe',
@@ -28,8 +29,9 @@ return [
         'STREET'=> 'Rue',
         'POSTCODE'=> 'Code postal',
         'CITY'=> 'Ville',
-        'BIRTHDAY'=> 'Date d\'anniversaire',
-        'TERM_CONDITIONS'=> 'J\'accepte les conditions générales d\'utilisation du site',
+        'BIRTHDATE'=> 'Date de naissance',
+        'TOS'=> 'J\'accepte les conditions générales d\'utilisation du site',
         'REGISTER'=> 'Enregistrer',
+        'BACK'=> 'Retour',
     ],
 ];
