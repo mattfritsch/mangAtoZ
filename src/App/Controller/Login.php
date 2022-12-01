@@ -15,7 +15,7 @@ class Login{
         <?php
         $_COOKIE['email'] !== "null" ? $email = $_COOKIE['email'] : $email = "";
 
-        $args = ['lang' => getTextLangue('fr'), 'email' => $email];
+        $args = ['lang' => getTextLangue('en'), 'email' => $email];
         return new Response('login.html.twig', $args);
     }
 }
