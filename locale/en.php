@@ -19,6 +19,7 @@ return [
         'BACK' => 'Back',
     ],
     'REGISTRATION' => [
+        'FORM' => 'Registration form',
         'GENERAL'=> 'General information',
         'EMAIL'=> 'E-mail',
         'PASSWORD'=> 'Password',
@@ -28,8 +29,9 @@ return [
         'STREET'=> 'Street',
         'POSTCODE'=> 'Postcode',
         'CITY'=> 'City',
-        'BIRTHDAY'=> 'Birthday',
-        'TERM_CONDITIONS'=> 'I do accept the Terms and Conditions of the website.',
+        'BIRTHDATE'=> 'Birth date',
+        'TOS'=> 'I do accept the Terms and Conditions of the website.',
         'REGISTER'=> 'Register',
+        'BACK'=> 'Back',
     ],
 ];
