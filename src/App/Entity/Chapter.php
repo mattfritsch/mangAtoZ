@@ -13,7 +13,7 @@ class Chapter
     #[ORM\Column(type: 'integer')]
     protected int $chapterId;
 
-    #[ORM\Id]
+//    #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     protected int $productId;
 

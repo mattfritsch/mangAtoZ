@@ -11,10 +11,9 @@ class Product
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue]
     protected int $productId;
 
-    #[ORM\Column(type: 'string', length: 1000)]
+    #[ORM\Column(type: 'string', length: 4000)]
     protected string $resume;
 
     #[ORM\Column(type: 'string', length: 50)]
@@ -29,8 +28,8 @@ class Product
     #[ORM\Column(type: 'integer')]
     protected int $chapterNumber;
 
-    #[ORM\Column(type: 'integer')]
-    protected int $categId;
+        #[ORM\Column(type: 'array')]
+    protected array $categId;
 
     #[ORM\Column(type: 'integer')]
     protected int $ageId;
@@ -137,7 +136,7 @@ class Product
     /**
      * @return int
      */
-    public function getCategId(): int
+    public function getCategId(): array
     {
         return $this->categId;
     }
@@ -145,7 +144,7 @@ class Product
     /**
      * @param int $categId
      */
-    public function setCategId(int $categId): void
+    public function setCategId(array $categId): void
     {
         $this->categId = $categId;
     }

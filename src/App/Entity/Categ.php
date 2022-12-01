@@ -11,11 +11,29 @@ class Categ
 {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
-    #[ORM\GeneratedValue]
     protected int $categId;
 
-    #[ORM\Column(type: 'string', length: 20)]
+    #[ORM\Column(type: 'string', length: 50)]
     protected string $categName;
+
+    #[ORM\Column(type: 'string', length: 4000)]
+    protected string $categDesc;
+
+    /**
+     * @return string
+     */
+    public function getCategDesc(): string
+    {
+        return $this->categDesc;
+    }
+
+    /**
+     * @param string $categDesc
+     */
+    public function setCategDesc(string $categDesc): void
+    {
+        $this->categDesc = $categDesc;
+    }
 
     /**
      * @return int
