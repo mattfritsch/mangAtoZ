@@ -17,44 +17,9 @@
                     <input type="email" class="form-control" id="email" name="email" placeholder="{{ lang.CONNECTION.EMAIL_EXAMPLE }}">
                     <label for="email">{{ lang.CONNECTION.EMAIL }}</label>
                 </div>
-                <div class="col-md-6 contents">
-                    <div class="row justify-content-center">
-                        <div class="col-md-8">
-                            <div class="mb-4">
-                                <h3>{{ lang.LOGIN }}</h3>
-                            </div>
-                            <form action="/connection" method="post">
-                                <div class="form-group first">
-                                    <label for="email">{{ lang.LOGIN_EMAIL }}</label>
-                                    <input type="text" class="form-control" name="email">
-                                </div>
-                                <div class="form-group last mb-4">
-                                    <label for="password">{{ lang.PASSWORD }}</label>
-                                    <input type="password" class="form-control" name="password">
-                                </div>
-                                <div class="d-flex mb-5 align-items-center">
-                                    <label class="control control--checkbox mb-0"><span class="caption">{{ lang.LOGIN_REMEMBER }}</span>
-                                        <input type="checkbox" checked="checked" name="remember_me">
-                                        <div class="control__indicator"></div>
-                                    </label>
-                                    <span class="ml-auto"><a href="#" class="sign-up">{{ lang.SIGNUP }}</a></span>
-                                </div>
-                                <input type="submit" value="{{ lang.LOGIN }}" class="btn btn-block btn-primary">
-                                <span class="d-block text-left my-4 text-muted">{{ lang.LOGIN_OTHER_LOGIN }}</span>
-                                <div class="social-login">
-                                    <a href="#" class="facebook">
-                                        <span class="icon-facebook mr-3"></span>
-                                    </a>
-                                    <a href="#" class="twitter">
-                                        <span class="icon-twitter mr-3"></span>
-                                    </a>
-                                    <a href="#" class="google">
-                                        <span class="icon-google mr-3"></span>
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                <div class="form-floating mb-2">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="{{ lang.CONNECTION.PASSWORD }}">
+                    <label for="password">{{ lang.CONNECTION.PASSWORD }}</label>
                 </div>
                 <div class="checkbox m-3">
                     <label>

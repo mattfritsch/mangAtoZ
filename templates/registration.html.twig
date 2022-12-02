@@ -8,84 +8,105 @@
     <title>{{ lang.HOME.SIGNUP }}</title>
 </head>
 <body>
-<section class="h-100 h-custom gradient-custom-2">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12">
-                <div class="card card-registration card-registration-2 rounded-3">
+{% block registration %}
+    <section class="h-100 h-custom gradient-custom-2">
+        <div class="container py-3 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <h1 class="fw-bold text-center" style="color: #4835d4;">{{ lang.REGISTRATION.FORM }}</h1>
+                <div class="col-12 mt-2">
                     <form action="/register" method="post">
-                        <div class="card-body p-0">
-                            <div class="row g-0">
-                                <div class="col-lg-6 rounded-3">
-                                    <div class="p-5">
-                                        <h3 class="fw-normal mb-5" style="color: #4835d4;">{{ lang.GENERAL }}</h3>
-                                        <div class="row">
-                                            <div class="mb-4 pb-2">
-                                                <input type="text" id="form3Examplev2" class="form-control form-control-lg" maxlength="255" name="email" required/>
-                                                <label class="form-label" for="form3Examplev2">{{ lang.MAIL }}</label>
-                                            </div>
-                                            <div class="mb-4 pb-2">
-                                                <input type="text" id="form3Examplev3" class="form-control form-control-lg" maxlength="50" name="password" required/>
-                                                <label class="form-label" for="form3Examplev3">{{ lang.PASSWORD }}</label>
-                                            </div>
-                                            <div class="mb-4 pb-2">
-                                                <input type="text" id="form3Examplev3" class="form-control form-control-lg" maxlength="50" name="password2" required/>
-                                                <label class="form-label" for="form3Examplev3">{{ lang.CONFIRM_PASSWORD }}</label>
+                        <div class="card card-registration card-registration-2 rounded-3">
+                            <div class="card-body p-0">
+                                <div class="row g-0">
+                                    <div class="col-lg-6 rounded-3">
+                                        <div class="p-5">
+                                            <h3 class="fw-normal mb-5"
+                                                style="color: #4835d4;">{{ lang.REGISTRATION.GENERAL }}</h3>
+                                            <div class="row">
+                                                <div class="mb-4 pb-2">
+                                                    <input type="text" id="email" class="form-control form-control-lg"
+                                                           maxlength="255" name="email" required/>
+                                                    <label class="form-label"
+                                                           for="email">{{ lang.REGISTRATION.EMAIL }}</label>
+                                                </div>
+                                                <div class="mb-4 pb-2">
+                                                    <input type="text" id="password"
+                                                           class="form-control form-control-lg" maxlength="50" name="password"
+                                                           required/>
+                                                    <label class="form-label"
+                                                           for="password">{{ lang.REGISTRATION.PASSWORD }}</label>
+                                                </div>
+                                                <div class="mb-4 pb-2">
+                                                    <input type="text" id="confirmPassword" name="password2"
+                                                           class="form-control form-control-lg" maxlength="50"
+                                                           required/>
+                                                    <label class="form-label"
+                                                           for="confirmPassword">{{ lang.REGISTRATION.CONFIRM_PASSWORD }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 bg-indigo text-white rounded-3" style="background-color: #4835d4;">
-                                    <div class="p-5">
-                                        <h3 class="fw-normal mb-5">{{ lang.CONTACT_DETAILS }}</h3>
+                                    <div class="col-lg-6 bg-indigo text-white rounded-3"
+                                         style="background-color: #4835d4;">
+                                        <div class="p-5">
+                                            <h3 class="fw-normal mb-5">{{ lang.REGISTRATION.CONTACT_DETAILS }}</h3>
 
-                                        <div class="mb-4 pb-2">
-                                            <div class="form-outline form-white">
-                                                <input type="text" id="form3Examplea2" class="form-control form-control-lg" name="street_number" required/>
-                                                <label class="form-label" for="form3Examplea2">{{ lang.STREET_NUMBER }}</label>
+                                            <div class="mb-4 pb-2">
+                                                <div class="form-outline form-white">
+                                                    <input type="text" id="streetNumber" name="street_number"
+                                                           class="form-control form-control-lg" required/>
+                                                    <label class="form-label"
+                                                           for="streetNumber">{{ lang.REGISTRATION.STREET_NUMBER }}</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-4 pb-2">
+                                                <div class="form-outline form-white">
+                                                    <input type="text" id="street" name="street"
+                                                           class="form-control form-control-lg"
+                                                           maxlength="50" required/>
+                                                    <label class="form-label"
+                                                           for="street">{{ lang.REGISTRATION.STREET }}</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-4 pb-2">
+                                                <div class="form-outline form-white">
+                                                    <input type="text" id="postcode" name="postcode"
+                                                           class="form-control form-control-lg" required/>
+                                                    <label class="form-label"
+                                                           for="postcode">{{ lang.REGISTRATION.POSTCODE }}</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-4 pb-2">
+                                                <div class="form-outline form-white">
+                                                    <input type="text" id="city" class="form-control form-control-lg"
+                                                           maxlength="50" name="city" required/>
+                                                    <label class="form-label"
+                                                           for="city">{{ lang.REGISTRATION.CITY }}</label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-4">
+                                                <div class="form-outline form-white">
+                                                    <input type="date" id="birthdate"  name="birthdate"
+                                                           class="form-control form-control-lg" required/>
+                                                    <label class="form-label"
+                                                           for="birthdate">{{ lang.REGISTRATION.BIRTHDATE }}</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                                                <input class="form-check-input me-3" type="checkbox" value="1" name="tos" id="tos"/>
+                                                <label class="form-check-label text-white" for="tos">
+                                                    {{ lang.REGISTRATION.TOS }}
+                                                </label>
                                             </div>
                                         </div>
-
-                                        <div class="mb-4 pb-2">
-                                            <div class="form-outline form-white">
-                                                <input type="text" id="form3Examplea2" class="form-control form-control-lg" maxlength="50" name="street" required/>
-                                                <label class="form-label" for="form3Examplea2">{{ lang.STREET }}</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-4 pb-2">
-                                            <div class="form-outline form-white">
-                                                <input type="text" id="form3Examplea2" class="form-control form-control-lg" name="postcode" required/>
-                                                <label class="form-label" for="form3Examplea2">{{ lang.POSTCODE }}</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-4 pb-2">
-                                            <div class="form-outline form-white">
-                                                <input type="text" id="form3Examplea2" class="form-control form-control-lg" maxlength="50" name="city" required/>
-                                                <label class="form-label" for="form3Examplea2">{{ lang.CITY }}</label>
-                                            </div>
-                                        </div>
-                                        <div class="mb-4">
-                                            <div class="form-outline form-white">
-                                                <input type="date" id="form3Examplea9" class="form-control form-control-lg" name="birthdate" required/>
-                                                <label class="form-label" for="form3Examplea9">{{ lang.BIRTHDAY }}</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-check d-flex justify-content-start mb-4 pb-3">
-                                            <input class="form-check-input me-3" type="checkbox" id="form2Example3c" name="tos"/>
-                                            <label class="form-check-label text-white" for="form2Example3">
-                                                {{ lang.TERMS_CONDITIONS }}
-                                            </label>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-light btn-lg"
-                                                data-mdb-ripple-color="dark">{{ lang.REGISTER }}</button>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-outline-success btn-lg mt-2"
+                            <button type="submit" class="btn btn-outline-success btn-lg mt-2"
                                     data-mdb-ripple-color="dark">
                                 {{ lang.REGISTRATION.REGISTER }}
                             </button>
