@@ -14,7 +14,7 @@
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <h1 class="fw-bold text-center" style="color: #4835d4;">{{ lang.REGISTRATION.FORM }}</h1>
                 <div class="col-12 mt-2">
-                    <form action="" method="post">
+                    <form action="/register" method="post">
                         <div class="card card-registration card-registration-2 rounded-3">
                             <div class="card-body p-0">
                                 <div class="row g-0">
@@ -25,19 +25,19 @@
                                             <div class="row">
                                                 <div class="mb-4 pb-2">
                                                     <input type="text" id="email" class="form-control form-control-lg"
-                                                           maxlength="255" required/>
+                                                           maxlength="255" name="email" required/>
                                                     <label class="form-label"
                                                            for="email">{{ lang.REGISTRATION.EMAIL }}</label>
                                                 </div>
                                                 <div class="mb-4 pb-2">
                                                     <input type="text" id="password"
-                                                           class="form-control form-control-lg" maxlength="50"
+                                                           class="form-control form-control-lg" maxlength="50" name="password"
                                                            required/>
                                                     <label class="form-label"
                                                            for="password">{{ lang.REGISTRATION.PASSWORD }}</label>
                                                 </div>
                                                 <div class="mb-4 pb-2">
-                                                    <input type="text" id="confirmPassword"
+                                                    <input type="text" id="confirmPassword" name="password2"
                                                            class="form-control form-control-lg" maxlength="50"
                                                            required/>
                                                     <label class="form-label"
@@ -53,7 +53,7 @@
 
                                             <div class="mb-4 pb-2">
                                                 <div class="form-outline form-white">
-                                                    <input type="text" id="streetNumber"
+                                                    <input type="text" id="streetNumber" name="street_number"
                                                            class="form-control form-control-lg" required/>
                                                     <label class="form-label"
                                                            for="streetNumber">{{ lang.REGISTRATION.STREET_NUMBER }}</label>
@@ -62,7 +62,8 @@
 
                                             <div class="mb-4 pb-2">
                                                 <div class="form-outline form-white">
-                                                    <input type="text" id="street" class="form-control form-control-lg"
+                                                    <input type="text" id="street" name="street"
+                                                           class="form-control form-control-lg"
                                                            maxlength="50" required/>
                                                     <label class="form-label"
                                                            for="street">{{ lang.REGISTRATION.STREET }}</label>
@@ -71,7 +72,7 @@
 
                                             <div class="mb-4 pb-2">
                                                 <div class="form-outline form-white">
-                                                    <input type="text" id="postcode"
+                                                    <input type="text" id="postcode" name="postcode"
                                                            class="form-control form-control-lg" required/>
                                                     <label class="form-label"
                                                            for="postcode">{{ lang.REGISTRATION.POSTCODE }}</label>
@@ -81,14 +82,14 @@
                                             <div class="mb-4 pb-2">
                                                 <div class="form-outline form-white">
                                                     <input type="text" id="city" class="form-control form-control-lg"
-                                                           maxlength="50" required/>
+                                                           maxlength="50" name="city" required/>
                                                     <label class="form-label"
                                                            for="city">{{ lang.REGISTRATION.CITY }}</label>
                                                 </div>
                                             </div>
                                             <div class="mb-4">
                                                 <div class="form-outline form-white">
-                                                    <input type="date" id="birthdate"
+                                                    <input type="date" id="birthdate"  name="birthdate"
                                                            class="form-control form-control-lg" required/>
                                                     <label class="form-label"
                                                            for="birthdate">{{ lang.REGISTRATION.BIRTHDATE }}</label>
@@ -96,7 +97,7 @@
                                             </div>
 
                                             <div class="form-check d-flex justify-content-start mb-4 pb-3">
-                                                <input class="form-check-input me-3" type="checkbox" value="" id="tos"/>
+                                                <input class="form-check-input me-3" type="checkbox" value="1" name="tos" id="tos"/>
                                                 <label class="form-check-label text-white" for="tos">
                                                     {{ lang.REGISTRATION.TOS }}
                                                 </label>
@@ -105,7 +106,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-outline-success btn-lg mt-2"
+                            <button type="submit" class="btn btn-outline-success btn-lg mt-2"
                                     data-mdb-ripple-color="dark">
                                 {{ lang.REGISTRATION.REGISTER }}
                             </button>
