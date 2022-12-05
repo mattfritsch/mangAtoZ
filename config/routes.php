@@ -1,5 +1,6 @@
 <?php
 
+use App\Controller\Admin;
 use App\Controller\Homepage;
 use \App\Controller\Login;
 use \App\Controller\Connection;
@@ -14,5 +15,6 @@ return [
         new Route('POST', '/connection', Connection::class),
         new Route('POST', '/register', Register::class),
         new Route('GET', '/registration', Registration::class),
+        new Route('GET', '/admin', Admin::class),
     ]
 ];

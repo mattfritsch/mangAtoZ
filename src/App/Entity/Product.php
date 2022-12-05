@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 #[ORM\Table(name: 'product')]
@@ -16,8 +18,8 @@ class Product
     #[ORM\Column(type: 'string', length: 4000)]
     protected string $resume;
 
-    #[ORM\Column(type: 'string', length: 50)]
-    protected string $product_name;
+    #[ORM\Column(type: 'string', length: 200)]
+    protected string $productName;
 
     #[ORM\Column(type: 'string', length: 1000)]
     protected string $img;
@@ -28,11 +30,44 @@ class Product
     #[ORM\Column(type: 'integer')]
     protected int $chapterNumber;
 
-        #[ORM\Column(type: 'array')]
-    protected array $categId;
+    #[ManyToOne(targetEntity: Categ::class)]
+    #[JoinColumn(name: 'categ', referencedColumnName: 'categId')]
+    protected Categ $categ;
 
-    #[ORM\Column(type: 'integer')]
-    protected int $ageId;
+    /**
+     * @return Categ
+     */
+    public function getCateg(): Categ
+    {
+        return $this->categ;
+    }
+
+    /**
+     * @param Categ $categ
+     */
+    public function setCateg(Categ $categ): void
+    {
+        $this->categ = $categ;
+    }
+
+    #[ORM\Column(type: 'boolean')]
+    protected bool $ageRank;
+
+    /**
+     * @return bool
+     */
+    public function isAgeRank(): bool
+    {
+        return $this->ageRank;
+    }
+
+    /**
+     * @param bool $ageRank
+     */
+    public function setAgeRank(bool $ageRank): void
+    {
+        $this->ageRank = $ageRank;
+    }
 
     #[ORM\Column(type: 'float')]
     protected float $averageRating;
@@ -67,22 +102,6 @@ class Product
     public function setResume(string $resume): void
     {
         $this->resume = $resume;
-    }
-
-    /**
-     * @return string
-     */
-    public function getProductName(): string
-    {
-        return $this->product_name;
-    }
-
-    /**
-     * @param string $product_name
-     */
-    public function setProductName(string $product_name): void
-    {
-        $this->product_name = $product_name;
     }
 
     /**
@@ -134,38 +153,6 @@ class Product
     }
 
     /**
-     * @return int
-     */
-    public function getCategId(): array
-    {
-        return $this->categId;
-    }
-
-    /**
-     * @param int $categId
-     */
-    public function setCategId(array $categId): void
-    {
-        $this->categId = $categId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getAgeId(): int
-    {
-        return $this->ageId;
-    }
-
-    /**
-     * @param int $ageId
-     */
-    public function setAgeId(int $ageId): void
-    {
-        $this->ageId = $ageId;
-    }
-
-    /**
      * @return float
      */
     public function getAverageRating(): float
@@ -179,6 +166,22 @@ class Product
     public function setAverageRating(float $averageRating): void
     {
         $this->averageRating = $averageRating;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductName(): string
+    {
+        return $this->productName;
+    }
+
+    /**
+     * @param string $productName
+     */
+    public function setProductName(string $productName): void
+    {
+        $this->productName = $productName;
     }
 
 }

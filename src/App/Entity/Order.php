@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\OrderRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: 'order')]
@@ -15,8 +17,9 @@ class Order
     #[ORM\GeneratedValue]
     protected int $orderId;
 
-    #[ORM\Column(type: 'integer')]
-    protected int $uid;
+    #[ManyToOne(targetEntity: User::class)]
+    #[JoinColumn(name: 'user', referencedColumnName: 'uid')]
+    protected User $user;
 
     #[ORM\Column(type: 'datetime')]
     protected DateTime $orderDateTime;
@@ -44,19 +47,19 @@ class Order
     }
 
     /**
-     * @return int
+     * @return User
      */
-    public function getUid(): int
+    public function getUser(): User
     {
-        return $this->uid;
+        return $this->user;
     }
 
     /**
-     * @param int $uid
+     * @param User $user
      */
-    public function setUid(int $uid): void
+    public function setUser(User $user): void
     {
-        $this->uid = $uid;
+        $this->user = $user;
     }
 
     /**
