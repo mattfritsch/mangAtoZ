@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="refont login.html.twig">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_11_2022_15_58_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_11_2022_15_58__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="refont login.html.twig" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +33,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1669890290" />
+                    <option name="lastUsedInstant" value="1670254863" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="registrationRefont" />
