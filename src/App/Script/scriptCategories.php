@@ -36,7 +36,12 @@ function insertCategIntoDB()
         $categ = new Categ();
 
         $categ->setCategId($categories[$i][0]);
-        $categ->setCategName($categories[$i][1]);
+        if($categories[$i][1] != null){
+            $categ->setCategName($categories[$i][1]);
+        }else{
+
+        }
+
         $categ->setCategDesc($categories[$i][2]);
 
 
