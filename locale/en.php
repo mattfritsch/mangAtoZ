@@ -34,4 +34,18 @@ return [
         'REGISTER'=> 'Register',
         'BACK'=> 'Back',
     ],
+    'PRODUCT' => [
+        'STORE' => 'Store',
+        'FILTERS' => 'Filters',
+        'CATEGORIES' => 'Categories',
+        'ORDER' => 'Order by',
+        'ALPHABETICAL' => 'Alphabetical sort',
+        'POPULARITY' => 'Popularity sort',
+        'VALIDATE' => 'Validate',
+        'STATUS' => 'Status',
+        'INPROGRESS' => 'In progress',
+        'FINISH' => 'Finish',
+        'CENSURE' => '+18 mangas',
+        'ADD' => 'Display +18 mangas',
+    ]
 ];

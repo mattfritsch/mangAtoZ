@@ -17,7 +17,7 @@ class Product
     protected string $resume;
 
     #[ORM\Column(type: 'string', length: 50)]
-    protected string $product_name;
+    protected string $productName;
 
     #[ORM\Column(type: 'string', length: 1000)]
     protected string $img;
@@ -74,7 +74,7 @@ class Product
      */
     public function getProductName(): string
     {
-        return $this->product_name;
+        return $this->productName;
     }
 
     /**
@@ -82,7 +82,7 @@ class Product
      */
     public function setProductName(string $product_name): void
     {
-        $this->product_name = $product_name;
+        $this->productName = $product_name;
     }
 
     /**
