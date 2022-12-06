@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\InverseJoinColumn;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
@@ -15,10 +18,10 @@ class Product
     #[ORM\Column(type: 'integer')]
     protected int $productId;
 
-    #[ORM\Column(type: 'string', length: 4000)]
+    #[ORM\Column(type: 'string', length: 10000)]
     protected string $resume;
 
-    #[ORM\Column(type: 'string', length: 200)]
+    #[ORM\Column(type: 'string', length: 1000)]
     protected string $productName;
 
     #[ORM\Column(type: 'string', length: 1000)]
@@ -30,28 +33,8 @@ class Product
     #[ORM\Column(type: 'integer')]
     protected int $chapterNumber;
 
-    #[ManyToOne(targetEntity: Categ::class)]
-    #[JoinColumn(name: 'categ', referencedColumnName: 'categId')]
-    protected Categ $categ;
-
     #[ORM\Column(type: 'boolean')]
     protected bool $ageRank;
-
-    /**
-     * @return Categ
-     */
-    public function getCateg(): Categ
-    {
-        return $this->categ;
-    }
-
-    /**
-     * @param Categ $categ
-     */
-    public function setCateg(Categ $categ): void
-    {
-        $this->categ = $categ;
-    }
 
     /**
      * @return bool

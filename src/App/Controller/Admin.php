@@ -4,9 +4,11 @@ namespace App\Controller;
 use App\Entity\CartProduct;
 use App\Entity\Chapter;
 use App\Entity\Product;
+use App\Entity\ProductCateg;
 use App\Entity\User;
 use App\Repository\CartProductRepository;
-use App\Repository\ChapterRepository;
+use App\Repository\ChaptersRepository;
+use App\Repository\ProductCategRepository;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
@@ -38,24 +40,17 @@ class Admin{
         $productRepository = $em->getRepository(Product::class);
         $product = $productRepository->findOneBy(['productId' => 1]);
 
-        /** @var ChapterRepository$chapterRepository */
-        $chapterRepository = $em->getRepository(Chapter::class);
-        $chapter = $chapterRepository->findOneBy(['chapterId' => 1, 'product' => $product]);
-
-        /** @var UserRepository$userRepository */
-        $userRepository = $em->getRepository(User::class);
-        $user = $userRepository->findOneBy(['uid' => 1]);
-
-        /** @var CartProductRepository$cartProductRepository */
-        $cartProductRepository = $em->getRepository(CartProduct::class);
-        $cartProduct = $cartProductRepository->findOneBy(['chapter' => $chapter, 'user' => $user]);
+        /** @var ProductCategRepository$productCategRepository */
+        $productCategRepository = $em->getRepository(ProductCateg::class);
+        $productCategs = $productCategRepository->findBy(['product' => $product]);
 
         echo('<pre>');
-        var_dump($product->getCateg()->getCategName());
-        echo('</br>');
-        var_dump($chapter->getChapterPrice());
-        echo('</br>');
-        var_dump($cartProduct->getQtt());
+        echo($product->getProductName());
+        echo '<br>';
+        foreach ( $productCategs as $categ ){
+            echo($categ->getCateg()->getCategName());
+            echo '<br>';
+        }
         die;
     }
 }
