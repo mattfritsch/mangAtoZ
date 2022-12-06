@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ChaptersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: ChaptersRepository::class)]
 #[ORM\Table(name: 'chapter')]
@@ -13,9 +15,25 @@ class Chapter
     #[ORM\Column(type: 'integer')]
     protected int $chapterId;
 
-//    #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    protected int $productId;
+    #[ManyToOne(targetEntity: Product::class)]
+    #[JoinColumn(name: 'product', referencedColumnName: 'productId')]
+    protected Product $product;
+
+    /**
+     * @return Product
+     */
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     */
+    public function setProduct(Product $product): void
+    {
+        $this->product = $product;
+    }
 
     #[ORM\Column(type: 'integer')]
     protected int $stock;
@@ -37,22 +55,6 @@ class Chapter
     public function setChapterId(int $chapterId): void
     {
         $this->chapterId = $chapterId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getProductId(): int
-    {
-        return $this->productId;
-    }
-
-    /**
-     * @param int $productId
-     */
-    public function setProductId(int $productId): void
-    {
-        $this->productId = $productId;
     }
 
     /**
