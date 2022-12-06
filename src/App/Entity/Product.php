@@ -34,6 +34,9 @@ class Product
     #[JoinColumn(name: 'categ', referencedColumnName: 'categId')]
     protected Categ $categ;
 
+    #[ORM\Column(type: 'boolean')]
+    protected bool $ageRank;
+
     /**
      * @return Categ
      */
@@ -49,9 +52,6 @@ class Product
     {
         $this->categ = $categ;
     }
-
-    #[ORM\Column(type: 'boolean')]
-    protected bool $ageRank;
 
     /**
      * @return bool
