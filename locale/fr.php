@@ -34,4 +34,7 @@ return [
         'REGISTER'=> 'Enregistrer',
         'BACK'=> 'Retour',
     ],
+    'PRODUCTPAGE' => [
+
+    ],
 ];
