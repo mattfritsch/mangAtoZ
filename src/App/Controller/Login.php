@@ -11,7 +11,6 @@ use function App\getTextLangue;
 class Login{
     public function __invoke()
     {
-
         $email = "";
         $password = "";
 

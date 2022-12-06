@@ -48,7 +48,7 @@ class Admin{
 
         /** @var CartProductRepository$cartProductRepository */
         $cartProductRepository = $em->getRepository(CartProduct::class);
-        $cartProduct = $cartProductRepository->findOneBy(['product' => $product, 'user' => $user]);
+        $cartProduct = $cartProductRepository->findOneBy(['chapter' => $chapter, 'user' => $user]);
 
         echo('<pre>');
         var_dump($product->getCateg()->getCategName());
