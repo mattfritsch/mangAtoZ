@@ -47,10 +47,10 @@ function getData($i){
         }
 
         if($manga[$m][7] == 'G' || $manga[$m][4] == null){
-            $manga[$m][7] = 0;
+            $manga[$m][7] = true;
         }
         else{
-            $manga[$m][7] = 1;
+            $manga[$m][7] = false;
         }
 
         if($manga[$m][5] == null && count($manga[$m][9]) >= 20) {
@@ -149,6 +149,7 @@ function insertIntoDB()
     global $mangafinal;
     $em = EntityManager::getInstance();
     for ($i = 0; $i < count($mangafinal); $i++) {
+
         var_dump($mangafinal[$i][0]);
         $product = new Product();
 

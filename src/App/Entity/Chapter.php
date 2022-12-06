@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\ChapterRepository;
+use App\Repository\ChaptersRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ChapterRepository::class)]
+#[ORM\Entity(repositoryClass: ChaptersRepository::class)]
 #[ORM\Table(name: 'chapter')]
 class Chapter
 {

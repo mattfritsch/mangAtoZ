@@ -9,9 +9,14 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: 'cart_product')]
 class CartProduct
 {
+
+
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     protected int $productId;
+
+    #[ORM\Column(type: 'integer')]
+    protected int $chapterId;
 
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
@@ -19,6 +24,17 @@ class CartProduct
 
     #[ORM\Column(type: 'integer')]
     protected int $qtt;
+
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    /**
+     * @ManyToOne(targetEntity="CartProduct")
+     * @JoinColumns({
+     *     @JoinColumn(name="property1", referencedColumnName="property1"),
+     *     @JoinColumn(name="property2", referencedColumnName="property2")
+     * })
+     **/
+    protected int $id;
 
     /**
      * @return int
@@ -35,6 +51,23 @@ class CartProduct
     {
         $this->productId = $productId;
     }
+
+    /**
+     * @return int
+     */
+    public function getChapterId(): int
+    {
+        return $this->chapterId;
+    }
+
+    /**
+     * @param int $productId
+     */
+    public function setChapterId(int $chapterId): void
+    {
+        $this->chapterId = $chapterId;
+    }
+
 
     /**
      * @return int

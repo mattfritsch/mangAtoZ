@@ -28,10 +28,10 @@ class Product
     #[ORM\Column(type: 'integer')]
     protected int $chapterNumber;
 
-        #[ORM\Column(type: 'array')]
+    #[ORM\Column(type: 'array')]
     protected array $categId;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'boolean')]
     protected int $ageId;
 
     #[ORM\Column(type: 'float')]
@@ -152,7 +152,7 @@ class Product
     /**
      * @return int
      */
-    public function getAgeId(): int
+    public function getAgeId(): bool
     {
         return $this->ageId;
     }

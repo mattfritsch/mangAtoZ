@@ -6,23 +6,23 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 use App\Entity\Categ;
 use Framework\Doctrine\EntityManager;
 
-$categories = [];
+$categorie = [];
 function getCategoriesDesc(){
-    global $categories;
+    global $categorie;
 
     for($i=0; $i<200; $i = $i +20) {
         $json = file_get_contents('https://kitsu.io/api/edge/categories?page[limit]=20&page[offset]=' . $i);
         $arr = json_decode($json, true);
         foreach($arr['data'] as $row){
-            array_push($categories, [$row['id'], $row['attributes']['title'], $row['attributes']['description']]);
+            array_push($categorie, [$row['id'], $row['attributes']['title'], $row['attributes']['description']]);
         }
     }
     $json = file_get_contents('https://kitsu.io/api/edge/categories?page[limit]=18&page[offset]=200');
     $arr = json_decode($json, true);
     foreach($arr['data'] as $row){
-        array_push($categories, [$row['id'], $row['attributes']['title'], $row['attributes']['description']]);
+        array_push($categorie, [$row['id'], $row['attributes']['title'], $row['attributes']['description']]);
     }
-    var_dump($categories);
+    var_dump($categorie);
 
     insertCategIntoDB();
 }
@@ -30,14 +30,14 @@ function getCategoriesDesc(){
 
 function insertCategIntoDB()
 {
-    global $categories;
+    global $categorie;
     $em = EntityManager::getInstance();
-    for ($i = 0; $i < count($categories); $i++) {
+    for ($i = 0; $i < count($categorie); $i++) {
         $categ = new Categ();
 
-        $categ->setCategId($categories[$i][0]);
-        $categ->setCategName($categories[$i][1]);
-        $categ->setCategDesc($categories[$i][2]);
+        $categ->setCategId($categorie[$i][0]);
+        $categ->setCategName($categorie[$i][1]);
+        $categ->setCategDesc($categorie[$i][2]);
 
 
         $em->persist($categ);
