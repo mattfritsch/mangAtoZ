@@ -167,8 +167,6 @@ function insertIntoDB()
         $em->persist($product);
         $em->flush();
 
-        $id =
-
         $em2 = EntityManager::getInstance();
 
         for($j = 0; $j < count($mangafinal[$i][9]); $j++) {
