@@ -4,6 +4,10 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
 use App\Entity\Product;
 use App\Entity\Chapter;
+use App\Entity\ProductCateg;
+use App\Entity\Categ;
+use App\Repository\ProductRepository;
+use App\Repository\CategRepository;
 use Framework\Doctrine\EntityManager;
 
 $manga = [];
@@ -167,6 +171,28 @@ function insertIntoDB()
         $em->persist($product);
         $em->flush();
 
+        /** @var ProductRepository$productRepository */
+        $productRepository = $em->getRepository(Product::class);
+        $productclass = $productRepository->findOneBy(['productId' => $mangafinal[$i][0]]);
+
+
+        $em3 = EntityManager::getInstance();
+        for($k = 0; $k < count($mangafinal[$i][8]); $k++){
+            var_dump(($mangafinal[$i][8][$k]));
+            /** @var CategRepository$categRepository */
+            $categRepository = $em->getRepository(Categ::class);
+            $categclass = $categRepository->findOneBy(['categId' => $mangafinal[$i][8][$k]]);
+
+            $productcateg = new ProductCateg();
+
+//            $productcateg->setProductCategId();
+            $productcateg->setProduct($productclass);
+            $productcateg->setCateg($categclass);
+
+            $em3->persist($productcateg);
+            $em3->flush();
+        }
+
         $em2 = EntityManager::getInstance();
 
         for($j = 0; $j < count($mangafinal[$i][9]); $j++) {
@@ -177,7 +203,7 @@ function insertIntoDB()
             $decimale = rand(1, 99);
             $prix = $entier.'.'.$decimale;
 
-            $chapter->setProduct();
+            $chapter->setProduct($productclass);
             $chapter->setChapterId($mangafinal[$i][9][$j]);
             $chapter->setStock($stock);
             $chapter->setChapterPrice($prix);
