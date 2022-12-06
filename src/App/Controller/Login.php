@@ -31,7 +31,9 @@ class Login{
             $user = $userRepository->findOneByEmail($email);
 
             if ($password === $user->getPassword()) {
-                session_start();
+                if(session_id() == ''){
+                    session_start();
+                }
                 $_SESSION['user'] = $user;
                 header('Location: /');
             }

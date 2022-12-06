@@ -28,7 +28,9 @@ class Connection{
 
             if ($user !== null) {
                 if (password_verify($password, $user->getPassword())) {
-                    session_start();
+                    if(session_id() == ''){
+                        session_start();
+                    }
                     $_SESSION['user'] = $user;
                     if(array_key_exists("remember_me", $_POST)){
                         ?>

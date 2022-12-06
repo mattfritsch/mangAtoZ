@@ -4,52 +4,55 @@ namespace App\Entity;
 
 use App\Repository\CartProductRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 #[ORM\Entity(repositoryClass: CartProductRepository::class)]
 #[ORM\Table(name: 'cart_product')]
 class CartProduct
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    protected int $productId;
+    #[ManyToOne(targetEntity: Product::class)]
+    #[JoinColumn(name: 'product', referencedColumnName: 'productId')]
+    protected Product $product;
 
-    #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
-    protected int $cartId;
+    #[ManyToOne(targetEntity: User::class)]
+    #[JoinColumn(name: 'user', referencedColumnName: 'uid')]
+    protected User $user;
 
     #[ORM\Column(type: 'integer')]
     protected int $qtt;
 
     /**
-     * @return int
+     * @return Product
      */
-    public function getProductId(): int
+    public function getProduct(): Product
     {
-        return $this->productId;
+        return $this->product;
     }
 
     /**
-     * @param int $productId
+     * @param Product $product
      */
-    public function setProductId(int $productId): void
+    public function setProduct(Product $product): void
     {
-        $this->productId = $productId;
+        $this->product = $product;
     }
 
     /**
-     * @return int
+     * @return User
      */
-    public function getCartId(): int
+    public function getUser(): User
     {
-        return $this->cartId;
+        return $this->user;
     }
 
     /**
-     * @param int $cartId
+     * @param User $user
      */
-    public function setCartId(int $cartId): void
+    public function setUser(User $user): void
     {
-        $this->cartId = $cartId;
+        $this->user = $user;
     }
 
     /**
