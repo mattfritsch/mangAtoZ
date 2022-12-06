@@ -4,6 +4,10 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 
 use App\Entity\Product;
 use App\Entity\Chapter;
+use App\Entity\ProductCateg;
+use App\Entity\Categ;
+use App\Repository\ProductRepository;
+use App\Repository\CategRepository;
 use Framework\Doctrine\EntityManager;
 
 $manga = [];
@@ -159,14 +163,35 @@ function insertIntoDB()
         $product->setImg($mangafinal[$i][3]);
         $product->setStatus($mangafinal[$i][4]);
         $product->setChapterNumber($mangafinal[$i][5]);
-
-        $product->setCategId($mangafinal[$i][8]);
+//        $product->setCateg($mangafinal[$i][8][0]);
         $product->setAverageRating($mangafinal[$i][6]);
-        $product->setAgeId($mangafinal[$i][7]);
+        $product->setAgeRank($mangafinal[$i][7]);
 
 
         $em->persist($product);
         $em->flush();
+
+        /** @var ProductRepository$productRepository */
+        $productRepository = $em->getRepository(Product::class);
+        $productclass = $productRepository->findOneBy(['productId' => $mangafinal[$i][0]]);
+
+
+        $em3 = EntityManager::getInstance();
+        for($k = 0; $k < count($mangafinal[$i][8]); $k++){
+            var_dump(($mangafinal[$i][8][$k]));
+            /** @var CategRepository$categRepository */
+            $categRepository = $em->getRepository(Categ::class);
+            $categclass = $categRepository->findOneBy(['categId' => $mangafinal[$i][8][$k]]);
+
+            $productcateg = new ProductCateg();
+
+//            $productcateg->setProductCategId();
+            $productcateg->setProduct($productclass);
+            $productcateg->setCateg($categclass);
+
+            $em3->persist($productcateg);
+            $em3->flush();
+        }
 
         $em2 = EntityManager::getInstance();
 
@@ -178,7 +203,7 @@ function insertIntoDB()
             $decimale = rand(1, 99);
             $prix = $entier.'.'.$decimale;
 
-            $chapter->setProductId($mangafinal[$i][0]);
+            $chapter->setProduct($productclass);
             $chapter->setChapterId($mangafinal[$i][9][$j]);
             $chapter->setStock($stock);
             $chapter->setChapterPrice($prix);
