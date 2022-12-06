@@ -159,14 +159,15 @@ function insertIntoDB()
         $product->setImg($mangafinal[$i][3]);
         $product->setStatus($mangafinal[$i][4]);
         $product->setChapterNumber($mangafinal[$i][5]);
-
-        $product->setCategId($mangafinal[$i][8]);
+//        $product->setCateg($mangafinal[$i][8][0]);
         $product->setAverageRating($mangafinal[$i][6]);
-        $product->setAgeId($mangafinal[$i][7]);
+        $product->setAgeRank($mangafinal[$i][7]);
 
 
         $em->persist($product);
         $em->flush();
+
+        $id =
 
         $em2 = EntityManager::getInstance();
 
@@ -178,7 +179,7 @@ function insertIntoDB()
             $decimale = rand(1, 99);
             $prix = $entier.'.'.$decimale;
 
-            $chapter->setProductId($mangafinal[$i][0]);
+            $chapter->setProduct();
             $chapter->setChapterId($mangafinal[$i][9][$j]);
             $chapter->setStock($stock);
             $chapter->setChapterPrice($prix);
