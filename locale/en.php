@@ -44,8 +44,15 @@ return [
         'VALIDATE' => 'Validate',
         'STATUS' => 'Status',
         'INPROGRESS' => 'In progress',
-        'FINISH' => 'Finish',
+        'FINISHED' => 'Finished',
+        'BOTH' => 'Both',
         'CENSURE' => '+18 mangas',
         'ADD' => 'Display +18 mangas',
+        'SEARCH' => 'Search for a manga',
+        'CHAPTERS' => 'chapters',
+        'CHAPTER' => 'chapter',
+        'DESCRIPTION' => 'Description',
+        'GO_CHAPTERS' => 'See chapters',
+        'GO_CHAPTER' => 'See chapter',
     ]
 ];
