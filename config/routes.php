@@ -1,8 +1,6 @@
 <?php
 
 use App\Controller\Admin;
-use App\Controller\AdminUsers;
-use App\Controller\ChaptersPage;
 use App\Controller\Homepage;
 use \App\Controller\Login;
 use \App\Controller\Connection;
@@ -10,6 +8,9 @@ use App\Controller\Product;
 use App\Controller\Registration;
 use App\Controller\Register;
 use Framework\Routing\Route;
+use App\Controller\AdminUsers;
+use App\Controller\ChaptersPage;
+use App\Controller\AddProductToCart;
 
 return [
     'routing' => [
@@ -20,9 +21,10 @@ return [
         new Route('GET', '/registration', Registration::class),
         new Route('GET', '/product', Product::class),
         new Route('GET', '/admin', Admin::class),
+        new Route('POST', '/addproduct', AddProductToCart::class),
         new Route('GET', '/admin/users', AdminUsers::class),
         new Route('POST', '/admin/users', AdminUsers::class),
         new Route('GET', '/chapterspage', ChaptersPage::class),
-        new Route('POST', '/chapterspage', ChaptersPage::class)
+        new Route('POST', '/chapterspage', ChaptersPage::class),
     ]
 ];
