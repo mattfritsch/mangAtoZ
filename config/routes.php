@@ -11,6 +11,8 @@ use Framework\Routing\Route;
 use App\Controller\AdminUsers;
 use App\Controller\ChaptersPage;
 use App\Controller\AddProductToCart;
+use App\Controller\Panier;
+
 
 return [
     'routing' => [
@@ -27,5 +29,6 @@ return [
         new Route('POST', '/admin/users', AdminUsers::class),
         new Route('GET', '/chapterspage', ChaptersPage::class),
         new Route('POST', '/chapterspage', ChaptersPage::class),
+        new Route('GET', '/panier', Panier::class),
     ]
 ];

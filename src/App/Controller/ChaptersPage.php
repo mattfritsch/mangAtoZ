@@ -35,7 +35,7 @@ class ChaptersPage
 
         /** @var ChaptersRepository$chaptersRepository */
         $chaptersRepository = $em->getRepository(Chapter::class);
-        $chapters = $chaptersRepository->findBy(['productId' => '12']);
+        $chapters = $chaptersRepository->findBy(['product' => '12']);
 
 
 
