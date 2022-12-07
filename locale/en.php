@@ -44,8 +44,30 @@ return [
         'VALIDATE' => 'Validate',
         'STATUS' => 'Status',
         'INPROGRESS' => 'In progress',
-        'FINISH' => 'Finish',
+        'FINISHED' => 'Finished',
+        'BOTH' => 'Both',
         'CENSURE' => '+18 mangas',
         'ADD' => 'Display +18 mangas',
+        'SEARCH' => 'Search for a manga',
+        'CHAPTERS' => 'chapters',
+        'CHAPTER' => 'chapter',
+        'DESCRIPTION' => 'Description',
+        'GO_CHAPTERS' => 'See chapters',
+        'GO_CHAPTER' => 'See chapter',
+    ],
+    'ADMINUSERS' => [
+        'MAIL' => 'Email',
+        'ADMIN' => 'Admin',
+        'ADD' => 'Add',
+        'DELETE' => 'Delete',
+        'ERRORAUTO' => 'You can\'t delete your own access',
+        'ERRORPWD' => 'No no no',
+        'ERRORADMIN' => 'Nice try, but no',
+        'NO' => 'No',
+        'YES' => 'Yes'
+    ],
+    'ADMIN' =>[
+        'PRODUCTNAME' => 'Product name',
+        'UPDATE' => 'Update'
     ]
 ];

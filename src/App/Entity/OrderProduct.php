@@ -21,6 +21,9 @@ class OrderProduct
     #[JoinColumn(name: 'order', referencedColumnName: 'orderId')]
     protected Order $order;
 
+    #[ORM\Column(type: 'integer')]
+    protected int $qtt;
+
     /**
      * @return Chapter
      */
@@ -52,11 +55,6 @@ class OrderProduct
     {
         $this->order = $order;
     }
-
-    #[ORM\Column(type: 'integer')]
-    protected int $qtt;
-
-
 
     /**
      * @return int
