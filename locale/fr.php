@@ -37,4 +37,19 @@ return [
     'PRODUCTPAGE' => [
 
     ],
+    'ADMINUSERS' => [
+        'MAIL' => 'Email',
+        'ADMIN' => 'Admin',
+        'ADD' => 'Ajouter',
+        'DELETE' => 'Supprimer',
+        'ERRORAUTO' => 'You can\'t delete your own access',
+        'ERRORPWD' => 'Bien essayé, mais non',
+        'ERRORADMIN' => 'Non non, ça ne marchera pas petit malin',
+        'NO' => 'Non',
+        'YES' => 'Oui'
+    ],
+    'ADMIN' =>[
+        'PRODUCTNAME' => 'Nom du produit',
+        'UPDATE' => 'Modifier'
+    ]
 ];

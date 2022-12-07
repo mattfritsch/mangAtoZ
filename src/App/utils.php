@@ -20,6 +20,12 @@ function getTextLangue(string $language){
     return $l;
 }
 
+function startSession(): void {
+    if(session_id() == ''){
+        session_start();
+    }
+}
+
 function displayErrors(array $errors, string $field): void {
     foreach($errors[$field] ?? [] as $error) {
         echo sprintf('<div class="invalid-feedback">%s</div>', $error);

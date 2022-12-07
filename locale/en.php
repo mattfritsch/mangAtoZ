@@ -54,5 +54,20 @@ return [
         'DESCRIPTION' => 'Description',
         'GO_CHAPTERS' => 'See chapters',
         'GO_CHAPTER' => 'See chapter',
+    ],
+    'ADMINUSERS' => [
+        'MAIL' => 'Email',
+        'ADMIN' => 'Admin',
+        'ADD' => 'Add',
+        'DELETE' => 'Delete',
+        'ERRORAUTO' => 'You can\'t delete your own access',
+        'ERRORPWD' => 'No no no',
+        'ERRORADMIN' => 'Nice try, but no',
+        'NO' => 'No',
+        'YES' => 'Yes'
+    ],
+    'ADMIN' =>[
+        'PRODUCTNAME' => 'Product name',
+        'UPDATE' => 'Update'
     ]
 ];

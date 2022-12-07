@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
+use function App\startSession;
 
 class Connection{
     public function __invoke(): void
@@ -28,9 +29,7 @@ class Connection{
 
             if ($user !== null) {
                 if (password_verify($password, $user->getPassword())) {
-                    if(session_id() == ''){
-                        session_start();
-                    }
+                    startSession();
                     $_SESSION['user'] = $user;
                     if(array_key_exists("remember_me", $_POST)){
                         ?>
