@@ -1,2 +1,16 @@
-*{
+#btn-back-to-top {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    display: none;
+    border-radius: 50%;
+}
+
+.card{
+    max-width: 30%;
+    max-height: 40%
+}
+
+.text-scrollable{
+    max-height: 250px;
 }
