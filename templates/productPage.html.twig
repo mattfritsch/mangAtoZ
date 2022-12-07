@@ -5,7 +5,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
 
     <link href="./assets/style/productPage.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
@@ -20,72 +21,123 @@
                 <!-- Section: Sidebar -->
                 <section>
                     <!-- Section: Filters -->
-                    <section id="filters" data-auto-filter="true" class="border-end">
-                        <h5>{{ lang.PRODUCT.FILTERS }}</h5>
+                    <form action="post" method="/">
+                        <section id="filters" data-auto-filter="true" class="border-end">
+                            <h5>{{ lang.PRODUCT.FILTERS }}</h5>
 
-                        <!-- Section: Categories -->
-                        <section class="mb-4 me-4" data-filter="categories">
-                            <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CATEGORIES }}</h6>
+                            <!-- Section: Categories -->
+                            <section class="mb-4 me-4" data-filter="categories">
+                                <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CATEGORIES }}</h6>
 
-                            <select name="countries" id="countries" multiple>
+                                <select name="countries" id="countries" multiple>
+                                    {% for key, categ in categs %}
+                                        <option value="{{ categ.categId }}">{{ categ.categName }}</option>
+                                    {% endfor %}
+                                </select>
+                            </section>
+                            <!-- Section: Categories -->
+                            <!-- Section: OrderBy -->
+                            <section class="mb-4 me-4" data-filter="orderby">
+                                <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.ORDER }}</h6>
+                                <div id="select-wrapper-301599" class="select-wrapper d-inline-flex">
+                                    <select class="form-select m-1" aria-label="Default select example">
+                                        <option selected>{{ lang.PRODUCT.ORDER }}</option>
+                                        <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
+                                        <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
+                                    </select>
+                                </div>
+                            </section>
+                            <!-- Section: Categories -->
+                            <!-- Section: Status -->
+                            <section class="mb-4" data-filter="categories">
+                                <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.STATUS }}</h6>
 
-                            </select>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                           id="flexRadioDefault1" checked>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        {{ lang.PRODUCT.BOTH }}
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                           id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        {{ lang.PRODUCT.INPROGRESS }}
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                           id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        {{ lang.PRODUCT.FINISHED }}
+                                    </label>
+                                </div>
+                            </section>
+                            <!-- Section: Status -->
+                            <!-- Section: +18 section -->
+                            <section class="mb-4" data-filter="categories">
+                                <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CENSURE }}</h6>
+
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                    <label class="form-check-label"
+                                           for="flexSwitchCheckDefault">{{ lang.PRODUCT.ADD }}</label>
+                                </div>
+                            </section>
+                            <!-- Section: Condition -->
+                            <button class="btn btn-outline-primary" type="submit">{{ lang.PRODUCT.VALIDATE }}</button>
                         </section>
-                        <!-- Section: Categories -->
-                        <!-- Section: Status -->
-                        <section class="mb-4" data-filter="categories">
-                            <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.STATUS }}</h6>
-
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="new" id="condition-checkbox">
-                                <label class="form-check-label text-uppercase small text-muted"
-                                       for="condition-checkbox">
-                                    {{ lang.PRODUCT.INPROGRESS }}
-                                </label>
-                            </div>
-
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="used" id="condition-checkbox2">
-                                <label class="form-check-label text-uppercase small text-muted"
-                                       for="condition-checkbox2">
-                                    {{ lang.PRODUCT.FINISH }}
-                                </label>
-                            </div>
-                        </section>
-                        <!-- Section: Status -->
-                        <!-- Section: +18 section -->
-                        <section class="mb-4" data-filter="categories">
-                            <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CENSURE }}</h6>
-
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="new" id="condition-checkbox">
-                                <label class="form-check-label text-uppercase small text-muted"
-                                       for="condition-checkbox">
-                                    {{ lang.PRODUCT.ADD }}
-                                </label>
-                            </div>
-                        </section>
-                        <!-- Section: Condition -->
-                    </section>
+                    </form>
                     <!-- Section: Filters -->
                 </section>
                 <!-- Section: Sidebar -->
             </div>
             <div class="col-md-8">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 my-auto py-3">
-                        <div id="select-wrapper-301599" class="select-wrapper d-inline-flex">
-                            <select class="form-select m-1" aria-label="Default select example">
-                                <option selected>{{ lang.PRODUCT.ORDER }}</option>
-                                <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
-                                <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
-                            </select>
-                            <button class="btn btn-outline-primary m-1" type="submit">{{ lang.PRODUCT.VALIDATE }}</button>
+                    <form method="post" action="/product">
+                        <div class="col-md-6 my-auto py-3">
+                            <div class="input-group d-inline-flex">
+                                <input type="text" class="form-control rounded"
+                                       placeholder="{{ lang.PRODUCT.SEARCH }}" aria-label="{{ lang.PRODUCT.SEARCH }}"
+                                       aria-describedby="search-addon" id="searchBar" name="searchBar"/>
+                                <button type="submit" class="btn btn-outline-primary" id="submitButton" name="submitButton">
+                                    {{ lang.HOME.SEARCH }}
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                <div class="row mb-4" id="content" style="display: flex;">
-
+                <button type="button" class="btn btn-primary btn-floating btn-lg" id="btn-back-to-top">
+                    ↑
+                </button>
+                <div class="row mb-4">
+                    {% for key, product in products %}
+                        <div class="card me-2 mb-2 text-center">
+                            <img class="card-img-top" src="{{ product.img }}" alt="Card image cap">
+                            <div class="card-header">
+                                <h5 class="card-title mb-2">{{ product.productName }}</h5>
+                                {% if product.chapterNumber > 1 %}
+                                    <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTERS }}</small>
+                                {% else %}
+                                    <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTER }}</small>
+                                {% endif %}
+                            </div>
+                            <div class="card-body mt-2">
+                                <h5 class="card-title mt-2 mb-2">{{ lang.PRODUCT.DESCRIPTION }}</h5>
+                                <div class="overflow-auto mb-2 text-scrollable">
+                                    <p class="card-text text-justify">{{ product.resume }}</p>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                {% if product.chapterNumber > 1 %}
+                                    <a href="#" class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTERS }}</a>
+                                {% else %}
+                                    <a href="#" class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTER }}</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -97,7 +149,8 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 

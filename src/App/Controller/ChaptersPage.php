@@ -38,6 +38,7 @@ class ChaptersPage
         $chapters = $chaptersRepository->findBy(['productId' => '12']);
 
 
+
         $args = ['lang' => getTextLangue('en'), 'chapters' =>$chapters, 'recherche' =>$recherche];
         return new Response('chapterspage.html.twig', $args);
     }
