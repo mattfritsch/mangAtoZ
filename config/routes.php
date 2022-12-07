@@ -1,6 +1,8 @@
 <?php
 
 use App\Controller\Admin;
+use App\Controller\AdminUsers;
+use App\Controller\ChaptersPage;
 use App\Controller\Homepage;
 use \App\Controller\Login;
 use \App\Controller\Connection;
@@ -18,5 +20,9 @@ return [
         new Route('GET', '/registration', Registration::class),
         new Route('GET', '/product', Product::class),
         new Route('GET', '/admin', Admin::class),
+        new Route('GET', '/admin/users', AdminUsers::class),
+        new Route('POST', '/admin/users', AdminUsers::class),
+        new Route('GET', '/chapterspage', ChaptersPage::class),
+        new Route('POST', '/chapterspage', ChaptersPage::class)
     ]
 ];

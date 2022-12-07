@@ -47,5 +47,20 @@ return [
         'FINISH' => 'Finish',
         'CENSURE' => '+18 mangas',
         'ADD' => 'Display +18 mangas',
+    ],
+    'ADMINUSERS' => [
+        'MAIL' => 'Email',
+        'ADMIN' => 'Admin',
+        'ADD' => 'Add',
+        'DELETE' => 'Delete',
+        'ERRORAUTO' => 'You can\'t delete your own access',
+        'ERRORPWD' => 'No no no',
+        'ERRORADMIN' => 'Nice try, but no',
+        'NO' => 'No',
+        'YES' => 'Yes'
+    ],
+    'ADMIN' =>[
+        'PRODUCTNAME' => 'Product name',
+        'UPDATE' => 'Update'
     ]
 ];
