@@ -9,6 +9,7 @@ use App\Controller\Registration;
 use App\Controller\Register;
 use App\Controller\ChaptersPage;
 use App\Controller\AddProductToCart;
+use App\Controller\Panier;
 use Framework\Routing\Route;
 
 return [
@@ -23,5 +24,6 @@ return [
         new Route('GET', '/chapterspage', ChaptersPage::class),
         new Route('POST', '/chapterspage', ChaptersPage::class),
         new Route('POST', '/addproduct', AddProductToCart::class),
+        new Route('GET', '/panier', Panier::class),
     ]
 ];

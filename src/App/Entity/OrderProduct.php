@@ -12,9 +12,9 @@ use Doctrine\ORM\Mapping\ManyToOne;
 class OrderProduct
 {
     #[ORM\Id]
-    #[ManyToOne(targetEntity: Product::class)]
-    #[JoinColumn(name: 'product', referencedColumnName: 'productId')]
-    protected Product $product;
+    #[ManyToOne(targetEntity: Chapter::class)]
+    #[JoinColumn(name: 'chapter', referencedColumnName: 'chapterId')]
+    protected Chapter $chapter;
 
     #[ORM\Id]
     #[ManyToOne(targetEntity: Order::class)]
@@ -22,19 +22,19 @@ class OrderProduct
     protected Order $order;
 
     /**
-     * @return Product
+     * @return Chapter
      */
-    public function getProduct(): Product
+    public function getChapter(): Chapter
     {
-        return $this->product;
+        return $this->chapter;
     }
 
     /**
-     * @param Product $product
+     * @param Chapter $chapter
      */
-    public function setProduct(Product $product): void
+    public function setChapter(Chapter $chapter): void
     {
-        $this->product = $product;
+        $this->chapter = $chapter;
     }
 
     /**
