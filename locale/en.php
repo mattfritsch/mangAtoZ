@@ -64,10 +64,27 @@ return [
         'ERRORPWD' => 'No no no',
         'ERRORADMIN' => 'Nice try, but no',
         'NO' => 'No',
-        'YES' => 'Yes'
+        'YES' => 'Yes',
+        'TITLE' => 'Admin Users'
     ],
     'ADMIN' =>[
+        'ADMIN' => 'Admin',
         'PRODUCTNAME' => 'Product name',
-        'UPDATE' => 'Update'
+        'UPDATE' => 'Update',
+        'ADD' => 'Add',
+        'DELETE' => 'Delete',
+        'PUTBACK' => 'Put back'
+    ],
+    'ADMINPRODUCT' =>[
+        'TITLEADD' => 'Add new product',
+        'TITLEMODIF' => 'Update product',
+        'RESUME' => 'Resume',
+        'PRODUCTNAME' => 'Product name',
+        'IMG' => 'Image link',
+        'STATUS' => 'Status (checked if ended)',
+        'CHAPTERNUMBER' => 'Number of chapters',
+        'AGERANK' => 'Suitable for all audiences',
+        'AVERAGERATING' => 'Average rating',
+        'SUBMIT' => 'Submit',
     ]
 ];
