@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\startSession;
 
 class Homepage
 {
@@ -17,6 +18,8 @@ class Homepage
       </script>
       <?php
 
+      startSession();
+      $_SESSION["locale"] = "en";
 
       $args = ['lang' => getTextLangue('en')];
       return new Response('home.html.twig', $args);

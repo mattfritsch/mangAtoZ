@@ -10,7 +10,7 @@ use Framework\Response\Response;
 use function App\getTextLangue;
 use function App\startSession;
 
-class Admin{
+class AdminUsers{
     public function __invoke()
     {
         startSession();
@@ -28,21 +28,23 @@ class Admin{
         $userRepository = $em->getRepository(User::class);
         $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
 
-        /** @var ProductRepository$productRepository */
-        $productRepository = $em->getRepository(Product::class);
-
         if ($user->isAdmin()){
             if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
                 if(!$_POST){
-                    $products = $productRepository->findBy(array(), array('productName' => 'ASC'));
+                    $users = $userRepository->findBy(array(), array('email' => 'ASC'));
 
-                    return new Response('admin.html.twig', ['lang' => $lang, 'products' => $products]);
+                    return new Response('adminUsers.html.twig', ['lang' => $lang, 'users' => $users]);
                 } else {
-                    $product = $productRepository->findOneBy(['productId' => $_POST["id"]]);
-                    $product->setNotAvailable(!$product->isNotAvailable());
-                    $em->persist($product);
-                    $em->flush();
-                    echo("ok");
+                    if($_POST["mail"] !== $_SESSION["user"]->getEmail()){
+                        $user = $userRepository->findOneByEmail($_POST["mail"]);
+                        $user->setAdmin(!$user->isAdmin());
+                        $em->persist($user);
+                        $em->flush();
+                        echo("ok");
+                    }
+                    else{
+                        echo($lang["ADMINUSERS"]["ERRORAUTO"]);
+                    }
                 }
             }
             else {

@@ -7,6 +7,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\startSession;
 
 class Login{
     public function __invoke()
@@ -29,12 +30,12 @@ class Login{
             $userRepository = $em->getRepository(User::class);
             $user = $userRepository->findOneByEmail($email);
 
-            if ($password === $user->getPassword()) {
-                if(session_id() == ''){
-                    session_start();
+            if ($user != null){
+                if ($password === $user->getPassword()) {
+                    startSession();
+                    $_SESSION['user'] = $user;
+                    header('Location: /');
                 }
-                $_SESSION['user'] = $user;
-                header('Location: /');
             }
         }
 

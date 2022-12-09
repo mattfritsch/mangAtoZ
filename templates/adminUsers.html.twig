@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>{{ lang.ADMINUSERS.TITLE }}</title>
+</head>
+<body>
+{% include "header.html.twig" %}
+
+<div id="error" class="alert alert-danger" style="display: none; width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh"></div>
+
+<table class="table table-bordered mx-auto mt-3" style="width: 50vw">
+    <tr class="text-center">
+        <th>{{ lang.ADMINUSERS.MAIL }}</th>
+        <th>{{ lang.ADMINUSERS.ADMIN }}</th>
+        <th></th>
+    </tr>
+    {% for user in users %}
+        <tr class="text-center">
+            <td>{{ user.email }}</td>
+            {%  if user.admin == 1 %}
+                <td>{{ lang.ADMINUSERS.YES }}</td>
+                <td><button id="{{ user.email }}" class="btn btn-danger setAdmin">{{ lang.ADMINUSERS.DELETE }}</button></td>
+            {% else %}
+                <td>{{ lang.ADMINUSERS.NO }}</td>
+                <td><button id="{{ user.email }}" class="btn btn-success setAdmin">{{ lang.ADMINUSERS.ADD }}</button></td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+
+
+{% include "footer.html.twig" %}
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script src="./../javascript/adminUsers.js"></script>
+</html>
