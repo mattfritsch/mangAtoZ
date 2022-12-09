@@ -14,27 +14,44 @@ class Admin{
     public function __invoke()
     {
         startSession();
+
+        $language = $_SESSION["locale"];
+        if($language === "en"){
+            $lang = getTextLangue('trad');
+        } else {
+            $lang = getTextLangue('fr');;
+        }
+
         $em = EntityManager::getInstance();
 
         /** @var UserRepository$userRepository */
         $userRepository = $em->getRepository(User::class);
         $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
 
+        /** @var ProductRepository$productRepository */
+        $productRepository = $em->getRepository(Product::class);
+
         if ($user->isAdmin()){
             if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
-                /** @var ProductRepository$productRepository */
-                $productRepository = $em->getRepository(Product::class);
-                $products = $productRepository->findBy(array(), array('productName' => 'ASC'));
+                if(!$_POST){
+                    $products = $productRepository->findBy(array(), array('productName' => 'ASC'));
 
-                return new Response('admin.html.twig', ['lang' => getTextLangue('trad'), 'products' => $products]);
+                    return new Response('admin.html.twig', ['lang' => $lang, 'products' => $products]);
+                } else {
+                    $product = $productRepository->findOneBy(['productId' => $_POST["id"]]);
+                    $product->setNotAvailable(!$product->isNotAvailable());
+                    $em->persist($product);
+                    $em->flush();
+                    echo("ok");
+                }
             }
             else {
-                echo 'Bien essayé, mais non';
+                echo($lang["ADMINUSERS"]["ERRORPWD"]);
                 die;
             }
         }
         else {
-            echo 'Non non, ça ne marchera pas petit malin';
+            echo($lang["ADMINUSERS"]["ERRORADMIN"]);
             die;
         }
     }

@@ -46,10 +46,27 @@ return [
         'ERRORPWD' => 'Bien essayé, mais non',
         'ERRORADMIN' => 'Non non, ça ne marchera pas petit malin',
         'NO' => 'Non',
-        'YES' => 'Oui'
+        'YES' => 'Oui',
+        'TITLE' => 'Admin Users'
     ],
     'ADMIN' =>[
+        'ADMIN' => 'Admin',
         'PRODUCTNAME' => 'Nom du produit',
-        'UPDATE' => 'Modifier'
+        'UPDATE' => 'Modifier',
+        'ADD' => 'Ajouter',
+        'DELETE' => 'Supprimer',
+        'PUTBACK' => 'Remettre'
+    ],
+    'ADMINPRODUCT' =>[
+        'TITLEADD' => 'Ajouter un nouveau produit',
+        'TITLEMODIF' => 'Modification du produit',
+        'RESUME' => 'Description',
+        'PRODUCTNAME' => 'Nom du produit',
+        'IMG' => 'Lien de l\'image',
+        'STATUS' => 'Statut (coché si fini)',
+        'CHAPTERNUMBER' => 'Nombre de chapitres',
+        'AGERANK' => 'Approprié à tout public',
+        'AVERAGERATING' => 'Note moyenne',
+        'SUBMIT' => 'Valider',
     ]
 ];
