@@ -17,6 +17,8 @@ return [
         'REMEMBER' => 'Remember me',
         'SIGNIN' => 'Sign-in',
         'BACK' => 'Back',
+        'ERRORPASSWORD' => 'Wrong password!',
+        'ERRORMAIL' => 'Wrong mail!',
     ],
     'REGISTRATION' => [
         'FORM' => 'Registration form',
@@ -33,6 +35,11 @@ return [
         'TOS'=> 'I do accept the Terms and Conditions of the website.',
         'REGISTER'=> 'Register',
         'BACK'=> 'Back',
+        'REQUIRED'=> 'This field is required!',
+        'LENGTH'=> 'length',
+        'PASSWORD2' => 'Passwords must be identical!',
+        'MAILUNIQUE' => 'This mail adress is already used!',
+        'ERRORTOS' => 'CGU are required!'
     ],
     'PRODUCT' => [
         'STORE' => 'Store',

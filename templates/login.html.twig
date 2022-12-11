@@ -10,16 +10,26 @@
 {% block loginform %}
     <main class="d-flex justify-content-center flex-column" >
         <div class="text-center" style="margin-right: 35%; margin-left: 35%; height: 100%">
-            <form action="/connection" method="post">
+            <form action="/login" method="post">
                 <img class="m-4" src="" alt="sign-in logo" width="72" height="57">
                 <h1 class="h3 mb-3 fw-normal">{{ lang.CONNECTION.SIGNIN }}</h1>
                 <div class="form-floating mb-2">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="{{ lang.CONNECTION.EMAIL_EXAMPLE }}">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="{{ lang.CONNECTION.EMAIL_EXAMPLE }}"
+                    {% if mail != '' %}
+                        value="{{ mail }}"
+                    {% endif %}
+                    >
                     <label for="email">{{ lang.CONNECTION.EMAIL }}</label>
+                    {% if errors.email != null %}
+                        <p style="color : red">{{ errors.email }}</p>
+                    {% endif %}
                 </div>
                 <div class="form-floating mb-2">
                     <input type="password" class="form-control" id="password" name="password" placeholder="{{ lang.CONNECTION.PASSWORD }}">
                     <label for="password">{{ lang.CONNECTION.PASSWORD }}</label>
+                    {% if errors.password != null %}
+                        <p style="color : red">{{ errors.password }}</p>
+                    {% endif %}
                 </div>
                 <div class="checkbox m-3">
                     <label>
