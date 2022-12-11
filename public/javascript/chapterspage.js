@@ -2,7 +2,7 @@ let pasdispo = []
 
 function AddPasDispo(chapitre){
     pasdispo.push(chapitre)
-    console.log('coucou')
+    console.log(pasdispo)
 }
 
 // console.log(pasdispo)
@@ -16,10 +16,10 @@ function Initialize() {
     select[0].addEventListener("click", function () {
         for (const child of elements3) {
             child.onclick = function (e) {
-
+                // console.log(e.target.getAttribute('data-value'))
                 let input = document.createElement('input')
                 input.setAttribute('type', 'hidden')
-                input.setAttribute('name', e.target.innerText)
+                input.setAttribute('name', e.target.getAttribute('data-value'))
                 input.innerText = e.target.innerText;
                 let form = document.getElementById('chapitre')
                 form.appendChild(input)
@@ -40,6 +40,19 @@ function Initialize() {
             let test = child.innerText;
             if (pasdispo.includes(Number(test))) {
                 child.style.pointerEvents = 'none';
+                // li = document.createElement('button')
+                // child.appendChild(li)
+
+                div = document.createElement('div');
+                child.appendChild(div)
+                button= document.createElement('button');
+                button.setAttribute('type', 'button')
+                button.innerText = "coucou"
+                button.style.pointerEvents = 'auto';
+                button.onclick = function (e) {
+                    console.log("coucou")
+                }
+                div.appendChild(button)
             }
         }
     })

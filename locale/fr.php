@@ -17,6 +17,8 @@ return [
         'REMEMBER' => 'Se souvenir de moi',
         'SIGNIN' => 'Se connecter',
         'BACK' => 'Retour',
+        'ERRORPASSWORD' => 'Mot de passe incorrect !',
+        'ERRORMAIL' => 'Mail non valide!',
     ],
     'REGISTRATION' => [
         'FORM' => 'Formulaire d\'inscription',
@@ -33,6 +35,12 @@ return [
         'TOS'=> 'J\'accepte les conditions générales d\'utilisation du site',
         'REGISTER'=> 'Enregistrer',
         'BACK'=> 'Retour',
+        'REQUIRED'=> 'Ce champ est requis!',
+        'LENGTH'=> 'length',
+        'PASSWORD2' => 'Les mots de passe doivent être identiques !',
+        'MAILUNIQUE' => 'Cette adresse mail est déjà utilisée !',
+        'ERRORTOS' => 'Merci d\'accepter les CGU !'
+
     ],
     'PRODUCTPAGE' => [
 
@@ -46,10 +54,27 @@ return [
         'ERRORPWD' => 'Bien essayé, mais non',
         'ERRORADMIN' => 'Non non, ça ne marchera pas petit malin',
         'NO' => 'Non',
-        'YES' => 'Oui'
+        'YES' => 'Oui',
+        'TITLE' => 'Admin Users'
     ],
     'ADMIN' =>[
+        'ADMIN' => 'Admin',
         'PRODUCTNAME' => 'Nom du produit',
-        'UPDATE' => 'Modifier'
+        'UPDATE' => 'Modifier',
+        'ADD' => 'Ajouter',
+        'DELETE' => 'Supprimer',
+        'PUTBACK' => 'Remettre'
+    ],
+    'ADMINPRODUCT' =>[
+        'TITLEADD' => 'Ajouter un nouveau produit',
+        'TITLEMODIF' => 'Modification du produit',
+        'RESUME' => 'Description',
+        'PRODUCTNAME' => 'Nom du produit',
+        'IMG' => 'Lien de l\'image',
+        'STATUS' => 'Statut (coché si fini)',
+        'CHAPTERNUMBER' => 'Nombre de chapitres',
+        'AGERANK' => 'Approprié à tout public',
+        'AVERAGERATING' => 'Note moyenne',
+        'SUBMIT' => 'Valider',
     ]
 ];

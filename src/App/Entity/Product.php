@@ -36,6 +36,25 @@ class Product
     #[ORM\Column(type: 'boolean')]
     protected bool $ageRank;
 
+    #[ORM\Column(type: 'boolean')]
+    protected bool $notAvailable;
+
+    /**
+     * @return bool
+     */
+    public function isNotAvailable(): bool
+    {
+        return $this->notAvailable;
+    }
+
+    /**
+     * @param bool $notAvailable
+     */
+    public function setNotAvailable(bool $notAvailable): void
+    {
+        $this->notAvailable = $notAvailable;
+    }
+
     /**
      * @return bool
      */

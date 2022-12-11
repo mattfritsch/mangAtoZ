@@ -17,6 +17,8 @@ return [
         'REMEMBER' => 'Remember me',
         'SIGNIN' => 'Sign-in',
         'BACK' => 'Back',
+        'ERRORPASSWORD' => 'Wrong password!',
+        'ERRORMAIL' => 'Wrong mail!',
     ],
     'REGISTRATION' => [
         'FORM' => 'Registration form',
@@ -33,6 +35,11 @@ return [
         'TOS'=> 'I do accept the Terms and Conditions of the website.',
         'REGISTER'=> 'Register',
         'BACK'=> 'Back',
+        'REQUIRED'=> 'This field is required!',
+        'LENGTH'=> 'length',
+        'PASSWORD2' => 'Passwords must be identical!',
+        'MAILUNIQUE' => 'This mail adress is already used!',
+        'ERRORTOS' => 'CGU are required!'
     ],
     'PRODUCT' => [
         'STORE' => 'Store',
@@ -64,10 +71,27 @@ return [
         'ERRORPWD' => 'No no no',
         'ERRORADMIN' => 'Nice try, but no',
         'NO' => 'No',
-        'YES' => 'Yes'
+        'YES' => 'Yes',
+        'TITLE' => 'Admin Users'
     ],
     'ADMIN' =>[
+        'ADMIN' => 'Admin',
         'PRODUCTNAME' => 'Product name',
-        'UPDATE' => 'Update'
+        'UPDATE' => 'Update',
+        'ADD' => 'Add',
+        'DELETE' => 'Delete',
+        'PUTBACK' => 'Put back'
+    ],
+    'ADMINPRODUCT' =>[
+        'TITLEADD' => 'Add new product',
+        'TITLEMODIF' => 'Update product',
+        'RESUME' => 'Resume',
+        'PRODUCTNAME' => 'Product name',
+        'IMG' => 'Image link',
+        'STATUS' => 'Status (checked if ended)',
+        'CHAPTERNUMBER' => 'Number of chapters',
+        'AGERANK' => 'Suitable for all audiences',
+        'AVERAGERATING' => 'Average rating',
+        'SUBMIT' => 'Submit',
     ]
 ];
