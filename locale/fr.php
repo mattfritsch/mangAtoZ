@@ -17,6 +17,8 @@ return [
         'REMEMBER' => 'Se souvenir de moi',
         'SIGNIN' => 'Se connecter',
         'BACK' => 'Retour',
+        'ERRORPASSWORD' => 'Mot de passe incorrect !',
+        'ERRORMAIL' => 'Mail non valide!',
     ],
     'REGISTRATION' => [
         'FORM' => 'Formulaire d\'inscription',
@@ -33,6 +35,12 @@ return [
         'TOS'=> 'J\'accepte les conditions générales d\'utilisation du site',
         'REGISTER'=> 'Enregistrer',
         'BACK'=> 'Retour',
+        'REQUIRED'=> 'Ce champ est requis!',
+        'LENGTH'=> 'length',
+        'PASSWORD2' => 'Les mots de passe doivent être identiques !',
+        'MAILUNIQUE' => 'Cette adresse mail est déjà utilisée !',
+        'ERRORTOS' => 'Merci d\'accepter les CGU !'
+
     ],
     'PRODUCTPAGE' => [
 

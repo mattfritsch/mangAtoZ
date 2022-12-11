@@ -166,6 +166,7 @@ function insertIntoDB()
 //        $product->setCateg($mangafinal[$i][8][0]);
         $product->setAverageRating($mangafinal[$i][6]);
         $product->setAgeRank($mangafinal[$i][7]);
+        $product->setNotAvailable(0);
 
 
         $em->persist($product);

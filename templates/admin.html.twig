@@ -19,8 +19,7 @@
     {% for product in products %}
         <tr class="text-center">
             <td>{{ product.productName }}</td>
-{#            <td><form action="{{ path('/admin/product', {'id' : 1}) }}"><button type="submit" class="btn btn-warning">{{ lang.ADMIN.UPDATE }}</button></form></td>#}
-            <td><form action=""><button type="submit" class="btn btn-warning">{{ lang.ADMIN.UPDATE }}</button></form></td>
+            <td><a href="/admin/product?id={{ product.productId }}" class="btn btn-warning">{{ lang.ADMIN.UPDATE }}</a></td>
             {% if product.notAvailable != 0 %}
                 <td><button id="del{{ product.productId }}" class="btn btn-success delete">{{ lang.ADMIN.PUTBACK }}</button></td>
             {% else %}
