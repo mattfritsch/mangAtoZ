@@ -15,27 +15,29 @@ class ProductPage{
     public function __invoke()
     {
         $search = null;
+        $search = $this->getValue('submitButton', 'searchBar', $search);
 
-        if (isset($_POST['submitButton'])) { //check if form was submitted
-            if ($_POST['searchBar'] == null) {
-                $search = null;
-            } else {
-                $input = $_POST['searchBar']; //get input text
-                $search = $input;
-            }
-        }
+        $categories = null;
+        $categories = $this->getValue('validateButton', 'categories', $categories);
+
+        $order = null;
+        $order = $this->getValue('validateButton','order', $order);
+
+        $status = null;
+        $status = $this->getValue('validateButton','radioStatus', $status);
+
+        $censure = null;
+        $censure = $this->getValue('validateButton','radioStatus', $censure);
+
 
         $em = EntityManager::getInstance();
-        $qb = $em->createQueryBuilder();
 
         /** @var ProductRepository $productRepository */
         $productRepository = $em->getRepository(Product::class);
+        $products = $productRepository->findAll();
 
-        if ($search === null){
-            $products = $productRepository->findAll();
-        }
-        else {
-            $products = $productRepository->findBy(['productName' => $search]);
+        if (isset($_POST['submitButton']) || isset($_POST['validateButton'])) {
+            $products = $productRepository->getFilteredProducts(['search'=> $search, 'order' => $order, 'status' => $status, 'censure' => $censure]);
         }
 
         /** @var CategRepository$categRepository */
@@ -46,4 +48,17 @@ class ProductPage{
             'search' => $search];
         return new Response('productPage.html.twig', $args);
     }
+
+    public function getValue(string $buttonName, string $fieldName, ?string $value) : ?string{
+        if(isset($_POST[$buttonName])){
+            if($_POST[$fieldName] != null){
+                $value = $_POST[$fieldName];
+            }
+            else{
+                $value = null;
+            }
+        }
+        return $value;
+    }
+
 }
