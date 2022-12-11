@@ -45,6 +45,7 @@ return [
         'STORE' => 'Store',
         'FILTERS' => 'Filters',
         'CATEGORIES' => 'Categories',
+        'ALL_CATEGORIES' => 'All categories',
         'ORDER' => 'Order by',
         'ALPHABETICAL' => 'Alphabetical sort',
         'POPULARITY' => 'Popularity sort',
