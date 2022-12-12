@@ -3,7 +3,7 @@
 return [
     'HOME' => [
         'HOME' => 'Home',
-        'CATEGORY' => 'Category',
+        'CATEGORIES' => 'Categories',
         'STORE' => 'Store',
         'PROFILE' => 'Profile',
         'SEARCH' => 'Search',
@@ -62,6 +62,9 @@ return [
         'DESCRIPTION' => 'Description',
         'GO_CHAPTERS' => 'See chapters',
         'GO_CHAPTER' => 'See chapter',
+    ],
+    'CATEGORIES' => [
+        'DESCRIPTION' => 'No description',
     ],
     'ADMINUSERS' => [
         'MAIL' => 'Email',

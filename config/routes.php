@@ -2,6 +2,7 @@
 
 use App\Controller\Admin;
 use App\Controller\AdminProduct;
+use App\Controller\CategoriesPage;
 use App\Controller\Homepage;
 use \App\Controller\Login;
 use \App\Controller\Connection;
@@ -22,8 +23,9 @@ return [
         new Route('POST', '/login', Login::class),
         new Route('POST', '/registration', Registration::class),
         new Route('GET', '/registration', Registration::class),
-        new Route('GET', '/product', ProductPage::class),
-        new Route('POST', '/product', ProductPage::class),
+        new Route('GET', '/store', ProductPage::class),
+        new Route('POST', '/store', ProductPage::class),
+        new Route('GET', '/categories', CategoriesPage::class),
         new Route('GET', '/admin', Admin::class),
         new Route('POST', '/admin', Admin::class),
         new Route('POST', '/addproduct', AddProductToCart::class),

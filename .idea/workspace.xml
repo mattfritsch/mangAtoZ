@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="refont login.html.twig">
+      <change afterPath="$PROJECT_DIR$/public/assets/style/categoriesPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Controller/CategoriesPage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/categoriesPage.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_12_2022_14_51__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_12_2022_14_51__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locale/en.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascript/productPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascript/productPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Repository/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Repository/ProductRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Script/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Script/script.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/productPage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/productPage.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/fr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -44,6 +46,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="category" />
+                    <option name="lastUsedInstant" value="1670779768" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="manga2" />
                     <option name="lastUsedInstant" value="1670421182" />
                   </RecentBranch>
@@ -58,10 +64,6 @@
                   <RecentBranch>
                     <option name="branchName" value="registrationRefont" />
                     <option name="lastUsedInstant" value="1669888969" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="traduction" />
-                    <option name="lastUsedInstant" value="1669886648" />
                   </RecentBranch>
                 </list>
               </option>
@@ -182,6 +184,7 @@
       <workItem from="1670593631560" duration="4156000" />
       <workItem from="1670617791902" duration="101000" />
       <workItem from="1670768562318" duration="10441000" />
+      <workItem from="1670828742778" duration="482000" />
     </task>
     <task id="LOCAL-00001" summary="add getText librairies">
       <created>1669212369028</created>
