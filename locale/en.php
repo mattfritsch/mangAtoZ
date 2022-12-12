@@ -3,7 +3,7 @@
 return [
     'HOME' => [
         'HOME' => 'Home',
-        'CATEGORY' => 'Category',
+        'CATEGORIES' => 'Categories',
         'STORE' => 'Store',
         'PROFILE' => 'Profile',
         'SEARCH' => 'Search',
@@ -17,6 +17,8 @@ return [
         'REMEMBER' => 'Remember me',
         'SIGNIN' => 'Sign-in',
         'BACK' => 'Back',
+        'ERRORPASSWORD' => 'Wrong password!',
+        'ERRORMAIL' => 'Wrong mail!',
     ],
     'REGISTRATION' => [
         'FORM' => 'Registration form',
@@ -33,11 +35,17 @@ return [
         'TOS'=> 'I do accept the Terms and Conditions of the website.',
         'REGISTER'=> 'Register',
         'BACK'=> 'Back',
+        'REQUIRED'=> 'This field is required!',
+        'LENGTH'=> 'length',
+        'PASSWORD2' => 'Passwords must be identical!',
+        'MAILUNIQUE' => 'This mail adress is already used!',
+        'ERRORTOS' => 'CGU are required!'
     ],
     'PRODUCT' => [
         'STORE' => 'Store',
         'FILTERS' => 'Filters',
         'CATEGORIES' => 'Categories',
+        'ALL_CATEGORIES' => 'All categories',
         'ORDER' => 'Order by',
         'ALPHABETICAL' => 'Alphabetical sort',
         'POPULARITY' => 'Popularity sort',
@@ -54,6 +62,9 @@ return [
         'DESCRIPTION' => 'Description',
         'GO_CHAPTERS' => 'See chapters',
         'GO_CHAPTER' => 'See chapter',
+    ],
+    'CATEGORIES' => [
+        'DESCRIPTION' => 'No description',
     ],
     'ADMINUSERS' => [
         'MAIL' => 'Email',

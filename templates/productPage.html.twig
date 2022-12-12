@@ -21,7 +21,7 @@
                 <!-- Section: Sidebar -->
                 <section>
                     <!-- Section: Filters -->
-                    <form action="post" method="/">
+                    <form method="post" action="/product" id="filters">
                         <section id="filters" data-auto-filter="true" class="border-end">
                             <h5>{{ lang.PRODUCT.FILTERS }}</h5>
 
@@ -29,19 +29,21 @@
                             <section class="mb-4 me-4" data-filter="categories">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CATEGORIES }}</h6>
 
-                                <select name="countries" id="countries" multiple>
+                                <select name="select" id="categories" multiple>
+                                    <option value="all" selected>{{ lang.PRODUCT.ALL_CATEGORIES }}</option>
                                     {% for key, categ in categs %}
                                         <option value="{{ categ.categId }}">{{ categ.categName }}</option>
                                     {% endfor %}
                                 </select>
+                                <button class="btn btn-outline-primary" type="button" id="okButton">OK</button>
                             </section>
                             <!-- Section: Categories -->
                             <!-- Section: OrderBy -->
                             <section class="mb-4 me-4" data-filter="orderby">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.ORDER }}</h6>
                                 <div id="select-wrapper-301599" class="select-wrapper d-inline-flex">
-                                    <select class="form-select m-1" aria-label="Default select example">
-                                        <option selected>{{ lang.PRODUCT.ORDER }}</option>
+                                    <select class="form-select m-1" aria-label="Default select example" name="order">
+                                        <option value="neutral" selected>{{ lang.PRODUCT.ORDER }}</option>
                                         <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
                                         <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
                                     </select>
@@ -49,44 +51,44 @@
                             </section>
                             <!-- Section: Categories -->
                             <!-- Section: Status -->
-                            <section class="mb-4" data-filter="categories">
+                            <section class="mb-4" data-filter="status">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.STATUS }}</h6>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                           id="flexRadioDefault1" checked>
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="radioStatus"
+                                           id="statusBoth" value="both" checked>
+                                    <label class="form-check-label" for="statusBoth">
                                         {{ lang.PRODUCT.BOTH }}
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                           id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
+                                    <input class="form-check-input" type="radio" name="radioStatus"
+                                           id="statusInprogress" value="inprogress">
+                                    <label class="form-check-label" for="statusInprogress" >
                                         {{ lang.PRODUCT.INPROGRESS }}
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                           id="flexRadioDefault2">
-                                    <label class="form-check-label" for="flexRadioDefault2">
+                                    <input class="form-check-input" type="radio" name="radioStatus"
+                                           id="statusFinished" value="finished">
+                                    <label class="form-check-label" for="statusFinished">
                                         {{ lang.PRODUCT.FINISHED }}
                                     </label>
                                 </div>
                             </section>
                             <!-- Section: Status -->
                             <!-- Section: +18 section -->
-                            <section class="mb-4" data-filter="categories">
+                            <section class="mb-4" data-filter="censure">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CENSURE }}</h6>
 
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                    <input class="form-check-input" type="checkbox" id="censureAdd" name="censureAdd" value="nocensure">
                                     <label class="form-check-label"
-                                           for="flexSwitchCheckDefault">{{ lang.PRODUCT.ADD }}</label>
+                                           for="censureAdd">{{ lang.PRODUCT.ADD }}</label>
                                 </div>
                             </section>
                             <!-- Section: Condition -->
-                            <button class="btn btn-outline-primary" type="submit">{{ lang.PRODUCT.VALIDATE }}</button>
+                            <button class="btn btn-outline-primary" type="submit" name="validateButton" id="validateButton">{{ lang.PRODUCT.VALIDATE }}</button>
                         </section>
                     </form>
                     <!-- Section: Filters -->

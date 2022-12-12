@@ -2,3 +2,4 @@
 vendor
 config/*.local.php
 node_modules
+.idea
