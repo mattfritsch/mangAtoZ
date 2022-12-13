@@ -59,7 +59,7 @@ return [
         'ERRORADMIN' => 'Non non, ça ne marchera pas petit malin',
         'NO' => 'Non',
         'YES' => 'Oui',
-        'TITLE' => 'AdminProducts Users'
+        'TITLE' => 'Utilisateurs'
     ],
     'ADMIN' =>[
         'ADMIN' => 'AdminProducts',
@@ -105,5 +105,15 @@ return [
         'SUBMIT' => 'Valider',
         'CANCEL' => 'Annuler',
         'ERRORNAME' => 'Ce nom de catégorie est déjà utilisé'
+    ],
+    'ADMINORDER' => [
+        'TITLE' => 'Commandes',
+        'USER' => 'Utilisateur',
+        'DATETIME' => 'Date et heure',
+        'PRICE' => 'Prix',
+        'DELIVERED' => 'Livrée',
+        'YES' => 'Oui',
+        'NO' => 'En cours de livraion',
+        'NOTDELIVERED' => 'En cours de livraison'
     ],
 ];

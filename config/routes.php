@@ -1,6 +1,7 @@
 <?php
 
 use App\Controller\AdminCategs;
+use App\Controller\AdminOrders;
 use App\Controller\AdminProducts;
 use App\Controller\AdminProduct;
 use App\Controller\AdminChapters;
@@ -37,6 +38,8 @@ return [
         new Route('POST', '/admin/product', AdminProduct::class),
         new Route('GET', '/admin/chapters', AdminChapters::class),
         new Route('POST', '/admin/chapters', AdminChapters::class),
+        new Route('GET', '/admin/orders', AdminOrders::class),
+        new Route('POST', '/admin/orders', AdminOrders::class),
         new Route('GET', '/admin/categs', AdminCategs::class),
         new Route('POST', '/admin/categs', AdminCategs::class),
         new Route('GET', '/chapterspage', ChaptersPage::class),
