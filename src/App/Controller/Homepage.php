@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 
+use App\Entity\Product;
+use App\Repository\ProductRepository;
+use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
 use function App\startSession;
@@ -19,9 +22,14 @@ class Homepage
       <?php
 
       startSession();
-      $_SESSION["locale"] = "en";
 
-      $args = ['lang' => getTextLangue('en')];
+      $em = EntityManager::getInstance();
+
+      /** @var ProductRepository $productRepository */
+      $productRepository = $em->getRepository(Product::class);
+      $products = $productRepository->findBy(array(), array('averageRating' => 'asc'));
+
+      $args = ['lang' => getTextLangue($_SESSION['locale'])];
       return new Response('home.html.twig', $args);
   }
 }

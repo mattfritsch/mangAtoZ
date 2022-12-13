@@ -10,10 +10,10 @@ function getTextLangue(string $language){
     $fr = require_once dirname(dirname(__DIR__)). '/locale/fr.php';
     $en = require_once dirname(dirname(__DIR__)). '/locale/en.php';
 
-    if ($language === 'fr' ){
+    if ($language === 'fr'){
         $l = $fr;
     }
-    else{
+    else if ($language === 'en'){
         $l = $en;
     }
 
@@ -24,12 +24,18 @@ function startSession(): void {
     if(session_id() == ''){
         session_start();
     }
+    if($_SESSION['locale'] === ''){
+        $_SESSION['locale'] = 'fr';
+    }
 }
 
-function displayErrors(array $errors, string $field): void {
-    foreach($errors[$field] ?? [] as $error) {
-        echo sprintf('<div class="invalid-feedback">%s</div>', $error);
-    }
+function age(): int{
+    $user = $_SESSION['user'];
+    $birthDate = $user->getBirthDate()->date;
+    $dateUser = explode(" ", $birthDate);
+    $today = date("Y-m-d");
+    $diff = date_diff(date_create($dateUser[0]), date_create($today));
+    return intval($diff->format('%y'));
 }
 
 function validate(array $data, array $rules) : array {

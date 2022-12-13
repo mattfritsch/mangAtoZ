@@ -21,6 +21,12 @@ class User
     #[ORM\Column(type: 'string', length: 1000)]
     protected string $password;
 
+    #[ORM\Column(type: 'string')]
+    protected string $lastName;
+
+    #[ORM\Column(type: 'string')]
+    protected string $firstName;
+
     #[ORM\Column(type: 'boolean')]
     protected bool $admin;
 
@@ -38,6 +44,38 @@ class User
 
     #[ORM\Column(type: 'datetime')]
     protected DateTime $birthDate;
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
 
     /**
      * @return string

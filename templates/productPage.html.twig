@@ -21,7 +21,7 @@
                 <!-- Section: Sidebar -->
                 <section>
                     <!-- Section: Filters -->
-                    <form action="post" method="/">
+                    <form method="post" action="/store" id="filters">
                         <section id="filters" data-auto-filter="true" class="border-end">
                             <h5>{{ lang.PRODUCT.FILTERS }}</h5>
 
@@ -29,7 +29,7 @@
                             <section class="mb-4 me-4" data-filter="categories">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CATEGORIES }}</h6>
 
-                                <select name="countries" id="countries" multiple>
+                                <select name="selectCategories" id="categories" multiple>
                                     {% for key, categ in categs %}
                                         <option value="{{ categ.categId }}">{{ categ.categName }}</option>
                                     {% endfor %}
@@ -40,53 +40,138 @@
                             <section class="mb-4 me-4" data-filter="orderby">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.ORDER }}</h6>
                                 <div id="select-wrapper-301599" class="select-wrapper d-inline-flex">
-                                    <select class="form-select m-1" aria-label="Default select example">
-                                        <option selected>{{ lang.PRODUCT.ORDER }}</option>
+                                    <select class="form-select m-1" aria-label="Default select example" name="order">
+                                        {% if order == 'alphabetical' %}
+                                        <option value="neutral">{{ lang.PRODUCT.ORDER }}</option>
+                                        <option value="alphabetical" selected>{{ lang.PRODUCT.ALPHABETICAL }}</option>
+                                        <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
+                                        {% elseif order == 'popularity' %}
+                                        <option value="neutral">{{ lang.PRODUCT.ORDER }}</option>
+                                        <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
+                                        <option value="popularity" selected>{{ lang.PRODUCT.POPULARITY }}</option>
+                                        {% else %}
+                                        <option value="neutral" selected>{{ lang.PRODUCT.ORDER }}</option>
                                         <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
                                         <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
+                                        {% endif %}
                                     </select>
                                 </div>
                             </section>
                             <!-- Section: Categories -->
                             <!-- Section: Status -->
-                            <section class="mb-4" data-filter="categories">
+                            <section class="mb-4" data-filter="status">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.STATUS }}</h6>
 
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                           id="flexRadioDefault1" checked>
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        {{ lang.PRODUCT.BOTH }}
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                           id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        {{ lang.PRODUCT.INPROGRESS }}
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                           id="flexRadioDefault2">
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        {{ lang.PRODUCT.FINISHED }}
-                                    </label>
-                                </div>
+                                {% if radioStatus == 'inprogress' %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusBoth" value="both">
+                                        <label class="form-check-label" for="statusBoth">
+                                            {{ lang.PRODUCT.BOTH }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusInprogress" value="inprogress" checked>
+                                        <label class="form-check-label" for="statusInprogress">
+                                            {{ lang.PRODUCT.INPROGRESS }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusFinished" value="finished">
+                                        <label class="form-check-label" for="statusFinished">
+                                            {{ lang.PRODUCT.FINISHED }}
+                                        </label>
+                                    </div>
+                                {% elseif radioStatus == 'finished' %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusBoth" value="both">
+                                        <label class="form-check-label" for="statusBoth">
+                                            {{ lang.PRODUCT.BOTH }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusInprogress" value="inprogress">
+                                        <label class="form-check-label" for="statusInprogress">
+                                            {{ lang.PRODUCT.INPROGRESS }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusFinished" value="finished" checked>
+                                        <label class="form-check-label" for="statusFinished">
+                                            {{ lang.PRODUCT.FINISHED }}
+                                        </label>
+                                    </div>
+                                    {% else %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioStatus"
+                                                   id="statusBoth" value="both" checked>
+                                            <label class="form-check-label" for="statusBoth">
+                                                {{ lang.PRODUCT.BOTH }}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioStatus"
+                                                   id="statusInprogress" value="inprogress">
+                                            <label class="form-check-label" for="statusInprogress">
+                                                {{ lang.PRODUCT.INPROGRESS }}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioStatus"
+                                                   id="statusFinished" value="finished">
+                                            <label class="form-check-label" for="statusFinished">
+                                                {{ lang.PRODUCT.FINISHED }}
+                                            </label>
+                                        </div>
+                                {% endif %}
+
                             </section>
                             <!-- Section: Status -->
                             <!-- Section: +18 section -->
-                            <section class="mb-4" data-filter="categories">
-                                <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CENSURE }}</h6>
-
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                    <label class="form-check-label"
-                                           for="flexSwitchCheckDefault">{{ lang.PRODUCT.ADD }}</label>
-                                </div>
-                            </section>
+                            {% if age >= 18 %}
+                                <section class="mb-4" data-filter="censure">
+                                    <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CENSURE }}</h6>
+                                    {% if censureAdd == 'nocensure' %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioCensure"
+                                                   id="addCensure" value="censure">
+                                            <label class="form-check-label" for="statusInprogress">
+                                                {{ lang.PRODUCT.DISPLAYNONE }}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioCensure"
+                                                   id="removeCensure" value="nocensure" checked>
+                                            <label class="form-check-label" for="statusFinished">
+                                                {{ lang.PRODUCT.DISPLAY }}
+                                            </label>
+                                        </div>
+                                    {% else %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioCensure"
+                                                   id="addCensure" value="censure" checked>
+                                            <label class="form-check-label" for="addCensure">
+                                                {{ lang.PRODUCT.DISPLAYNONE }}
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radioCensure"
+                                                   id="removeCensure" value="nocensure">
+                                            <label class="form-check-label" for="removeCensure">
+                                                {{ lang.PRODUCT.DISPLAY }}
+                                            </label>
+                                        </div>
+                                    {% endif %}
+                                </section>
+                            {% endif %}
                             <!-- Section: Condition -->
-                            <button class="btn btn-outline-primary" type="submit">{{ lang.PRODUCT.VALIDATE }}</button>
+                            <button class="btn btn-outline-primary" type="submit" name="validateButton"
+                                    id="validateButton">{{ lang.PRODUCT.VALIDATE }}</button>
                         </section>
                     </form>
                     <!-- Section: Filters -->
@@ -95,13 +180,21 @@
             </div>
             <div class="col-md-8">
                 <div class="row justify-content-center">
-                    <form method="post" action="/product">
+                    <form method="post" action="/store">
                         <div class="col-md-6 my-auto py-3">
                             <div class="input-group d-inline-flex">
-                                <input type="text" class="form-control rounded"
-                                       placeholder="{{ lang.PRODUCT.SEARCH }}" aria-label="{{ lang.PRODUCT.SEARCH }}"
-                                       aria-describedby="search-addon" id="searchBar" name="searchBar"/>
-                                <button type="submit" class="btn btn-outline-primary" id="submitButton" name="submitButton">
+                                {% if search != '' %}
+                                    <input type="text" class="form-control rounded"
+                                           placeholder="{{ lang.PRODUCT.SEARCH  }}" aria-label="{{ lang.PRODUCT.SEARCH }}"
+                                           aria-describedby="search-addon" id="searchBar" name="searchBar" value="{{ search }}"/>
+                                {% else %}
+                                    <input type="text" class="form-control rounded"
+                                           placeholder="{{ lang.PRODUCT.SEARCH }}"
+                                           aria-label="{{ lang.PRODUCT.SEARCH }}"
+                                           aria-describedby="search-addon" id="searchBar" name="searchBar"/>
+                                {% endif %}
+                                <button type="submit" class="btn btn-outline-primary" id="submitButton"
+                                        name="submitButton">
                                     {{ lang.HOME.SEARCH }}
                                 </button>
                             </div>
@@ -112,32 +205,38 @@
                     ↑
                 </button>
                 <div class="row mb-4">
-                    {% for key, product in products %}
-                        <div class="card me-2 mb-2 text-center">
-                            <img class="card-img-top" src="{{ product.img }}" alt="Card image cap">
-                            <div class="card-header">
-                                <h5 class="card-title mb-2">{{ product.productName }}</h5>
-                                {% if product.chapterNumber > 1 %}
-                                    <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTERS }}</small>
-                                {% else %}
-                                    <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTER }}</small>
-                                {% endif %}
-                            </div>
-                            <div class="card-body mt-2">
-                                <h5 class="card-title mt-2 mb-2">{{ lang.PRODUCT.DESCRIPTION }}</h5>
-                                <div class="overflow-auto mb-2 text-scrollable">
-                                    <p class="card-text text-justify">{{ product.resume }}</p>
+                    {% if nothing == true %}
+                        <p>Aucun résultat correspondant a votre recherche</p>
+                    {% else %}
+                        {% for key, product in products %}
+                            <div class="card me-2 mb-2 text-center">
+                                <img class="card-img-top" src="{{ product.img }}" alt="Card image cap">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-2">{{ product.productName }}</h5>
+                                    {% if product.chapterNumber > 1 %}
+                                        <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTERS }}</small>
+                                    {% else %}
+                                        <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTER }}</small>
+                                    {% endif %}
+                                </div>
+                                <div class="card-body mt-2">
+                                    <h5 class="card-title mt-2 mb-2">{{ lang.PRODUCT.DESCRIPTION }}</h5>
+                                    <div class="overflow-auto mb-2 text-scrollable">
+                                        <p class="card-text text-justify">{{ product.resume }}</p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    {% if product.chapterNumber > 1 %}
+                                        <a href="/chapterspage?id={{ product.productId }}"
+                                           class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTERS }}</a>
+                                    {% else %}
+                                        <a href="/chapterspage?id={{ product.productId }}"
+                                           class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTER }}</a>
+                                    {% endif %}
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                {% if product.chapterNumber > 1 %}
-                                    <a href="#" class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTERS }}</a>
-                                {% else %}
-                                    <a href="#" class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTER }}</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    {% endif %}
                 </div>
             </div>
         </div>

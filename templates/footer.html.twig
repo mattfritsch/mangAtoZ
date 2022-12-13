@@ -1,6 +1,12 @@
 {% block footer %}
-    {#changer et faire un protoype #}
-    <footer class="d-flex border-top justify-content-center py-3 my-4">
-        <p class="text-center text-muted">&copy 2022 - BECKER, DESTREMONT, FRITSCH</p>
+    <footer class="d-flex border-top justify-content-between py-3 my-4">
+        <p class="text-center text-muted ms-4">&copy 2022 - BECKER, DESTREMONT, FRITSCH</p>
+        <form class="d-flex me-4" action="/language" method="post">
+            <select name="languageSelect" class="form-select me-4">
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+            </select>
+            <button type="submit" name="languageButton" class="btn btn-primary">OK</button>
+        </form>
     </footer>
 {% endblock %}

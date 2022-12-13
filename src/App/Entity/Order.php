@@ -71,6 +71,15 @@ class Order
     }
 
     /**
+     * @return String
+     */
+    public function getOrderDateTimeToString(): String
+    {
+        $date = $this->orderDateTime->format('Y-m-d H:i:s');
+        return $date;
+    }
+
+    /**
      * @param DateTime $orderDateTime
      */
     public function setOrderDateTime(DateTime $orderDateTime): void

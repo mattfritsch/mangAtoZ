@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+    <link href="/assets/style/scrollToTop.css" rel="stylesheet">
+    <title>{{ lang.ADMINORDER.TITLE }}</title>
+</head>
+<body>
+{% include "/header.html.twig" %}
+
+{% include "/scrollToTop.html.twig" %}
+
+<h1 class="h1 center" style="width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh">{{ lang.ADMINUSERS.TITLE }}</h1>
+
+<table class="table table-dark mx-auto mt-3" style="width: 50vw">
+    <tr class="text-center">
+        <th>{{ lang.ADMINORDER.USER }}</th>
+        <th>{{ lang.ADMINORDER.DATETIME }}</th>
+        <th>{{ lang.ADMINORDER.PRICE }}</th>
+        <th>{{ lang.ADMINORDER.DELIVERED }}</th>
+        <th></th>
+    </tr>
+    {% for order in orders %}
+        <tr class="text-center">
+            <td>{{ order.user.email }}</td>
+            <td>{{ order.getOrderDateTimeToString }}</td>
+            <td>{{ order.totalPrice }}</td>
+            {%  if order.delivered == 1 %}
+                <td>{{ lang.ADMINORDER.YES }}</td>
+                <td><button id="{{ order.orderId }}" class="btn btn-danger delivered">{{ lang.ADMINORDER.NOTDELIVERED }}</button></td>
+            {% else %}
+                <td>{{ lang.ADMINORDER.NO }}</td>
+                <td><button id="{{ order.orderId }}" class="btn btn-success delivered">{{ lang.ADMINORDER.DELIVERED }}</button></td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>
+
+
+{% include "/footer.html.twig" %}
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script src="./../javascript/admin/adminOrders.js"></script>
+<script src="./../javascript/scrollToTop.js"></script>
+</html>

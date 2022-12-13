@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+    <link href="/assets/style/scrollToTop.css" rel="stylesheet">
+    <title>{{ lang.ADMINCHAPTER.TITLE }}</title>
+</head>
+<body>
+{% include "/header.html.twig" %}
+
+{% include "/scrollToTop.html.twig" %}
+
+<table class="mx-auto mt-3" style="width: 50vw">
+    <td><h1 class="h1 center">{{ lang.ADMINCHAPTER.TITLE }}</h1></td>
+    <td><button id="add" class="btn btn-success">{{ lang.ADMINCHAPTER.ADD }}</button></td>
+</table>
+
+<div id="form-add" class="mx-auto mt-3" style="display: none; width: 50vw">
+    <h3 id="form-title" class="h3 center"></h3>
+    <div class="form-group" style="margin-bottom: 2vh">
+        <label for="chapter_name">{{ lang.ADMINCHAPTER.NAME }}</label>
+        <input type="number" class="form-control" id="chapter_name" name="chapter_name" readonly>
+    </div>
+    <div class="form-group" style="margin-bottom: 2vh">
+        <label for="chapter_price">{{ lang.ADMINCHAPTER.PRICE }}</label>
+        <input type="text" class="form-control" id="chapter_price" name="chapter_price" placeholder="{{ lang.ADMINCHAPTER.PRICE }}">
+    </div>
+    <div class="form-group" style="margin-bottom: 2vh">
+        <label for="chapter_stock">{{ lang.ADMINCHAPTER.STOCK }}</label>
+        <input type="number" step="0.01" class="form-control" id="chapter_stock" name="chapter_stock" placeholder="{{ lang.ADMINCHAPTER.STOCK }}">
+    </div>
+    <button id="validate-form" class="btn btn-primary">{{ lang.ADMINCHAPTER.SUBMIT }}</button>
+    <button id="update-form" class="btn btn-primary" style="display: none">{{ lang.ADMINCHAPTER.UPDATE }}</button>
+    <button id="cancel-form" class="btn btn-danger">{{ lang.ADMINCHAPTER.CANCEL }}</button>
+</div>
+
+<table class="table table-dark mx-auto mt-3" style="width: 50vw">
+    <tr class="text-center">
+        <th>{{ lang.ADMINCHAPTER.NAME }}</th>
+        <th>{{ lang.ADMINCHAPTER.PRICE }}</th>
+        <th>{{ lang.ADMINCHAPTER.STOCK }}</th>
+        <th>{{ lang.ADMINCHAPTER.AVAILABLE }}</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody id="chapter-table-body">
+{% for chapter in chapters %}
+    <tr class="text-center">
+        <td>{{ chapter.chapterName }}</td>
+        <td>{{ chapter.chapterPrice }}€</td>
+        <td>{{ chapter.stock }}</td>
+        {%  if chapter.notAvailable == 0 %}
+            <td>{{ lang.ADMINCHAPTER.YES }}</td>
+            <td><button id="del{{ chapter.chapterId }}" class="btn btn-danger delete">{{ lang.ADMINCHAPTER.DELETE }}</button></td>
+        {% else %}
+            <td>{{ lang.ADMINCHAPTER.NO }}</td>
+            <td><button id="del{{ chapter.chapterId }}" class="btn btn-success delete">{{ lang.ADMINCHAPTER.PUTBACK }}</button></td>
+        {% endif %}
+        <td><button id="upd{{ chapter.chapterId }}" class="btn btn-warning update">{{ lang.ADMINCHAPTER.UPDATE }}</button></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+{% include "/footer.html.twig" %}
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="./../javascript/admin/adminChapters.js"></script>
+<script src="./../javascript/scrollToTop.js"></script>
+</html>

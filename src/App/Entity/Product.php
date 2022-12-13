@@ -36,6 +36,49 @@ class Product
     #[ORM\Column(type: 'boolean')]
     protected bool $ageRank;
 
+    #[ORM\Column(type: 'boolean')]
+    protected bool $notAvailable;
+
+    #[ORM\ManyToMany(targetEntity: Categ::class)]
+    #[ORM\JoinColumn(name: "product", referencedColumnName: "productId")]
+    #[ORM\InverseJoinColumn(name: "categ", referencedColumnName: "categId")]
+    #[ORM\JoinTable(name: "product_categ")]
+    protected $categories;
+
+    /**
+     * @return mixed
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param $categories
+     */
+    public function setCategories($categories): void
+    {
+        $this->categories = $categories;
+    }
+
+
+
+    /**
+     * @return bool
+     */
+    public function isNotAvailable(): bool
+    {
+        return $this->notAvailable;
+    }
+
+    /**
+     * @param bool $notAvailable
+     */
+    public function setNotAvailable(bool $notAvailable): void
+    {
+        $this->notAvailable = $notAvailable;
+    }
+
     /**
      * @return bool
      */
