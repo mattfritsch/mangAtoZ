@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class AdminProduct{
@@ -33,11 +34,11 @@ class AdminProduct{
                 if (isset ($_GET["id"])) {
                     $id = $_GET["id"];
                     $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
-                    return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct]);
+                    return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct, 'user' => isUser()]);
                 } else {
                     //AJOUT
                     if(!$_POST){
-                        return new Response('admin/adminProduct.html.twig', ['lang' => $lang]);
+                        return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'user' => isUser()]);
                     } else {
                         $products = $productRepository->findBy(array(), array('productId' => 'DESC'));
                         $product = new Product();

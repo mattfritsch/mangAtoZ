@@ -9,6 +9,7 @@ return [
         'SEARCH' => 'Rechercher',
         'LOGIN' => 'Se connecter',
         'SIGNUP' => 'S\'inscrire',
+        'LOGOUT' => 'Se déconnecter'
     ],
     'CONNECTION' => [
         'EMAIL' => 'E-mail',
@@ -59,11 +60,12 @@ return [
         'FINISHED' => 'Terminé',
         'BOTH' => 'Les deux',
         'CENSURE' => 'mangas +18',
-        'ADD' => 'Afficher mangas +18',
         'SEARCH' => 'Rechercher un manga',
         'CHAPTERS' => 'Chapitres',
         'CHAPTER' => 'Chapitre',
         'DESCRIPTION' => 'Description',
+        'DISPLAY' => 'Afficher',
+        'DISPLAYNONE' => 'Ne pas afficher',
         'GO_CHAPTERS' => 'Voir les chapitres',
         'GO_CHAPTER' => 'Voir le chapitre',
     ],
@@ -97,12 +99,23 @@ return [
         'TITLEMODIF' => 'Modification du produit',
         'RESUME' => 'Description',
         'PRODUCTNAME' => 'Nom du produit',
+        'UPDATE' => 'Modifier',
         'IMG' => 'Lien de l\'image',
         'STATUS' => 'Statut (coché si fini)',
         'CHAPTERNUMBER' => 'Nombre de chapitres',
         'AGERANK' => 'Approprié à tout public',
         'AVERAGERATING' => 'Note moyenne',
         'SUBMIT' => 'Valider',
+    ],
+    'CHAPITRE' =>[
+        'PRIX' => 'Prix',
+        'PANIER' =>'Ajouter au panier'
+    ],
+    'PANIER' =>[
+        'CHAPITRE' =>'Chapitre',
+        'QUANTITE' =>'Quantité',
+        'MODIF' =>'Enregistrer les modifications',
+        'VALIDATION' =>'Valider le panier'
     ],
     'ADMINCHAPTER' => [
         'TITLE' => 'Chapitres',

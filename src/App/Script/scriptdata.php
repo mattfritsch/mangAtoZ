@@ -154,7 +154,7 @@ function insertIntoDB()
     $em = EntityManager::getInstance();
     for ($i = 0; $i < count($mangafinal); $i++) {
 
-        var_dump($mangafinal[$i][0]);
+        var_dump($mangafinal[$i][3]);
         $product = new Product();
 
         $product->setProductId($mangafinal[$i][0]);

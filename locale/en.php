@@ -9,6 +9,7 @@ return [
         'SEARCH' => 'Search',
         'LOGIN' => 'Log-in',
         'SIGNUP' => 'Sign-up',
+        'LOGOUT' => 'Log-out'
     ],
     'CONNECTION' => [
         'EMAIL' => 'E-mail',
@@ -57,7 +58,8 @@ return [
         'FINISHED' => 'Finished',
         'BOTH' => 'Both',
         'CENSURE' => '+18 mangas',
-        'ADD' => 'Display +18 mangas',
+        'DISPLAY' => 'Display',
+        'DISPLAYNONE' => 'No display',
         'SEARCH' => 'Search for a manga',
         'CHAPTERS' => 'chapters',
         'CHAPTER' => 'chapter',
@@ -95,12 +97,23 @@ return [
         'TITLEMODIF' => 'Update product',
         'RESUME' => 'Resume',
         'PRODUCTNAME' => 'Product name',
+        'UPDATE' => 'Update',
         'IMG' => 'Image link',
         'STATUS' => 'Status (checked if ended)',
         'CHAPTERNUMBER' => 'Number of chapters',
         'AGERANK' => 'Suitable for all audiences',
         'AVERAGERATING' => 'Average rating',
-        'SUBMIT' => 'Submit',
+        'SUBMIT' => 'Submit'
+    ],
+    'CHAPITRE' =>[
+        'PRIX' => 'Price',
+        'PANIER' =>'Add to cart'
+    ],
+    'PANIER' =>[
+        'CHAPITRE' =>'Chapter',
+        'QUANTITE' =>'Amount',
+        'MODIF' =>'Save changes',
+        'VALIDATION' =>'Validate the cart'
     ],
     'ADMINCHAPTER' => [
         'TITLE' => 'Chapters',

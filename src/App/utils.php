@@ -10,7 +10,7 @@ function getTextLangue(string $language){
     $fr = require_once dirname(dirname(__DIR__)). '/locale/fr.php';
     $en = require_once dirname(dirname(__DIR__)). '/locale/en.php';
 
-    if ($language === 'fr' ){
+    if ($language === 'fr'){
         $l = $fr;
     }
     else if ($language === 'en'){
@@ -24,6 +24,17 @@ function startSession(): void {
     if(session_id() == ''){
         session_start();
     }
+    if(!isset($_SESSION['locale'])){
+        $_SESSION['locale'] = 'fr';
+    }
+}
+
+function isUser() : mixed{
+    if(isset($_SESSION['user']))
+        $user = $_SESSION['user'];
+    else
+        $user = null;
+    return $user;
 }
 
 function age(): int{

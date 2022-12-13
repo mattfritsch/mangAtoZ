@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class AdminUsers{
@@ -27,7 +28,7 @@ class AdminUsers{
                 if(!$_POST){
                     $users = $userRepository->findBy(array(), array('email' => 'ASC'));
 
-                    return new Response('admin/adminUsers.html.twig', ['lang' => $lang, 'users' => $users]);
+                    return new Response('admin/adminUsers.html.twig', ['lang' => $lang, 'users' => $users, 'user' => isUser()]);
                 } else {
                     if($_POST["mail"] !== $_SESSION["user"]->getEmail()){
                         $user = $userRepository->findOneByEmail($_POST["mail"]);

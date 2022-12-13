@@ -1,7 +1,8 @@
 {% block header %}
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a href="/" class="navbar-brand "><img src="/assets/img/logo.png" style="height: 8vh; width: 9.014925373134328vh"></a>
+            <a href="/" class="navbar-brand "><img src="/assets/img/logo.png"
+                                                   style="height: 8vh; width: 9.014925373134328vh"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,17 +11,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item" id="">
-                        <a href="/" class="nav-link">
-                            {{ lang.HOME.HOME }}
-                        </a>
-                    </li>
-                    <li class="nav-item" id="">
                         <a href="/categories" class="nav-link">
                             {{ lang.HOME.CATEGORIES }}
                         </a>
                     </li>
                     <li class="nav-item" id="">
-                        <a href="store" class="nav-link">
+                        <a href="/store" class="nav-link">
                             {{ lang.HOME.STORE }}
                         </a>
                     </li>
@@ -39,17 +35,28 @@
                             <li>
                                 <a href="#" class="dropdown-item"></a>
                             </li>
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li>
                                 <a href="#" class="dropdown-item"></a>
                             </li>
                         </ul>
                     </li>
                 </ul>
-                <div class="d-flex justify-content-start border-start border-3 p-2">
-                    <a class="btn btn-outline-success me-1" type="button" href="/login">{{ lang.HOME.LOGIN }}</a>
-                    <a class="btn btn-outline-success me-1" type="button" href="/registration">{{ lang.HOME.SIGNUP }}</a>
-                </div>
+                {% if user == '' %}
+                    <div class="d-flex justify-content-start border-start border-3 p-2">
+                        <a class="btn btn-outline-success me-1" type="button" href="/login">{{ lang.HOME.LOGIN }}</a>
+                        <a class="btn btn-outline-success me-1" type="button"
+                           href="/registration">{{ lang.HOME.SIGNUP }}</a>
+                    </div>
+                {% else %}
+                    <form action="/logout" method="post">
+                        <div class="d-flex justify-content-start border-start border-3 p-2">
+                            <button class="btn btn-outline-success me-1" type="submit" name="logout">{{ lang.HOME.LOGOUT }}</button>
+                        </div>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </nav>
