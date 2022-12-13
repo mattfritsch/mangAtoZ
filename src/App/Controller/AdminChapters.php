@@ -35,7 +35,7 @@ class AdminChapters{
             if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
                 if(!$_POST){
                     if (isset ($_GET["id"])) {
-                        $id = $_GET["id"];
+                        $id = htmlspecialchars($_GET["id"]);
                         $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
 
                         $chapters = $chaptersRepository->findBy(['product' => $selectedProduct]);

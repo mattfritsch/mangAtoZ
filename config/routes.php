@@ -9,6 +9,7 @@ use App\Controller\CategoriesPage;
 use App\Controller\Homepage;
 use \App\Controller\Login;
 use App\Controller\ProductPage;
+use App\Controller\ProfilOrders;
 use App\Controller\Registration;
 use Framework\Routing\Route;
 use App\Controller\AdminUsers;
@@ -45,5 +46,6 @@ return [
         new Route('GET', '/chapterspage', ChaptersPage::class),
         new Route('POST', '/chapterspage', ChaptersPage::class),
         new Route('GET', '/panier', Panier::class),
+        new Route('GET', '/profil/orders', ProfilOrders::class)
     ]
 ];
