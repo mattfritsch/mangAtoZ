@@ -35,11 +35,11 @@ class ProfileOrders{
             $orderProductRepository = $em->getRepository(OrderProduct::class);
 
 
-//            $orders = $orderRepository->findBy(array('user' => $user), array('orderDateTime' => 'ASC'));
-            $orders = $orderRepository->getOrdersWithChapters($user);
-
-            var_dump($orders);
-            die;
+            $orders = $orderRepository->findBy(array('user' => $user), array('orderDateTime' => 'DESC'));
+//            $orders = $orderRepository->getOrdersWithChapters($user);
+//
+//            var_dump($orders);
+//            die;
 
             return new Response('profile/profileOrders.html.twig', ['lang' => $lang, 'orders' => $orders,
                 'user' => isUser()]);
