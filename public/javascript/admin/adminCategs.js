@@ -57,6 +57,7 @@ btn_form_validate.addEventListener('click', function () {
                 div_error.style.display = "block"
             } else {
                 addNewTr(data["name"], data["resume"], data["categId"], data["update"])
+                div_form_add.style.display = 'none'
             }
         });
 })
@@ -102,9 +103,9 @@ btn_form_update.addEventListener("click", function () {
                         }
                     }
                     addNewTr(data["name"], data["resume"], data["categId"], data["update"])
+                    div_form_add.style.display = 'none'
+                    btnAddOrUpdate('add')
                 }
-                div_form_add.style.display = 'none'
-                btnAddOrUpdate('add')
             }
         });
 })
