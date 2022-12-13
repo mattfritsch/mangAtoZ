@@ -18,7 +18,7 @@ class OrderProduct
 
     #[ORM\Id]
     #[ManyToOne(targetEntity: Order::class)]
-    #[JoinColumn(name: 'order', referencedColumnName: 'orderId')]
+    #[JoinColumn(name: '`order`', referencedColumnName: 'orderId')]
     protected Order $order;
 
     #[ORM\Column(type: 'integer')]

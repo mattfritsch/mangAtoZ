@@ -69,5 +69,15 @@ return [
     'ADMIN' =>[
         'PRODUCTNAME' => 'Product name',
         'UPDATE' => 'Update'
+    ],
+    'CHAPITRE' =>[
+        'PRIX' => 'Price',
+        'PANIER' =>'Add to cart'
+    ],
+    'PANIER' =>[
+        'CHAPITRE' =>'Chapter',
+        'QUANTITE' =>'Amount',
+        'MODIF' =>'Save changes',
+        'VALIDATION' =>'Validate the cart'
     ]
 ];

@@ -41,6 +41,25 @@ class Chapter
     #[ORM\Column(type: 'float')]
     protected float $chapterPrice;
 
+    #[ORM\Column(type: 'integer')]
+    protected int $chapterName;
+
+    /**
+     * @return int
+     */
+    public function getChapterName(): int
+    {
+        return $this->chapterName;
+    }
+
+    /**
+     * @param int $chapterName
+     */
+    public function setChapterName(int $chapterName): void
+    {
+        $this->chapterName = $chapterName;
+    }
+
     /**
      * @return int
      */
