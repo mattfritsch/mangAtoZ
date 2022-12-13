@@ -35,6 +35,7 @@ class ModifyCart{
                     $chapterprice = $chapterclass->getChapterPrice();
                     $chapterproduct = $chapterclass->getProduct();
                     $chapterName = $chapterclass->getChapterName();
+                    $chapteravailable = $chapterclass->isNotAvailable();
 
                     $chapternewstock = new Chapter();
 
@@ -43,6 +44,7 @@ class ModifyCart{
                     $chapternewstock->setChapterPrice($chapterprice);
                     $chapternewstock->setProduct($chapterproduct);
                     $chapternewstock->setChapterName($chapterName);
+                    $chapternewstock->setNotAvailable($chapteravailable);
 
                     $em->merge($chapternewstock);
                     $em->flush();
