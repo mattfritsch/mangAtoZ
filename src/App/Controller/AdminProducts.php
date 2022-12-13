@@ -10,17 +10,12 @@ use Framework\Response\Response;
 use function App\getTextLangue;
 use function App\startSession;
 
-class Admin{
+class AdminProducts{
     public function __invoke()
     {
         startSession();
 
-        $language = $_SESSION["locale"];
-        if($language === "en"){
-            $lang = getTextLangue('trad');
-        } else {
-            $lang = getTextLangue('fr');;
-        }
+        $lang = getTextLangue($_SESSION["locale"]);
 
         $em = EntityManager::getInstance();
 
@@ -36,13 +31,23 @@ class Admin{
                 if(!$_POST){
                     $products = $productRepository->findBy(array(), array('productName' => 'ASC'));
 
-                    return new Response('admin.html.twig', ['lang' => $lang, 'products' => $products]);
+                    return new Response('/admin/adminProducts.html.twig', ['lang' => $lang, 'products' => $products]);
                 } else {
                     $product = $productRepository->findOneBy(['productId' => $_POST["id"]]);
                     $product->setNotAvailable(!$product->isNotAvailable());
                     $em->persist($product);
                     $em->flush();
-                    echo("ok");
+
+
+                    $notAvailable = $product->isNotAvailable();
+                    $data = [];
+                    if($notAvailable){
+                        $data["btn"] = $lang["ADMIN"]["PUTBACK"];
+                    } else {
+                        $data["btn"] = $lang["ADMIN"]["DELETE"];
+                    }
+
+                    echo(json_encode($data));
                 }
             }
             else {

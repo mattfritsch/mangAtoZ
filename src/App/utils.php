@@ -13,7 +13,7 @@ function getTextLangue(string $language){
     if ($language === 'fr' ){
         $l = $fr;
     }
-    else{
+    else if ($language === 'en'){
         $l = $en;
     }
 
