@@ -31,9 +31,11 @@ class ChaptersPage
             $chapters = $chaptersRepository->findBy(['product' => $id]);
         }
 
+        $_SESSION['productid'] = $id;
 
 
-        $args = ['lang' => getTextLangue($_SESSION['locale']), 'chapters' =>$chapters, 'recherche' =>$recherche, 'user' => isUser()];
+
+        $args = ['lang' => getTextLangue($_SESSION['locale']), 'chapters' =>$chapters, 'user' => isUser()];
         return new Response('chapterspage.html.twig', $args);
     }
 
