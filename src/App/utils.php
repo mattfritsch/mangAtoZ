@@ -26,6 +26,15 @@ function startSession(): void {
     }
 }
 
+function age(): int{
+    $user = $_SESSION['user'];
+    $birthDate = $user->getBirthDate()->date;
+    $dateUser = explode(" ", $birthDate);
+    $today = date("Y-m-d");
+    $diff = date_diff(date_create($dateUser[0]), date_create($today));
+    return intval($diff->format('%y'));
+}
+
 function validate(array $data, array $rules) : array {
     $formErrors = [];
 

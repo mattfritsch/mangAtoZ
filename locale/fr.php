@@ -42,8 +42,31 @@ return [
         'ERRORTOS' => 'Merci d\'accepter les CGU !'
 
     ],
-    'PRODUCTPAGE' => [
 
+    'PRODUCT' => [
+        'STORE' => 'Boutique',
+        'FILTERS' => 'Filtres',
+        'CATEGORIES' => 'Catégories',
+        'ALL_CATEGORIES' => 'Toutes',
+        'ORDER' => 'Trier par',
+        'ALPHABETICAL' => 'Ordre alphabétique',
+        'POPULARITY' => 'Ordre de popularité',
+        'VALIDATE' => 'Valider',
+        'STATUS' => 'Statut',
+        'INPROGRESS' => 'Non terminé',
+        'FINISHED' => 'Terminé',
+        'BOTH' => 'Les deux',
+        'CENSURE' => 'mangas +18',
+        'ADD' => 'Afficher mangas +18',
+        'SEARCH' => 'Rechercher un manga',
+        'CHAPTERS' => 'Chapitres',
+        'CHAPTER' => 'Chapitre',
+        'DESCRIPTION' => 'Description',
+        'GO_CHAPTERS' => 'Voir les chapitres',
+        'GO_CHAPTER' => 'Voir le chapitre',
+    ],
+    'CATEGORIES' => [
+        'DESCRIPTION' => 'Aucune description',
     ],
     'ADMINUSERS' => [
         'MAIL' => 'Email',

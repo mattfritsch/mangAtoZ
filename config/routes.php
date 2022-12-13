@@ -4,6 +4,7 @@ use App\Controller\Admin;
 use App\Controller\AdminProduct;
 use App\Controller\CategoriesPage;
 use App\Controller\Homepage;
+use App\Controller\Language;
 use \App\Controller\Login;
 use \App\Controller\Connection;
 use App\Controller\ProductPage;
@@ -36,5 +37,7 @@ return [
         new Route('GET', '/chapterspage', ChaptersPage::class),
         new Route('POST', '/chapterspage', ChaptersPage::class),
         new Route('GET', '/panier', Panier::class),
+        new Route('POST', '/language', Language::class),
+        new Route('GET', '/language', Language::class),
     ]
 ];
