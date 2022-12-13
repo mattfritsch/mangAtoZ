@@ -10,6 +10,7 @@ use App\Controller\Homepage;
 use App\Controller\Language;
 use \App\Controller\Login;
 use App\Controller\ProductPage;
+use App\Controller\ProfilOrders;
 use App\Controller\Registration;
 use Framework\Routing\Route;
 use App\Controller\AdminUsers;
@@ -48,5 +49,6 @@ return [
         new Route('GET', '/panier', Panier::class),
         new Route('POST', '/language', Language::class),
         new Route('GET', '/language', Language::class),
+        new Route('GET', '/profil/orders', ProfilOrders::class)
     ]
 ];

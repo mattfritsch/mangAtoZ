@@ -138,4 +138,13 @@ return [
         'NO' => 'In progress',
         'NOTDELIVERED' => 'In progress'
     ],
+    'PROFILORDER' => [
+        'TITLE' => 'Your orders',
+        'DATETIME' => 'Date and time',
+        'PRICE' => 'Price',
+        'DELIVERED' => 'Delivered',
+        'YES' => 'Yes',
+        'NO' => 'In progress',
+        'NOTDELIVERED' => 'In progress',
+    ],
 ];
