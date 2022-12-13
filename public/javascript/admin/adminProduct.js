@@ -1,26 +1,34 @@
-let btns_delivered = document.getElementsByClassName("delivered");
+console.log("ok")
 
-for (let btn of btns_delivered){
-    btn.addEventListener("click", function () {
-        let btn = this;
-        let url = '/admin/orders';
-        let formData = new FormData();
-        formData.append('orderId', this.id);
+new MultiSelectTag('categories', {
+    rounded: true,    // default true
+    shadow: true      // default false
+})
 
-        fetch(url, { method: 'POST', body: formData })
-            .then(function (response) {
-                return response.text();
-            })
-            .then(function (body) {
-                console.log(body)
-                let data = JSON.parse(body)
-                btn.innerText = data["btn"]
-                if(btn.className === "btn btn-success delivered"){
-                    btn.className = "btn btn-danger delivered"
-                } else {
-                    btn.className = "btn btn-success delivered"
-                }
-                btn.parentNode.previousElementSibling.innerText = data["value"]
-            });
-    });
-}
+let categories = []
+let drawer = document.getElementsByClassName('drawer');
+console.log(drawer)
+let liste = drawer[0].lastChild;
+let elements = liste.children;
+let select = document.getElementsByClassName('mult-select-tag')
+
+
+select[0].addEventListener("click", function () {
+    let url = '/store'
+    let formData = new FormData();
+    for (const child of elements) {
+        child.onclick = function (e) {
+            categories.push(child.innerText).toString()
+
+            formData.append('categories', JSON.stringify(categories))
+
+            fetch(url, {method: 'POST', body: formData})
+                .then(function (response){
+                    return response.text()
+                })
+                .then(function (body){
+                    console.log(body)
+                })
+        }
+    }
+})
