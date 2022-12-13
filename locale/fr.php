@@ -10,6 +10,7 @@ return [
         'LOGIN' => 'Se connecter',
         'SIGNUP' => 'S\'inscrire',
         'LOGOUT' => 'Se déconnecter',
+        'POPULARITY' => 'Nos mangas les plus populaires',
         'USERPROFIL' => 'Informations',
         'USERORDERS' => 'Mes Commandes',
         'ADMIN' => 'Admin',
