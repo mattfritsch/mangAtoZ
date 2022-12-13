@@ -9,6 +9,7 @@ return [
         'SEARCH' => 'Rechercher',
         'LOGIN' => 'Se connecter',
         'SIGNUP' => 'S\'inscrire',
+        'LOGOUT' => 'Se déconnecter'
     ],
     'CONNECTION' => [
         'EMAIL' => 'E-mail',

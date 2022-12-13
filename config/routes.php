@@ -9,6 +9,7 @@ use App\Controller\CategoriesPage;
 use App\Controller\Homepage;
 use App\Controller\Language;
 use \App\Controller\Login;
+use App\Controller\Logout;
 use App\Controller\ProductPage;
 use App\Controller\ProfilOrders;
 use App\Controller\Registration;
@@ -49,6 +50,7 @@ return [
         new Route('GET', '/panier', Panier::class),
         new Route('POST', '/language', Language::class),
         new Route('GET', '/language', Language::class),
-        new Route('GET', '/profil/orders', ProfilOrders::class)
+        new Route('GET', '/profil/orders', ProfilOrders::class),
+        new Route('POST', '/logout', Logout::class)
     ]
 ];

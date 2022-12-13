@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class AdminOrders{
@@ -32,7 +33,7 @@ class AdminOrders{
                 if(!$_POST){
                     $orders = $orderRepository->findBy(array(), array('orderDateTime' => 'ASC'));
 
-                    return new Response('admin/adminOrders.html.twig', ['lang' => $lang, 'orders' => $orders]);
+                    return new Response('admin/adminOrders.html.twig', ['lang' => $lang, 'orders' => $orders, 'user' => isUser()]);
                 } else {
                     $order = $orderRepository->findOneBy(array("orderId" => $_POST["orderId"]));
                     $order->setDelivered(!$order->isDelivered());
