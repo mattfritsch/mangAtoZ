@@ -21,12 +21,7 @@ class Login{
             $mail = "";
         }
 
-        $language = $_SESSION["locale"];
-        if($language === "en"){
-            $lang = getTextLangue('trad');
-        } else {
-            $lang = getTextLangue('fr');;
-        }
+        $lang = getTextLangue($_SESSION["locale"]);
 
 
         if (count($_POST)) {

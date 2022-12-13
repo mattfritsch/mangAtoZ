@@ -59,6 +59,28 @@
                                                         {% endfor %}
                                                     {% endif %}
                                                 </div>
+                                                <div class="mb-4 pb-2">
+                                                    <input type="text" id="first_name" name="first_name"
+                                                           class="form-control form-control-lg" maxlength="50"/>
+                                                    <label class="form-label"
+                                                           for="first_name">{{ lang.REGISTRATION.FIRST_NAME }}</label>
+                                                    {% if errors.first_name != null %}
+                                                        {% for error in errors.first_name %}
+                                                            <p style="color : red">{{ error }}</p>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
+                                                <div class="mb-4 pb-2">
+                                                    <input type="text" id="last_name" name="last_name"
+                                                           class="form-control form-control-lg" maxlength="50"/>
+                                                    <label class="form-label"
+                                                           for="last_name">{{ lang.REGISTRATION.LAST_NAME }}</label>
+                                                    {% if errors.last_name != null %}
+                                                        {% for error in errors.last_name %}
+                                                            <p style="color : red">{{ error }}</p>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

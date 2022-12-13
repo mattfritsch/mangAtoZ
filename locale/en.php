@@ -24,6 +24,8 @@ return [
         'FORM' => 'Registration form',
         'GENERAL'=> 'General information',
         'EMAIL'=> 'E-mail',
+        'FIRST_NAME'=> 'First name',
+        'LAST_NAME'=> 'Last name',
         'PASSWORD'=> 'Password',
         'CONFIRM_PASSWORD'=> 'Confirm password',
         'CONTACT_DETAILS'=> 'Contact details',
@@ -64,7 +66,9 @@ return [
     ],
     'ADMINUSERS' => [
         'MAIL' => 'Email',
-        'ADMIN' => 'Admin',
+        'FIRST_NAME'=> 'First name',
+        'LAST_NAME'=> 'Last name',
+        'ADMIN' => 'AdminProducts',
         'ADD' => 'Add',
         'DELETE' => 'Delete',
         'ERRORAUTO' => 'You can\'t delete your own access',
@@ -72,10 +76,10 @@ return [
         'ERRORADMIN' => 'Nice try, but no',
         'NO' => 'No',
         'YES' => 'Yes',
-        'TITLE' => 'Admin Users'
+        'TITLE' => 'AdminProducts Users'
     ],
     'ADMIN' =>[
-        'ADMIN' => 'Admin',
+        'ADMIN' => 'AdminProducts',
         'PRODUCTNAME' => 'Product name',
         'UPDATE' => 'Update',
         'ADD' => 'Add',
@@ -93,5 +97,30 @@ return [
         'AGERANK' => 'Suitable for all audiences',
         'AVERAGERATING' => 'Average rating',
         'SUBMIT' => 'Submit',
-    ]
+    ],
+    'ADMINCHAPTER' => [
+        'TITLE' => 'Chapters',
+        'NAME' => 'Chapter',
+        'ADD' => 'Add',
+        'DELETE' => 'Delete',
+        'PUTBACK' => 'Put back',
+        'NO' => 'No',
+        'YES' => 'Yes',
+        'UPDATE' => 'Update',
+        'PRICE' => 'Price',
+        'STOCK' => 'Stock',
+        'SUBMIT' => 'Submit',
+        'CANCEL' => 'Cancel',
+        'AVAILABLE' => 'Available',
+    ],
+    'ADMINCATEG' => [
+        'TITLE' => 'Categories',
+        'NAME' => 'Name',
+        'ADD' => 'Add',
+        'UPDATE' => 'Update',
+        'RESUME' => 'Resume',
+        'SUBMIT' => 'Submit',
+        'CANCEL' => 'Cancel',
+        'ERRORNAME' => 'This categorie name is already used'
+    ],
 ];

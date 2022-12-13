@@ -7,7 +7,7 @@
     <title>{{ lang.ADMIN.ADMIN }}</title>
 </head>
 <body>
-{% include "header.html.twig" %}
+{% include "/header.html.twig" %}
 
 
 <table class="table table-bordered mx-auto mt-3" style="width: 50vw">
@@ -18,19 +18,19 @@
     </tr>
     {% for product in products %}
         <tr class="text-center">
-            <td>{{ product.productName }}</td>
-            <td><a href="/admin/product?id={{ product.productId }}" class="btn btn-warning">{{ lang.ADMIN.UPDATE }}</a></td>
+            <td><a href="/admin/chapters?id={{ product.productId }}">{{ product.productName }}</a></td>
             {% if product.notAvailable != 0 %}
                 <td><button id="del{{ product.productId }}" class="btn btn-success delete">{{ lang.ADMIN.PUTBACK }}</button></td>
             {% else %}
                 <td><button id="del{{ product.productId }}" class="btn btn-danger delete">{{ lang.ADMIN.DELETE }}</button></td>
             {% endif %}
+            <td><a href="/admin/product?id={{ product.productId }}" class="btn btn-warning">{{ lang.ADMIN.UPDATE }}</a></td>
         </tr>
     {% endfor %}
 </table>
 
 
-{% include "footer.html.twig" %}
+{% include "/footer.html.twig" %}
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

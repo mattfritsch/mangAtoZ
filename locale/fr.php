@@ -24,6 +24,8 @@ return [
         'FORM' => 'Formulaire d\'inscription',
         'GENERAL'=> 'Informations générales',
         'EMAIL'=> 'E-mail',
+        'FIRST_NAME'=> 'Prénom',
+        'LAST_NAME'=> 'Nom de famille',
         'PASSWORD'=> 'Mot de passe',
         'CONFIRM_PASSWORD'=> 'Confirmez votre mot de passe',
         'CONTACT_DETAILS'=> 'Informations personnelles',
@@ -47,7 +49,9 @@ return [
     ],
     'ADMINUSERS' => [
         'MAIL' => 'Email',
-        'ADMIN' => 'Admin',
+        'FIRST_NAME'=> 'Prénom',
+        'LAST_NAME'=> 'Nom de famille',
+        'ADMIN' => 'AdminProducts',
         'ADD' => 'Ajouter',
         'DELETE' => 'Supprimer',
         'ERRORAUTO' => 'You can\'t delete your own access',
@@ -55,10 +59,10 @@ return [
         'ERRORADMIN' => 'Non non, ça ne marchera pas petit malin',
         'NO' => 'Non',
         'YES' => 'Oui',
-        'TITLE' => 'Admin Users'
+        'TITLE' => 'AdminProducts Users'
     ],
     'ADMIN' =>[
-        'ADMIN' => 'Admin',
+        'ADMIN' => 'AdminProducts',
         'PRODUCTNAME' => 'Nom du produit',
         'UPDATE' => 'Modifier',
         'ADD' => 'Ajouter',
@@ -76,5 +80,30 @@ return [
         'AGERANK' => 'Approprié à tout public',
         'AVERAGERATING' => 'Note moyenne',
         'SUBMIT' => 'Valider',
-    ]
+    ],
+    'ADMINCHAPTER' => [
+        'TITLE' => 'Chapitres',
+        'NAME' => 'Chapitre',
+        'ADD' => 'Ajouter',
+        'DELETE' => 'Supprimer',
+        'PUTBACK' => 'Remettre',
+        'NO' => 'Non',
+        'YES' => 'Oui',
+        'UPDATE' => 'Modifier',
+        'PRICE' => 'Prix',
+        'STOCK' => 'Stock',
+        'SUBMIT' => 'Valider',
+        'CANCEL' => 'Annuler',
+        'AVAILABLE' => 'Disponible',
+    ],
+    'ADMINCATEG' => [
+        'TITLE' => 'Catégories',
+        'NAME' => 'Nom',
+        'ADD' => 'Ajouter',
+        'UPDATE' => 'Modifier',
+        'RESUME' => 'Description',
+        'SUBMIT' => 'Valider',
+        'CANCEL' => 'Annuler',
+        'ERRORNAME' => 'Ce nom de catégorie est déjà utilisé'
+    ],
 ];

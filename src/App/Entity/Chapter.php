@@ -19,6 +19,50 @@ class Chapter
     #[JoinColumn(name: 'product', referencedColumnName: 'productId')]
     protected Product $product;
 
+    #[ORM\Column(type: 'integer')]
+    protected int $stock;
+
+    #[ORM\Column(type: 'integer')]
+    protected int $chapterName;
+
+    #[ORM\Column(type: 'float')]
+    protected float $chapterPrice;
+
+    #[ORM\Column(type: 'boolean')]
+    protected bool $notAvailable;
+
+    /**
+     * @return bool
+     */
+    public function isNotAvailable(): bool
+    {
+        return $this->notAvailable;
+    }
+
+    /**
+     * @param bool $notAvailable
+     */
+    public function setNotAvailable(bool $notAvailable): void
+    {
+        $this->notAvailable = $notAvailable;
+    }
+
+    /**
+     * @return int
+     */
+    public function getChapterName(): int
+    {
+        return $this->chapterName;
+    }
+
+    /**
+     * @param int $chapterName
+     */
+    public function setChapterName(int $chapterName): void
+    {
+        $this->chapterName = $chapterName;
+    }
+
     /**
      * @return Product
      */
@@ -34,12 +78,6 @@ class Chapter
     {
         $this->product = $product;
     }
-
-    #[ORM\Column(type: 'integer')]
-    protected int $stock;
-
-    #[ORM\Column(type: 'float')]
-    protected float $chapterPrice;
 
     /**
      * @return int

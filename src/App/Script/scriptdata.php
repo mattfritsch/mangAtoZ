@@ -160,7 +160,11 @@ function insertIntoDB()
         $product->setProductId($mangafinal[$i][0]);
         $product->setResume($mangafinal[$i][1]);
         $product->setProductName($mangafinal[$i][2]);
-        $product->setImg($mangafinal[$i][3]);
+        if($mangafinal[$i][3] === null){
+            $product->setImg("pas d'image");
+        }else {
+            $product->setImg($mangafinal[$i][3]);
+        }
         $product->setStatus($mangafinal[$i][4]);
         $product->setChapterNumber($mangafinal[$i][5]);
 //        $product->setCateg($mangafinal[$i][8][0]);
@@ -196,6 +200,8 @@ function insertIntoDB()
 
         $em2 = EntityManager::getInstance();
 
+        $idchapitrevolume = 1;
+
         for($j = 0; $j < count($mangafinal[$i][9]); $j++) {
             $chapter = new Chapter();
 
@@ -208,9 +214,12 @@ function insertIntoDB()
             $chapter->setChapterId($mangafinal[$i][9][$j]);
             $chapter->setStock($stock);
             $chapter->setChapterPrice($prix);
+            $chapter->setChapterName($idchapitrevolume);
+            $chapter->setNotAvailable(0);
 
             $em2->persist($chapter);
             $em2->flush();
+            $idchapitrevolume = $idchapitrevolume +1;
         }
 
 
