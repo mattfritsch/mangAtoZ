@@ -206,6 +206,15 @@ class User
     }
 
     /**
+     * @return String
+     */
+    public function getBirthDateToString(): String
+    {
+        $date = $this->birthDate->format('Y-m-d');
+        return $date;
+    }
+
+    /**
      * @return int
      */
     public function getUid(): int

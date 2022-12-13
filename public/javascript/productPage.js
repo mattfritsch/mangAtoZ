@@ -51,9 +51,7 @@ function addCategoryToArray(){
                         return response.text()
                     })
                     .then(function (body){
-                        //let test = JSON.parse(body)
                         console.log(body)
-                       //console.log(test.test)
                     })
             }
         }

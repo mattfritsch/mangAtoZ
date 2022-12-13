@@ -15,7 +15,7 @@ use function App\getTextLangue;
 use function App\isUser;
 use function App\startSession;
 
-class ProfilOrders{
+class ProfileOrders{
     public function __invoke()
     {
         startSession();
@@ -35,12 +35,13 @@ class ProfilOrders{
             $orderProductRepository = $em->getRepository(OrderProduct::class);
 
 
-            $orders = $orderRepository->findBy(array('user' => $user), array('orderDateTime' => 'ASC'));
-//            $orders = $orderRepository->getOrdersWithChapters($user);
+//            $orders = $orderRepository->findBy(array('user' => $user), array('orderDateTime' => 'ASC'));
+            $orders = $orderRepository->getOrdersWithChapters($user);
 
-//            var_dump($orders);
+            var_dump($orders);
+            die;
 
-            return new Response('admin/adminOrders.html.twig', ['lang' => $lang, 'orders' => $orders,
+            return new Response('profile/profileOrders.html.twig', ['lang' => $lang, 'orders' => $orders,
                 'user' => isUser()]);
         } else {
             header('Location: /login');

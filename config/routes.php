@@ -11,7 +11,8 @@ use App\Controller\Language;
 use \App\Controller\Login;
 use App\Controller\Logout;
 use App\Controller\ProductPage;
-use App\Controller\ProfilOrders;
+use App\Controller\ProfileInfos;
+use App\Controller\ProfileOrders;
 use App\Controller\Registration;
 use Framework\Routing\Route;
 use App\Controller\AdminUsers;
@@ -54,7 +55,9 @@ return [
         new Route('GET', '/payement', PaypalPayement::class),
         new Route('POST', '/language', Language::class),
         new Route('GET', '/language', Language::class),
-        new Route('GET', '/profil/orders', ProfilOrders::class),
+        new Route('GET', '/profile/orders', ProfileOrders::class),
+        new Route('GET', '/profile/infos', ProfileInfos::class),
+        new Route('POST', '/profile/infos', ProfileInfos::class),
         new Route('POST', '/logout', Logout::class)
     ]
 ];
