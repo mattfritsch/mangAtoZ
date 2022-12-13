@@ -42,7 +42,7 @@ class ProductPage{
 
             /** @var ProductRepository $productRepository */
             $productRepository = $em->getRepository(Product::class);
-            $products = $productRepository->findBy(['ageRank' => '1']);
+            $products = $productRepository->findBy(['ageRank' => '0']);
 
             if (isset($_POST['submitButton']) || isset($_POST['validateButton'])) {
                 $products = $productRepository->getFilteredProducts(['search'=> $search, 'order' => $order,
@@ -69,7 +69,7 @@ class ProductPage{
 
     public function getValue(string $buttonName, string $fieldName, ?string $value) : ?string{
         if(isset($_POST[$buttonName])){
-            if($_POST[$fieldName] != null){
+            if(isset($_POST[$fieldName])){
                 $value = $_POST[$fieldName];
             }
             else{

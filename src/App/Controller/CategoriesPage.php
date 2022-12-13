@@ -18,7 +18,7 @@ class CategoriesPage{
 
         /** @var CategRepository$categRepository */
         $categRepository = $em->getRepository(Categ::class);
-        $categories = $categRepository->findAll();
+        $categories = $categRepository->findBy(array(), array('categName' => 'asc'));
 
         $args = ['lang' => getTextLangue($_SESSION['locale']), 'categories' => $categories, 'user' => isUser()];
         return new Response('categoriesPage.html.twig', $args);

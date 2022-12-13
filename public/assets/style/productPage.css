@@ -9,6 +9,10 @@
 @media (max-width: 375px){
 
 }
+.card{
+    max-width: 30%;
+    max-height: 40%;
+}
 
 .text-scrollable{
     max-height: 250px;
