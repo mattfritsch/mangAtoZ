@@ -58,7 +58,7 @@ class AddProductToCart{
             foreach ($chapterids as $id) {
                 /** @var ChaptersRepository$chaptersRepository */
                 $chaptersRepository = $em->getRepository(Chapter::class);
-                $chapters = $chaptersRepository->findBy(['product' => '4']);
+                $chapters = $chaptersRepository->findBy(['product' => $_SESSION['productid']]);
 
                 $chapterid = $chapters[$id-1]->getChapterId();
                 array_push($chaptersclass, [$chapterid, 1]);
