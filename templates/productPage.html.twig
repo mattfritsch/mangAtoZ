@@ -139,9 +139,9 @@
                                 </div>
                                 <div class="card-footer">
                                     {% if product.chapterNumber > 1 %}
-                                        <a href="/chapterspage/id={{ product.productId }}" class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTERS }}</a>
+                                        <a href="/chapterspage?id={{ product.productId }}" class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTERS }}</a>
                                     {% else %}
-                                        <a href="/chapterspage/id={{ product.productId }}" class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTER }}</a>
+                                        <a href="/chapterspage?id={{ product.productId }}" class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTER }}</a>
                                     {% endif %}
                                 </div>
                             </div>
