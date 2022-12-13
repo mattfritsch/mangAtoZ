@@ -6,9 +6,8 @@
     border-radius: 50%;
 }
 
-.card{
-    max-width: 30%;
-    max-height: 40%
+@media (max-width: 375px){
+
 }
 
 .text-scrollable{

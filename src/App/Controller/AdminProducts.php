@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class AdminProducts{
@@ -31,7 +32,7 @@ class AdminProducts{
                 if(!$_POST){
                     $products = $productRepository->findBy(array(), array('productName' => 'ASC'));
 
-                    return new Response('/admin/adminProducts.html.twig', ['lang' => $lang, 'products' => $products]);
+                    return new Response('/admin/adminProducts.html.twig', ['lang' => $lang, 'products' => $products, 'user' => isUser()]);
                 } else {
                     $product = $productRepository->findOneBy(['productId' => $_POST["id"]]);
                     $product->setNotAvailable(!$product->isNotAvailable());

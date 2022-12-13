@@ -11,6 +11,7 @@ use App\Entity\Product;
 use App\Entity\Categ;
 use function App\age;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class ProductPage{
@@ -51,15 +52,16 @@ class ProductPage{
 
             /** @var CategRepository$categRepository */
             $categRepository = $em->getRepository(Categ::class);
-            $categs = $categRepository->findAll();
+            $categs = $categRepository->findBy(array(), array('categName' => 'asc'));
 
-            $age = 0;
-            if ($_SESSION['user'] !== '')
+            if (isset($_SESSION['user']))
                 $age = age();
-
+            else
+                $age = 0;
 
             $args = ['lang' => getTextLangue($_SESSION['locale']), 'products' => $products, 'categs' => $categs,
-                'search' => $search, 'age' => $age, 'order' => $order, 'radioStatus' => $status, 'censureAdd' => $censure];
+                'search' => $search, 'age' => $age, 'order' => $order, 'radioStatus' => $status, 'censureAdd' => $censure,
+                'user' => isUser()];
             return new Response('productPage.html.twig', $args);
         }
 

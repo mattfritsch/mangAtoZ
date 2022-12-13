@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class AdminChapters{
@@ -40,7 +41,7 @@ class AdminChapters{
 
                         $chapters = $chaptersRepository->findBy(['product' => $selectedProduct]);
 
-                        return new Response('admin/adminChapters.html.twig', ['lang' => $lang, 'chapters' => $chapters]);
+                        return new Response('admin/adminChapters.html.twig', ['lang' => $lang, 'chapters' => $chapters, 'user' => isUser()]);
                     } else {
                         header("Location: /admin");
                     }

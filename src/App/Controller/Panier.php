@@ -9,7 +9,9 @@ use App\Repository\ChaptersRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
+
 
 
 class Panier{
@@ -97,7 +99,7 @@ class Panier{
             $manga[$i] = [$volumesName[$i], $idchapvolume[$volumesName[$i]], $chapitresmanga[$i], $stocks[$i]];
         }
 
-        $args = ['lang' => getTextLangue('en'), 'mangas'=>$manga];
+        $args = ['lang' => getTextLangue($_SESSION['locale']), 'user' => isUser(), 'mangas'=>$manga];
         return new Response('panier.html.twig', $args);
 
     }

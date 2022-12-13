@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class AdminCategs{
@@ -30,7 +31,7 @@ class AdminCategs{
                 if(!$_POST){
                     $categs = $categRepository->findBy(array(), array("categName" => "ASC"));
 
-                    return new Response('admin/adminCategs.html.twig', ['lang' => $lang, 'categs' => $categs]);
+                    return new Response('admin/adminCategs.html.twig', ['lang' => $lang, 'categs' => $categs, 'user' => isUser()]);
                 } else {
                     $categOfName = $categRepository->findOneBy(array("categName" => $_POST["name"]));
                     if($_POST["method"] === "add"){

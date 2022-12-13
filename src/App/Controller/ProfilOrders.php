@@ -10,6 +10,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class ProfilOrders{
@@ -33,7 +34,8 @@ class ProfilOrders{
 
             $orders = $orderRepository->findBy(array('user' => $user), array('orderDateTime' => 'ASC'));
 
-            return new Response('admin/adminOrders.html.twig', ['lang' => $lang, 'orders' => $orders]);
+            return new Response('admin/adminOrders.html.twig', ['lang' => $lang, 'orders' => $orders,
+                'user' => isUser()]);
         } else {
             header('Location: /login');
             die;

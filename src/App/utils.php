@@ -24,9 +24,17 @@ function startSession(): void {
     if(session_id() == ''){
         session_start();
     }
-    if($_SESSION['locale'] === ''){
+    if(!isset($_SESSION['locale'])){
         $_SESSION['locale'] = 'fr';
     }
+}
+
+function isUser() : mixed{
+    if(isset($_SESSION['user']))
+        $user = $_SESSION['user'];
+    else
+        $user = null;
+    return $user;
 }
 
 function age(): int{

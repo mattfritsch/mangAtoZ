@@ -9,6 +9,7 @@ return [
         'SEARCH' => 'Search',
         'LOGIN' => 'Log-in',
         'SIGNUP' => 'Sign-up',
+        'LOGOUT' => 'Log-out'
     ],
     'CONNECTION' => [
         'EMAIL' => 'E-mail',
