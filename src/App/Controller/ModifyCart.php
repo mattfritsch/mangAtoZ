@@ -12,6 +12,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use App\Entity\CartProduct;
 use Framework\Response\Response;
+use function App\clearCart;
 use function App\getTextLangue;
 use function App\startSession;
 use DateTime;
@@ -21,6 +22,7 @@ class ModifyCart{
     {
 
         startSession();
+//        clearCart();
 
         $em = EntityManager::getInstance();
         if(isset($_POST['modify'])){
@@ -107,6 +109,8 @@ class ModifyCart{
                         $prixtotal = $prixtotal + 1;
                     }
                 }
+                $_SESSION['prixtotal'] = $prixtotal;
+
 
                 /** @var UserRepository$userRepository */
                 $userRepository = $em->getRepository(User::class);
@@ -139,6 +143,10 @@ class ModifyCart{
                 $em->flush();
                 }
             }
+
+            header("Location:/payement");
+
+
         }
     }
 }

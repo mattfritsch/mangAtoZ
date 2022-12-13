@@ -8,6 +8,7 @@ use App\Repository\ChaptersRepository;
 use Framework\Doctrine\EntityManager;
 use App\Entity\CartProduct;
 use Framework\Response\Response;
+use function App\clearCart;
 use function App\getTextLangue;
 use function App\startSession;
 
@@ -16,6 +17,7 @@ class AddProductToCart{
     {
 
         startSession();
+//        clearCart();
 
         function setNewStock($id){
             $em = EntityManager::getInstance();
@@ -62,24 +64,38 @@ class AddProductToCart{
 
             $testt = [];
             if(empty($_SESSION['cart'])){
-                $_SESSION['cart'] = $chaptersclass;
+                $_SESSION['cart'] = [];
+                foreach($chaptersclass as $chapter){
+                    $expire = time() + (60*1);
+                    array_push($chapter, $expire);
+                    array_push($_SESSION['cart'], $chapter);
+                }
                 foreach($_SESSION['cart'] as $product){
                     setNewStock($product[0]);
                 }
             }
             else {
+                $truc=[];
                 foreach ($_SESSION['cart'] as $product) {
-
                     array_push($testt, $product);
-
+                    unset($product[2]);
+                    $truc[] = $product;
                 }
-                foreach($chaptersclass as $class){
-                    if(!in_array($class, $testt)){
-                        array_push($testt, $class);
-                        setNewStock($class[0]);
+                foreach($chaptersclass as $chapter){
+                    if(!in_array($chapter, $truc)){
+                        array_push($chapter, time() + (60*1));
+                        array_push($testt, $chapter);
                     }
                 }
+
+
+
+
                 $_SESSION['cart'] = $testt;
+            }
+            foreach($_SESSION['cart'] as $product){
+                var_dump($product);
+                echo'<br/>';
             }
         }
 

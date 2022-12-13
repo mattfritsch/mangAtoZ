@@ -19,6 +19,7 @@ use App\Controller\ChaptersPage;
 use App\Controller\AddProductToCart;
 use App\Controller\Panier;
 use App\Controller\ModifyCart;
+use App\Controller\PaypalPayement;
 
 
 return [
@@ -50,6 +51,7 @@ return [
         new Route('POST', '/chapterspage', ChaptersPage::class),
         new Route('POST', '/modifycart', ModifyCart::class),
         new Route('GET', '/panier', Panier::class),
+        new Route('GET', '/payement', PaypalPayement::class),
         new Route('POST', '/language', Language::class),
         new Route('GET', '/language', Language::class),
         new Route('GET', '/profil/orders', ProfilOrders::class),

@@ -9,6 +9,7 @@ use App\Repository\ChaptersRepository;
 use App\Repository\ProductRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
+use function App\clearCart;
 use function App\getTextLangue;
 use function App\isUser;
 use function App\startSession;
@@ -19,6 +20,7 @@ class ChaptersPage
     public function __invoke()
     {
         startSession();
+        clearCart();
 
         $em = EntityManager::getInstance();
 
