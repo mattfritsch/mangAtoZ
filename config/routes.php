@@ -4,6 +4,7 @@ use App\Controller\AdminCategs;
 use App\Controller\AdminProducts;
 use App\Controller\AdminProduct;
 use App\Controller\AdminChapters;
+use App\Controller\CategoriesPage;
 use App\Controller\Homepage;
 use \App\Controller\Login;
 use App\Controller\ProductPage;
@@ -26,6 +27,9 @@ return [
         new Route('POST', '/product', ProductPage::class),
         new Route('GET', '/admin/products', AdminProducts::class),
         new Route('POST', '/admin/products', AdminProducts::class),
+        new Route('GET', '/store', ProductPage::class),
+        new Route('POST', '/store', ProductPage::class),
+        new Route('GET', '/categories', CategoriesPage::class),
         new Route('POST', '/addproduct', AddProductToCart::class),
         new Route('GET', '/admin/users', AdminUsers::class),
         new Route('POST', '/admin/users', AdminUsers::class),

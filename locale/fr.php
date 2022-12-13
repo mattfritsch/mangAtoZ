@@ -3,7 +3,7 @@
 return [
     'HOME' => [
         'HOME' => 'Accueil',
-        'CATEGORY' => 'Catégorie',
+        'CATEGORIES' => 'Catégories',
         'STORE' => 'Boutique',
         'PROFILE' => 'Profil',
         'SEARCH' => 'Rechercher',
