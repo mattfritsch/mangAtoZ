@@ -15,12 +15,7 @@ class AdminProduct{
     {
         startSession();
 
-        $language = $_SESSION["locale"];
-        if($language === "en"){
-            $lang = getTextLangue('trad');
-        } else {
-            $lang = getTextLangue('fr');;
-        }
+        $lang = getTextLangue($_SESSION["locale"]);
 
         $em = EntityManager::getInstance();
 
@@ -38,11 +33,11 @@ class AdminProduct{
                 if (isset ($_GET["id"])) {
                     $id = $_GET["id"];
                     $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
-                    return new Response('adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct]);
+                    return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct]);
                 } else {
                     //AJOUT
                     if(!$_POST){
-                        return new Response('adminProduct.html.twig', ['lang' => $lang]);
+                        return new Response('admin/adminProduct.html.twig', ['lang' => $lang]);
                     } else {
                         $products = $productRepository->findBy(array(), array('productId' => 'DESC'));
                         $product = new Product();

@@ -13,12 +13,7 @@ class Registration{
     public function __invoke()
     {
         startSession();
-        $language = $_SESSION["locale"];
-        if($language === "en"){
-            $lang = getTextLangue('trad');
-        } else {
-            $lang = getTextLangue('fr');;
-        }
+        $lang = getTextLangue($_SESSION["locale"]);
 
         $rules = [
             'password' => [
@@ -59,6 +54,16 @@ class Registration{
                         'errorMessage' => $lang["REGISTRATION"]["MAILUNIQUE"],
                     ],
                 ]
+            ] ,
+            'first_name' => [
+                [
+                    'rule' => 'required',
+                ],
+            ] ,
+            'last_name' => [
+                [
+                    'rule' => 'required',
+                ],
             ] ,
             'street_number' => [
                 [
@@ -122,6 +127,8 @@ class Registration{
             $new_user->setEmail(trim($user["email"]));
             $new_user->setPassword(password_hash($user["password"], PASSWORD_ARGON2I));
             $new_user->setAdmin(false);
+            $new_user->setFirstName(trim($user["first_name"]));
+            $new_user->setLastName(trim($user["last_name"]));
             $new_user->setNbStreet(trim($user["street_number"]));
             $new_user->setStreet(trim($user["street"]));
             $new_user->setCity(trim($user["city"]));
@@ -165,8 +172,7 @@ class Registration{
             }
         }
 
-
-        return new Response('registration.html.twig', ['lang' => getTextLangue('trad'), "errors" => $errors, 'user' => $user]);
+        return new Response('registration.html.twig', ['lang' => $lang, "errors" => $errors, 'user' => $user]);
     }
 }
 
