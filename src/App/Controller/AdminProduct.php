@@ -1,8 +1,10 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Categ;
 use App\Entity\Product;
 use App\Entity\User;
+use App\Repository\CategRepository;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
@@ -27,6 +29,10 @@ class AdminProduct{
         /** @var ProductRepository$productRepository */
         $productRepository = $em->getRepository(Product::class);
 
+        /** @var CategRepository$categRepository */
+        $categRepository = $em->getRepository(Categ::class);
+        $categs = $categRepository->findBy(array(), array("categName" => "ASC"));
+
 
         if ($user->isAdmin()){
             if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
@@ -34,11 +40,11 @@ class AdminProduct{
                 if (isset ($_GET["id"])) {
                     $id = $_GET["id"];
                     $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
-                    return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct, 'user' => isUser()]);
+                    return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct, 'user' => isUser(), 'categs' => $categs]);
                 } else {
                     //AJOUT
                     if(!$_POST){
-                        return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'user' => isUser()]);
+                        return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'user' => isUser(), 'categs' => $categs]);
                     } else {
                         $products = $productRepository->findBy(array(), array('productId' => 'DESC'));
                         $product = new Product();
@@ -58,11 +64,12 @@ class AdminProduct{
                         }
                         $product->setChapterNumber($_POST["chapterNumber"]);
                         $product->setAverageRating(floatval($_POST["averageRating"]));
+                        $product->setNotAvailable(0);
 
                         $em->persist($product);
                         $em->flush();
 
-                        header('Location: /admin');
+                        header('Location: /admin/products');
                     }
                 }
             }
