@@ -3,12 +3,13 @@
 return [
     'HOME' => [
         'HOME' => 'Accueil',
-        'CATEGORY' => 'Catégorie',
+        'CATEGORIES' => 'Catégories',
         'STORE' => 'Boutique',
         'PROFILE' => 'Profil',
         'SEARCH' => 'Rechercher',
         'LOGIN' => 'Se connecter',
         'SIGNUP' => 'S\'inscrire',
+        'LOGOUT' => 'Se déconnecter'
     ],
     'CONNECTION' => [
         'EMAIL' => 'E-mail',
@@ -17,11 +18,15 @@ return [
         'REMEMBER' => 'Se souvenir de moi',
         'SIGNIN' => 'Se connecter',
         'BACK' => 'Retour',
+        'ERRORPASSWORD' => 'Mot de passe incorrect !',
+        'ERRORMAIL' => 'Mail non valide!',
     ],
     'REGISTRATION' => [
         'FORM' => 'Formulaire d\'inscription',
         'GENERAL'=> 'Informations générales',
         'EMAIL'=> 'E-mail',
+        'FIRST_NAME'=> 'Prénom',
+        'LAST_NAME'=> 'Nom de famille',
         'PASSWORD'=> 'Mot de passe',
         'CONFIRM_PASSWORD'=> 'Confirmez votre mot de passe',
         'CONTACT_DETAILS'=> 'Informations personnelles',
@@ -33,24 +38,74 @@ return [
         'TOS'=> 'J\'accepte les conditions générales d\'utilisation du site',
         'REGISTER'=> 'Enregistrer',
         'BACK'=> 'Retour',
-    ],
-    'PRODUCTPAGE' => [
+        'REQUIRED'=> 'Ce champ est requis!',
+        'LENGTH'=> 'length',
+        'PASSWORD2' => 'Les mots de passe doivent être identiques !',
+        'MAILUNIQUE' => 'Cette adresse mail est déjà utilisée !',
+        'ERRORTOS' => 'Merci d\'accepter les CGU !'
 
+    ],
+
+    'PRODUCT' => [
+        'STORE' => 'Boutique',
+        'FILTERS' => 'Filtres',
+        'CATEGORIES' => 'Catégories',
+        'ALL_CATEGORIES' => 'Toutes',
+        'ORDER' => 'Trier par',
+        'ALPHABETICAL' => 'Ordre alphabétique',
+        'POPULARITY' => 'Ordre de popularité',
+        'VALIDATE' => 'Valider',
+        'STATUS' => 'Statut',
+        'INPROGRESS' => 'Non terminé',
+        'FINISHED' => 'Terminé',
+        'BOTH' => 'Les deux',
+        'CENSURE' => 'mangas +18',
+        'SEARCH' => 'Rechercher un manga',
+        'CHAPTERS' => 'Chapitres',
+        'CHAPTER' => 'Chapitre',
+        'DESCRIPTION' => 'Description',
+        'DISPLAY' => 'Afficher',
+        'DISPLAYNONE' => 'Ne pas afficher',
+        'GO_CHAPTERS' => 'Voir les chapitres',
+        'GO_CHAPTER' => 'Voir le chapitre',
+    ],
+    'CATEGORIES' => [
+        'DESCRIPTION' => 'Aucune description',
     ],
     'ADMINUSERS' => [
         'MAIL' => 'Email',
-        'ADMIN' => 'Admin',
+        'FIRST_NAME'=> 'Prénom',
+        'LAST_NAME'=> 'Nom de famille',
+        'ADMIN' => 'AdminProducts',
         'ADD' => 'Ajouter',
         'DELETE' => 'Supprimer',
         'ERRORAUTO' => 'You can\'t delete your own access',
         'ERRORPWD' => 'Bien essayé, mais non',
         'ERRORADMIN' => 'Non non, ça ne marchera pas petit malin',
         'NO' => 'Non',
-        'YES' => 'Oui'
+        'YES' => 'Oui',
+        'TITLE' => 'Utilisateurs'
     ],
     'ADMIN' =>[
+        'ADMIN' => 'AdminProducts',
         'PRODUCTNAME' => 'Nom du produit',
-        'UPDATE' => 'Modifier'
+        'UPDATE' => 'Modifier',
+        'ADD' => 'Ajouter',
+        'DELETE' => 'Supprimer',
+        'PUTBACK' => 'Remettre'
+    ],
+    'ADMINPRODUCT' =>[
+        'TITLEADD' => 'Ajouter un nouveau produit',
+        'TITLEMODIF' => 'Modification du produit',
+        'RESUME' => 'Description',
+        'PRODUCTNAME' => 'Nom du produit',
+        'UPDATE' => 'Modifier',
+        'IMG' => 'Lien de l\'image',
+        'STATUS' => 'Statut (coché si fini)',
+        'CHAPTERNUMBER' => 'Nombre de chapitres',
+        'AGERANK' => 'Approprié à tout public',
+        'AVERAGERATING' => 'Note moyenne',
+        'SUBMIT' => 'Valider',
     ],
     'CHAPITRE' =>[
         'PRIX' => 'Prix',
@@ -61,5 +116,50 @@ return [
         'QUANTITE' =>'Quantité',
         'MODIF' =>'Enregistrer les modifications',
         'VALIDATION' =>'Valider le panier'
-    ]
+    ],
+    'ADMINCHAPTER' => [
+        'TITLE' => 'Chapitres',
+        'NAME' => 'Chapitre',
+        'ADD' => 'Ajouter',
+        'DELETE' => 'Supprimer',
+        'PUTBACK' => 'Remettre',
+        'NO' => 'Non',
+        'YES' => 'Oui',
+        'UPDATE' => 'Modifier',
+        'PRICE' => 'Prix',
+        'STOCK' => 'Stock',
+        'SUBMIT' => 'Valider',
+        'CANCEL' => 'Annuler',
+        'AVAILABLE' => 'Disponible',
+    ],
+    'ADMINCATEG' => [
+        'TITLE' => 'Catégories',
+        'NAME' => 'Nom',
+        'ADD' => 'Ajouter',
+        'UPDATE' => 'Modifier',
+        'RESUME' => 'Description',
+        'SUBMIT' => 'Valider',
+        'CANCEL' => 'Annuler',
+        'ERRORNAME' => 'Ce nom de catégorie est déjà utilisé'
+    ],
+    'ADMINORDER' => [
+        'TITLE' => 'Commandes',
+        'USER' => 'Utilisateur',
+        'DATETIME' => 'Date et heure',
+        'PRICE' => 'Prix',
+        'STATUS' => 'Statut',
+        'DELIVERED' => 'Livrée',
+        'YES' => 'Oui',
+        'NO' => 'En cours de livraion',
+        'NOTDELIVERED' => 'En cours'
+    ],
+    'PROFILORDER' => [
+        'TITLE' => 'Vos commandes',
+        'DATETIME' => 'Date et heure',
+        'PRICE' => 'Prix',
+        'DELIVERED' => 'Livrée',
+        'STATUS' => 'Statut',
+        'YES' => 'Oui',
+        'NOTDELIVERED' => 'En cours',
+    ],
 ];

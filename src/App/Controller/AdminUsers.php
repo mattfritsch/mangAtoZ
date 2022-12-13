@@ -8,19 +8,14 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class AdminUsers{
     public function __invoke()
     {
         startSession();
-
-        $language = $_SESSION["locale"];
-        if($language === "en"){
-            $lang = getTextLangue('trad');
-        } else {
-            $lang = getTextLangue('fr');;
-        }
+        $lang = getTextLangue($_SESSION["locale"]);
 
         $em = EntityManager::getInstance();
 
@@ -33,18 +28,31 @@ class AdminUsers{
                 if(!$_POST){
                     $users = $userRepository->findBy(array(), array('email' => 'ASC'));
 
-                    return new Response('adminUsers.html.twig', ['lang' => $lang, 'users' => $users]);
+                    return new Response('admin/adminUsers.html.twig', ['lang' => $lang, 'users' => $users, 'user' => isUser()]);
                 } else {
                     if($_POST["mail"] !== $_SESSION["user"]->getEmail()){
                         $user = $userRepository->findOneByEmail($_POST["mail"]);
                         $user->setAdmin(!$user->isAdmin());
                         $em->persist($user);
                         $em->flush();
-                        echo("ok");
+
+                        $isAdmin = $user->isAdmin();
+                        $data = [];
+                        $data["response"] = "ok";
+                        if($isAdmin){
+                            $data["value"] = $lang["ADMINUSERS"]["YES"];
+                            $data["btn"] = $lang["ADMINUSERS"]["DELETE"];
+                        } else {
+                            $data["value"] = $lang["ADMINUSERS"]["NO"];
+                            $data["btn"] = $lang["ADMINUSERS"]["ADD"];
+                        }
                     }
                     else{
-                        echo($lang["ADMINUSERS"]["ERRORAUTO"]);
+                        $data = [];
+                        $data["response"] = "error";
+                        $data["error"] = $lang["ADMINUSERS"]["ERRORAUTO"];
                     }
+                    echo(json_encode($data));
                 }
             }
             else {

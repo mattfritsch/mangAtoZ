@@ -5,19 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="refont login.html.twig">
-      <change afterPath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2022_15_13_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_11_2022_15_13__Changes_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/img/login.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Controller/Logout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/locale/en.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/fr.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/style/productPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/style/productPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascript/productPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascript/productPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/AdminCategs.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/AdminCategs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/AdminChapters.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/AdminChapters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/AdminOrders.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/AdminOrders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/AdminProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/AdminProduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/AdminProducts.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/AdminProducts.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/AdminUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/AdminUsers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/CategoriesPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/CategoriesPage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/Controller/ChaptersPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ChaptersPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Controller/Product.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/Homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/Homepage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/Login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/Panier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/Panier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/ProfilOrders.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ProfilOrders.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/utils.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/utils.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categoriesPage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categoriesPage.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chapterspage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chapterspage.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/productPage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/productPage.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +47,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -50,24 +65,24 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="homepage" />
+                    <option name="lastUsedInstant" value="1670939006" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="store" />
+                    <option name="lastUsedInstant" value="1670845217" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="category" />
+                    <option name="lastUsedInstant" value="1670779768" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="manga2" />
-                    <option name="lastUsedInstant" value="1670331399" />
+                    <option name="lastUsedInstant" value="1670421182" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="manga" />
                     <option name="lastUsedInstant" value="1669989635" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1669890290" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="registrationRefont" />
-                    <option name="lastUsedInstant" value="1669888969" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="traduction" />
-                    <option name="lastUsedInstant" value="1669886648" />
                   </RecentBranch>
                 </list>
               </option>
@@ -184,6 +199,12 @@
       <workItem from="1670246861519" duration="7509000" />
       <workItem from="1670344075923" duration="662000" />
       <workItem from="1670416741883" duration="3619000" />
+      <workItem from="1670507727121" duration="10643000" />
+      <workItem from="1670593631560" duration="4156000" />
+      <workItem from="1670617791902" duration="101000" />
+      <workItem from="1670768562318" duration="10441000" />
+      <workItem from="1670828742778" duration="816000" />
+      <workItem from="1670839932776" duration="24378000" />
     </task>
     <task id="LOCAL-00001" summary="add getText librairies">
       <created>1669212369028</created>

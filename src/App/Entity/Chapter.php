@@ -19,30 +19,33 @@ class Chapter
     #[JoinColumn(name: 'product', referencedColumnName: 'productId')]
     protected Product $product;
 
-    /**
-     * @return Product
-     */
-    public function getProduct(): Product
-    {
-        return $this->product;
-    }
-
-    /**
-     * @param Product $product
-     */
-    public function setProduct(Product $product): void
-    {
-        $this->product = $product;
-    }
-
     #[ORM\Column(type: 'integer')]
     protected int $stock;
+
+    #[ORM\Column(type: 'integer')]
+    protected int $chapterName;
 
     #[ORM\Column(type: 'float')]
     protected float $chapterPrice;
 
-    #[ORM\Column(type: 'integer')]
-    protected int $chapterName;
+    #[ORM\Column(type: 'boolean')]
+    protected bool $notAvailable;
+
+    /**
+     * @return bool
+     */
+    public function isNotAvailable(): bool
+    {
+        return $this->notAvailable;
+    }
+
+    /**
+     * @param bool $notAvailable
+     */
+    public function setNotAvailable(bool $notAvailable): void
+    {
+        $this->notAvailable = $notAvailable;
+    }
 
     /**
      * @return int
@@ -58,6 +61,22 @@ class Chapter
     public function setChapterName(int $chapterName): void
     {
         $this->chapterName = $chapterName;
+    }
+
+    /**
+     * @return Product
+     */
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     */
+    public function setProduct(Product $product): void
+    {
+        $this->product = $product;
     }
 
     /**

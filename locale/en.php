@@ -3,12 +3,13 @@
 return [
     'HOME' => [
         'HOME' => 'Home',
-        'CATEGORY' => 'Category',
+        'CATEGORIES' => 'Categories',
         'STORE' => 'Store',
         'PROFILE' => 'Profile',
         'SEARCH' => 'Search',
         'LOGIN' => 'Log-in',
         'SIGNUP' => 'Sign-up',
+        'LOGOUT' => 'Log-out'
     ],
     'CONNECTION' => [
         'EMAIL' => 'E-mail',
@@ -17,11 +18,15 @@ return [
         'REMEMBER' => 'Remember me',
         'SIGNIN' => 'Sign-in',
         'BACK' => 'Back',
+        'ERRORPASSWORD' => 'Wrong password!',
+        'ERRORMAIL' => 'Wrong mail!',
     ],
     'REGISTRATION' => [
         'FORM' => 'Registration form',
         'GENERAL'=> 'General information',
         'EMAIL'=> 'E-mail',
+        'FIRST_NAME'=> 'First name',
+        'LAST_NAME'=> 'Last name',
         'PASSWORD'=> 'Password',
         'CONFIRM_PASSWORD'=> 'Confirm password',
         'CONTACT_DETAILS'=> 'Contact details',
@@ -33,11 +38,17 @@ return [
         'TOS'=> 'I do accept the Terms and Conditions of the website.',
         'REGISTER'=> 'Register',
         'BACK'=> 'Back',
+        'REQUIRED'=> 'This field is required!',
+        'LENGTH'=> 'length',
+        'PASSWORD2' => 'Passwords must be identical!',
+        'MAILUNIQUE' => 'This mail adress is already used!',
+        'ERRORTOS' => 'CGU are required!'
     ],
     'PRODUCT' => [
         'STORE' => 'Store',
         'FILTERS' => 'Filters',
         'CATEGORIES' => 'Categories',
+        'ALL_CATEGORIES' => 'All categories',
         'ORDER' => 'Order by',
         'ALPHABETICAL' => 'Alphabetical sort',
         'POPULARITY' => 'Popularity sort',
@@ -47,7 +58,8 @@ return [
         'FINISHED' => 'Finished',
         'BOTH' => 'Both',
         'CENSURE' => '+18 mangas',
-        'ADD' => 'Display +18 mangas',
+        'DISPLAY' => 'Display',
+        'DISPLAYNONE' => 'No display',
         'SEARCH' => 'Search for a manga',
         'CHAPTERS' => 'chapters',
         'CHAPTER' => 'chapter',
@@ -55,20 +67,43 @@ return [
         'GO_CHAPTERS' => 'See chapters',
         'GO_CHAPTER' => 'See chapter',
     ],
+    'CATEGORIES' => [
+        'DESCRIPTION' => 'No description',
+    ],
     'ADMINUSERS' => [
         'MAIL' => 'Email',
-        'ADMIN' => 'Admin',
+        'FIRST_NAME'=> 'First name',
+        'LAST_NAME'=> 'Last name',
+        'ADMIN' => 'AdminProducts',
         'ADD' => 'Add',
         'DELETE' => 'Delete',
         'ERRORAUTO' => 'You can\'t delete your own access',
         'ERRORPWD' => 'No no no',
         'ERRORADMIN' => 'Nice try, but no',
         'NO' => 'No',
-        'YES' => 'Yes'
+        'YES' => 'Yes',
+        'TITLE' => 'Users'
     ],
     'ADMIN' =>[
+        'ADMIN' => 'AdminProducts',
         'PRODUCTNAME' => 'Product name',
-        'UPDATE' => 'Update'
+        'UPDATE' => 'Update',
+        'ADD' => 'Add',
+        'DELETE' => 'Delete',
+        'PUTBACK' => 'Put back'
+    ],
+    'ADMINPRODUCT' =>[
+        'TITLEADD' => 'Add new product',
+        'TITLEMODIF' => 'Update product',
+        'RESUME' => 'Resume',
+        'PRODUCTNAME' => 'Product name',
+        'UPDATE' => 'Update',
+        'IMG' => 'Image link',
+        'STATUS' => 'Status (checked if ended)',
+        'CHAPTERNUMBER' => 'Number of chapters',
+        'AGERANK' => 'Suitable for all audiences',
+        'AVERAGERATING' => 'Average rating',
+        'SUBMIT' => 'Submit'
     ],
     'CHAPITRE' =>[
         'PRIX' => 'Price',
@@ -79,5 +114,50 @@ return [
         'QUANTITE' =>'Amount',
         'MODIF' =>'Save changes',
         'VALIDATION' =>'Validate the cart'
-    ]
+    ],
+    'ADMINCHAPTER' => [
+        'TITLE' => 'Chapters',
+        'NAME' => 'Chapter',
+        'ADD' => 'Add',
+        'DELETE' => 'Delete',
+        'PUTBACK' => 'Put back',
+        'NO' => 'No',
+        'YES' => 'Yes',
+        'UPDATE' => 'Update',
+        'PRICE' => 'Price',
+        'STOCK' => 'Stock',
+        'SUBMIT' => 'Submit',
+        'CANCEL' => 'Cancel',
+        'AVAILABLE' => 'Available',
+    ],
+    'ADMINCATEG' => [
+        'TITLE' => 'Categories',
+        'NAME' => 'Name',
+        'ADD' => 'Add',
+        'UPDATE' => 'Update',
+        'RESUME' => 'Resume',
+        'SUBMIT' => 'Submit',
+        'CANCEL' => 'Cancel',
+        'ERRORNAME' => 'This categorie name is already used'
+    ],
+    'ADMINORDER' => [
+        'TITLE' => 'Orders',
+        'USER' => 'User',
+        'DATETIME' => 'Date and time',
+        'PRICE' => 'Price',
+        'DELIVERED' => 'Delivered',
+        'STATUS' => 'Status',
+        'YES' => 'Yes',
+        'NO' => 'In progress',
+        'NOTDELIVERED' => 'In progress'
+    ],
+    'PROFILORDER' => [
+        'TITLE' => 'Your orders',
+        'DATETIME' => 'Date and time',
+        'PRICE' => 'Price',
+        'DELIVERED' => 'Delivered',
+        'STATUS' => 'Status',
+        'YES' => 'Yes',
+        'NOTDELIVERED' => 'In progress',
+    ],
 ];

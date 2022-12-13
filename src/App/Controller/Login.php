@@ -12,6 +12,56 @@ use function App\startSession;
 class Login{
     public function __invoke()
     {
+        $errors = [];
+
+        startSession();
+        if(isset($_POST["email"])){
+            $mail = $_POST["email"];
+        } else {
+            $mail = "";
+        }
+
+        $lang = getTextLangue($_SESSION["locale"]);
+
+
+        if (count($_POST)) {
+            [
+                'email' => $email,
+                'password' => $password,
+            ] = $_POST;
+
+            $em = EntityManager::getInstance();
+
+            /** @var UserRepository$userRepository */
+            $userRepository = $em->getRepository(User::class);
+            $user = $userRepository->findOneByEmail($email);
+
+            if ($user !== null) {
+                if (password_verify($password, $user->getPassword())) {
+                    startSession();
+                    $_SESSION['user'] = $user;
+                    if(array_key_exists("remember_me", $_POST)){
+                        ?>
+                        <script type="text/javascript">
+                            localStorage.setItem('email', <?php echo json_encode($email) ?>)
+                            localStorage.setItem('password', <?php echo json_encode($user->getPassword()) ?>)
+                        </script>
+                        <?php
+                    }
+                    ?>
+                    <script type="text/javascript">
+                        window.location.href = "/";
+                    </script>
+                    <?php
+//                    header('Location: /');
+                } else {
+                    $errors["password"] = $lang['CONNECTION']['ERRORPASSWORD'];
+                }
+            } else {
+                $errors["email"] = $lang['CONNECTION']['ERRORMAIL'];
+            }
+        }
+
         $email = "";
         $password = "";
 
@@ -34,20 +84,14 @@ class Login{
                 if ($password === $user->getPassword()) {
                     startSession();
                     $_SESSION['user'] = $user;
-                    header('Location: /');
+                    /*header('Location: /');*/
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    exit;
                 }
             }
         }
 
-        if(isset($_SESSION["errors"])){
-            $errors = $_SESSION["errors"];
-        }
-        else{
-            $errors = "";
-        }
-
-
-        $args = ['lang' => getTextLangue('fr'), 'errors' => $errors];
+        $args = ['lang' => $lang, 'errors' => $errors, 'mail' => $mail];
         return new Response('login.html.twig', $args);
     }
 }
