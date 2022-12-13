@@ -83,6 +83,7 @@ function getCategories($id, $m){
     }
     $categories[$m] = $categ;
     array_push($manga[$m], $categories[$m]);
+    var_dump($categories[$m]);
 }
 
 function getChapitres($id, $m){

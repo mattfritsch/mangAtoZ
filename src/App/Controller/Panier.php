@@ -8,6 +8,7 @@ use App\Entity\Chapter;
 use App\Repository\ChaptersRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
+use function App\clearCart;
 use function App\getTextLangue;
 use function App\startSession;
 
@@ -16,6 +17,12 @@ class Panier{
     public function __invoke()
     {
         startSession();
+//        clearCart();
+foreach($_SESSION['cart'] as $product){
+    var_dump($product);
+    echo'<br/>';
+}
+//        var_dump($_SESSION['cart']);
 
         $em = EntityManager::getInstance();
         $chapitres = $_SESSION['cart'];

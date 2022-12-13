@@ -26,6 +26,31 @@ function startSession(): void {
     }
 }
 
+function clearCart() : void {
+    if(isset($_SESSION['cart'])){
+        $now = time();
+//        for($i=0; $i<count($_SESSION['cart']); $i++){
+//            if($now > $_SESSION['cart'][$i][2]){
+//                unset($_SESSION['cart'][$i]);
+//            }
+//        }
+        $i=0;
+        foreach($_SESSION['cart'] as $product){
+            if($now > $product[2]){
+                unset($_SESSION['cart'][$i]);
+
+            }
+            $i++;
+        }
+        var_dump($_SESSION['cart']);
+echo'<br/>';
+echo'<br/>';
+        var_dump($now);
+        echo'<br/>';
+        echo'<br/>';
+    }
+}
+
 function displayErrors(array $errors, string $field): void {
     foreach($errors[$field] ?? [] as $error) {
         echo sprintf('<div class="invalid-feedback">%s</div>', $error);
