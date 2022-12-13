@@ -99,12 +99,23 @@ return [
         'TITLEMODIF' => 'Modification du produit',
         'RESUME' => 'Description',
         'PRODUCTNAME' => 'Nom du produit',
+        'UPDATE' => 'Modifier',
         'IMG' => 'Lien de l\'image',
         'STATUS' => 'Statut (coché si fini)',
         'CHAPTERNUMBER' => 'Nombre de chapitres',
         'AGERANK' => 'Approprié à tout public',
         'AVERAGERATING' => 'Note moyenne',
         'SUBMIT' => 'Valider',
+    ],
+    'CHAPITRE' =>[
+        'PRIX' => 'Prix',
+        'PANIER' =>'Ajouter au panier'
+    ],
+    'PANIER' =>[
+        'CHAPITRE' =>'Chapitre',
+        'QUANTITE' =>'Quantité',
+        'MODIF' =>'Enregistrer les modifications',
+        'VALIDATION' =>'Valider le panier'
     ],
     'ADMINCHAPTER' => [
         'TITLE' => 'Chapitres',

@@ -8,7 +8,6 @@ use App\Entity\Product;
 use App\Repository\ChaptersRepository;
 use App\Repository\ProductRepository;
 use Framework\Doctrine\EntityManager;
-use Framework\Request\Request;
 use Framework\Response\Response;
 use function App\getTextLangue;
 use function App\isUser;
@@ -19,21 +18,7 @@ class ChaptersPage
 
     public function __invoke()
     {
-
         startSession();
-        $recherche = null;
-        if(isset($_POST['SubmitButton'])){ //check if form was submitted
-            if($_POST['inputText']==null){
-                $recherche = null;
-                echo $recherche;
-            }
-            else {
-                $input = $_POST['inputText']; //get input text
-                $recherche = $input;
-                echo $recherche;
-
-            }
-        }
 
         $em = EntityManager::getInstance();
 
