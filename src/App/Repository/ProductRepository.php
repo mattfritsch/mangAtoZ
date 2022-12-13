@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 
 class ProductRepository extends EntityRepository
 {
@@ -17,12 +18,24 @@ class ProductRepository extends EntityRepository
     }
 
     public function getFilteredProducts(array $filters=[]){
-        var_dump($filters);
         $queryBuilder = $this->createQueryBuilder('product');
         foreach($filters as $name => $value){
             if($name === 'search'){
-                $queryBuilder->andWhere('product.productName LIKE :searchTerm');
-                $queryBuilder->setParameter('searchTerm', '%'.$value.'%');
+                if($value !== NULL){
+                    $queryBuilder->andWhere('product.productName LIKE :searchTerm');
+                    $queryBuilder->setParameter('searchTerm', '%'.$value.'%');
+                }
+            }
+
+            if($name === 'categories'){
+                if($value !== ''){
+                    $queryBuilder->leftJoin('product.categories', 'pc');
+                    $queryBuilder->addSelect('pc');
+                    foreach($value as $category){
+                        $queryBuilder->andWhere('pc.categName = :categValue');
+                        $queryBuilder->setParameter('categValue', $category);
+                    }
+                }
             }
 
             if($name === 'order'){
@@ -42,9 +55,6 @@ class ProductRepository extends EntityRepository
             if($name === 'censure'){
                 if($value === 'nocensure'){
                     $queryBuilder->andWhere('product.ageRank = 0');
-                }
-                else{
-                    $queryBuilder->andWhere('product.ageRank = 1');
                 }
             }
         }

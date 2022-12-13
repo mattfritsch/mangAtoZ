@@ -19,9 +19,11 @@ class Homepage
       <?php
 
       startSession();
-      $_SESSION["locale"] = "en";
+      if($_SESSION['locale'] = ''){
+          $_SESSION['locale'] = 'fr';
+      }
 
-      $args = ['lang' => getTextLangue('en')];
+      $args = ['lang' => getTextLangue($_SESSION['locale'])];
       return new Response('home.html.twig', $args);
   }
 }
