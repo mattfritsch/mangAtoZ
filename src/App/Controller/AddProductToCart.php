@@ -28,6 +28,7 @@ class AddProductToCart{
             $stockchapter = $chapterclass->getStock();
             $chapterprice = $chapterclass->getChapterPrice();
             $chapteridvolume = $chapterclass->getChapterName();
+            $chapteravailable = $chapterclass->isNotAvailable();
 
             $chapternewstock = new Chapter();
             $chapternewstock->setChapterId($id);
@@ -35,6 +36,8 @@ class AddProductToCart{
             $chapternewstock->setChapterPrice($chapterprice);
             $chapternewstock->setProduct($productchapter);
             $chapternewstock->setChapterName($chapteridvolume);
+            $chapternewstock->setNotAvailable($chapteravailable);
+
             $em->merge($chapternewstock);
             $em->flush();
         }
@@ -100,6 +103,6 @@ class AddProductToCart{
         }
 
         AddProductToCart($cartproduct);
-        header("Location:/chapterspage");
+        header("Location:/chapterspage?id=".$_SESSION['productid']);
     }
 }
