@@ -96,12 +96,23 @@ return [
         'TITLEMODIF' => 'Update product',
         'RESUME' => 'Resume',
         'PRODUCTNAME' => 'Product name',
+        'UPDATE' => 'Update',
         'IMG' => 'Image link',
         'STATUS' => 'Status (checked if ended)',
         'CHAPTERNUMBER' => 'Number of chapters',
         'AGERANK' => 'Suitable for all audiences',
         'AVERAGERATING' => 'Average rating',
-        'SUBMIT' => 'Submit',
+        'SUBMIT' => 'Submit'
+    ],
+    'CHAPITRE' =>[
+        'PRIX' => 'Price',
+        'PANIER' =>'Add to cart'
+    ],
+    'PANIER' =>[
+        'CHAPITRE' =>'Chapter',
+        'QUANTITE' =>'Amount',
+        'MODIF' =>'Save changes',
+        'VALIDATION' =>'Validate the cart'
     ],
     'ADMINCHAPTER' => [
         'TITLE' => 'Chapters',

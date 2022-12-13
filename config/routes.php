@@ -17,6 +17,7 @@ use App\Controller\AdminUsers;
 use App\Controller\ChaptersPage;
 use App\Controller\AddProductToCart;
 use App\Controller\Panier;
+use App\Controller\ModifyCart;
 
 
 return [
@@ -46,6 +47,7 @@ return [
         new Route('POST', '/admin/categs', AdminCategs::class),
         new Route('GET', '/chapterspage', ChaptersPage::class),
         new Route('POST', '/chapterspage', ChaptersPage::class),
+        new Route('POST', '/modifycart', ModifyCart::class),
         new Route('GET', '/panier', Panier::class),
         new Route('POST', '/language', Language::class),
         new Route('GET', '/language', Language::class),

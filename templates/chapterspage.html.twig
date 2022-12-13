@@ -14,7 +14,6 @@
 
 {% include "header.html.twig" %}
 
-{{ chapters[0].product.productId }}
 
 <form method="post" action="/addproduct" id="chapitre">
     <select id="countries" multiple>
@@ -29,7 +28,7 @@
 
         {% if not chapter.stock == 0 %}
 
-            <option value={{ key+1 }}>{{ key+1 }} Prix : {{ chapter.chapterPrice }}</option>
+            <option value={{ key+1 }}>{{ key+1 }} {{ lang.CHAPITRE.PRIX }} : {{ chapter.chapterPrice }} €</option>
 
         {% else %}
 
@@ -43,7 +42,7 @@
 
     </select>
 
-    <button type="submit" >Ajouter au panier</button>
+    <button type="submit">{{ lang.CHAPITRE.PANIER }}</button>
 </form>
 {% include "footer.html.twig" %}
 <script>
