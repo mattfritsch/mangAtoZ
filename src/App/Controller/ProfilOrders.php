@@ -2,8 +2,10 @@
 namespace App\Controller;
 
 use App\Entity\Order;
+use App\Entity\OrderProduct;
 use App\Entity\Product;
 use App\Entity\User;
+use App\Repository\OrderProductRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
@@ -19,8 +21,6 @@ class ProfilOrders{
         startSession();
         $lang = getTextLangue($_SESSION["locale"]);
 
-        var_dump($_SESSION["user"]);
-
         if (isset($_SESSION["user"])){
             $em = EntityManager::getInstance();
 
@@ -31,8 +31,14 @@ class ProfilOrders{
             /** @var OrderRepository $orderRepository */
             $orderRepository = $em->getRepository(Order::class);
 
+            /** @var OrderProductRepository $orderProductRepository */
+            $orderProductRepository = $em->getRepository(OrderProduct::class);
+
 
             $orders = $orderRepository->findBy(array('user' => $user), array('orderDateTime' => 'ASC'));
+//            $orders = $orderRepository->getOrdersWithChapters($user);
+
+//            var_dump($orders);
 
             return new Response('admin/adminOrders.html.twig', ['lang' => $lang, 'orders' => $orders,
                 'user' => isUser()]);

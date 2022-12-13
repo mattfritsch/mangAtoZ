@@ -147,9 +147,19 @@ return [
         'USER' => 'Utilisateur',
         'DATETIME' => 'Date et heure',
         'PRICE' => 'Prix',
+        'STATUS' => 'Statut',
         'DELIVERED' => 'Livrée',
         'YES' => 'Oui',
         'NO' => 'En cours de livraion',
-        'NOTDELIVERED' => 'En cours de livraison'
+        'NOTDELIVERED' => 'En cours'
+    ],
+    'PROFILORDER' => [
+        'TITLE' => 'Vos commandes',
+        'DATETIME' => 'Date et heure',
+        'PRICE' => 'Prix',
+        'DELIVERED' => 'Livrée',
+        'STATUS' => 'Statut',
+        'YES' => 'Oui',
+        'NOTDELIVERED' => 'En cours',
     ],
 ];

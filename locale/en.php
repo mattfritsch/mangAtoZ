@@ -146,6 +146,7 @@ return [
         'DATETIME' => 'Date and time',
         'PRICE' => 'Price',
         'DELIVERED' => 'Delivered',
+        'STATUS' => 'Status',
         'YES' => 'Yes',
         'NO' => 'In progress',
         'NOTDELIVERED' => 'In progress'
@@ -155,8 +156,8 @@ return [
         'DATETIME' => 'Date and time',
         'PRICE' => 'Price',
         'DELIVERED' => 'Delivered',
+        'STATUS' => 'Status',
         'YES' => 'Yes',
-        'NO' => 'In progress',
         'NOTDELIVERED' => 'In progress',
     ],
 ];
