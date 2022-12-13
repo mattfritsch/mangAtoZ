@@ -55,10 +55,12 @@ echo'<br/>';
     }
 }
 
-function displayErrors(array $errors, string $field): void {
-    foreach($errors[$field] ?? [] as $error) {
+function displayErrors(array $errors, string $field): void
+{
+    foreach ($errors[$field] ?? [] as $error) {
         echo sprintf('<div class="invalid-feedback">%s</div>', $error);
     }
+}
 
 function isUser() : mixed{
     if(isset($_SESSION['user']))
