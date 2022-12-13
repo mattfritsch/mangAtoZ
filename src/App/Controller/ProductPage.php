@@ -34,7 +34,7 @@ class ProductPage{
             $status = $this->getValue('validateButton','radioStatus', $status);
 
             $censure = null;
-            $censure = $this->getValue('validateButton','radioStatus', $censure);
+            $censure = $this->getValue('validateButton','radioCensure', $censure);
 
 
             $em = EntityManager::getInstance();
@@ -57,8 +57,9 @@ class ProductPage{
             if ($_SESSION['user'] !== '')
                 $age = age();
 
+
             $args = ['lang' => getTextLangue($_SESSION['locale']), 'products' => $products, 'categs' => $categs,
-                'search' => $search, 'age' => $age];
+                'search' => $search, 'age' => $age, 'order' => $order, 'radioStatus' => $status, 'censureAdd' => $censure];
             return new Response('productPage.html.twig', $args);
         }
 
