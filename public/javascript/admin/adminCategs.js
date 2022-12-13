@@ -109,10 +109,6 @@ btn_form_update.addEventListener("click", function () {
         });
 })
 
-
-
-
-
 function getAlphabeticallyPreviousTr(name) {
     let td = document.getElementsByTagName("tbody")[2].children;
     let previousTr = "";

@@ -127,9 +127,6 @@ btn_form_update.addEventListener("click", function () {
         });
 })
 
-
-
-
 function resetStockAndPrice(){
     chapter_price.value = ""
     chapter_stock.value = ""
@@ -147,6 +144,7 @@ function btnAddOrUpdate(value){
 }
 
 function displayUpdateForm(btn){
+    //back to Top
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     if(btn.innerText === "Update"){

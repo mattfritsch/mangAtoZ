@@ -80,7 +80,7 @@ return [
         'ERRORADMIN' => 'Nice try, but no',
         'NO' => 'No',
         'YES' => 'Yes',
-        'TITLE' => 'AdminProducts Users'
+        'TITLE' => 'Users'
     ],
     'ADMIN' =>[
         'ADMIN' => 'AdminProducts',
@@ -126,5 +126,15 @@ return [
         'SUBMIT' => 'Submit',
         'CANCEL' => 'Cancel',
         'ERRORNAME' => 'This categorie name is already used'
+    ],
+    'ADMINORDER' => [
+        'TITLE' => 'Orders',
+        'USER' => 'User',
+        'DATETIME' => 'Date and time',
+        'PRICE' => 'Price',
+        'DELIVERED' => 'Delivered',
+        'YES' => 'Yes',
+        'NO' => 'In progress',
+        'NOTDELIVERED' => 'In progress'
     ],
 ];
