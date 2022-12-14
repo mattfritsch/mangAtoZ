@@ -31,6 +31,12 @@ class Chapter
     #[ORM\Column(type: 'boolean')]
     protected bool $notAvailable;
 
+    #[ORM\ManyToMany(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: "chapter", referencedColumnName: "chapterId")]
+    #[ORM\InverseJoinColumn(name: "user", referencedColumnName: "uid")]
+    #[ORM\JoinTable(name: "chapter_email")]
+    protected $email;
+
     /**
      * @return bool
      */
