@@ -20,6 +20,7 @@ use App\Controller\AddProductToCart;
 use App\Controller\Panier;
 use App\Controller\ModifyCart;
 use App\Controller\PaypalPayement;
+use App\Controller\PayementAccept;
 
 
 return [
@@ -55,6 +56,7 @@ return [
         new Route('POST', '/language', Language::class),
         new Route('GET', '/language', Language::class),
         new Route('GET', '/profil/orders', ProfilOrders::class),
-        new Route('POST', '/logout', Logout::class)
+        new Route('POST', '/logout', Logout::class),
+        new Route('GET', '/final', PayementAccept::class)
     ]
 ];

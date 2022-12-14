@@ -14,7 +14,9 @@ class PaypalPayement{
     public function __invoke()
     {
         startSession();
+        var_dump($_SESSION);
         $info = $_SESSION['prixtotal'];
+        var_dump($info);
         $args = ['lang' => getTextLangue($_SESSION['locale']), 'info' =>$info];
         return new Response('pagepayement.html.twig', $args );
 

@@ -20,90 +20,96 @@ class Panier{
     {
         startSession();
 //        clearCart();
-foreach($_SESSION['cart'] as $product){
+        var_dump($_SESSION['cart']);
+        echo'<br/>';
+
+        foreach($_SESSION['cart'] as $product){
     var_dump($product);
     echo'<br/>';
 }
 //        var_dump($_SESSION['cart']);
+        if(!empty($_SESSION['cart'])){
 
-        $em = EntityManager::getInstance();
-        $chapitres = $_SESSION['cart'];
 
-        $volumesName = [];
-        $premierChapitres= [];
-        $stockchapitre = [];
-        $quantite = [];
-        $chapitresmangas = [];
-        $idchapvolume = [];
+            $em = EntityManager::getInstance();
+            $chapitres = $_SESSION['cart'];
 
-        foreach ($chapitres as $chapitre){
-            array_push($quantite,$chapitre[1]);
+            $volumesName = [];
+            $premierChapitres = [];
+            $stockchapitre = [];
+            $quantite = [];
+            $chapitresmangas = [];
+            $idchapvolume = [];
 
-            var_dump($chapitre[0]);
-            array_push($chapitresmangas, $chapitre[0]);
+            foreach ($chapitres as $chapitre) {
+                array_push($quantite, $chapitre[1]);
 
-            /** @var ChaptersRepository$chaptersRepository */
-            $chaptersRepository = $em->getRepository(Chapter::class);
-            $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $chapitre[0]]);
+                var_dump($chapitre[0]);
+                array_push($chapitresmangas, $chapitre[0]);
 
-            $idvolume = $chapterclass->getProduct()->getProductId();
-
-            $stock = $chapterclass->getStock();
-            array_push($stockchapitre, $stock);
-
-            /** @var ChaptersRepository$chaptersRepository */
-            $chaptersRepository = $em->getRepository(Chapter::class);
-            $allchapters = $chaptersRepository->findBy(['product' => $idvolume]);
-
-            $firstchaptervolume = $allchapters[0]->getChapterId();
-
-            if(!in_array($firstchaptervolume, $premierChapitres)) {
-                array_push($premierChapitres, $firstchaptervolume);
-            }
-
-            $nomManga = $chapterclass->getProduct()->getProductName();
-
-            if(!in_array($nomManga, $volumesName)){
-                array_push($volumesName, $nomManga);
-            }
-        }
-
-        foreach ($volumesName as $volumeName){
-            $volumesChapitres[$volumeName] = [];
-            $idchapvolume[$volumeName] = [];
-            foreach($chapitres as $chapitre){
+                /** @var ChaptersRepository $chaptersRepository */
                 $chaptersRepository = $em->getRepository(Chapter::class);
                 $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $chapitre[0]]);
 
+                $idvolume = $chapterclass->getProduct()->getProductId();
+
+                $stock = $chapterclass->getStock();
+                array_push($stockchapitre, $stock);
+
+                /** @var ChaptersRepository $chaptersRepository */
+                $chaptersRepository = $em->getRepository(Chapter::class);
+                $allchapters = $chaptersRepository->findBy(['product' => $idvolume]);
+
+                $firstchaptervolume = $allchapters[0]->getChapterId();
+
+                if (!in_array($firstchaptervolume, $premierChapitres)) {
+                    array_push($premierChapitres, $firstchaptervolume);
+                }
+
                 $nomManga = $chapterclass->getProduct()->getProductName();
 
-                if($nomManga == $volumeName){
-                    array_push($volumesChapitres[$volumeName], $chapitre[0]);
-                    array_push($idchapvolume[$volumeName], $chapterclass->getChapterName());
+                if (!in_array($nomManga, $volumesName)) {
+                    array_push($volumesName, $nomManga);
                 }
             }
-        }
 
-        $quantitechapitre = [];
-        for($i=0; $i<count($quantite); $i++){
-            $quantitechapitre[$i] = $quantite[$i];
-        }
+            foreach ($volumesName as $volumeName) {
+                $volumesChapitres[$volumeName] = [];
+                $idchapvolume[$volumeName] = [];
+                foreach ($chapitres as $chapitre) {
+                    $chaptersRepository = $em->getRepository(Chapter::class);
+                    $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $chapitre[0]]);
 
-        $k=0;
-        $stocks = [];
-        $chapitresmanga = [];
-        for($i=0; $i<count($volumesChapitres); $i++){
-            for($j=0; $j<count($volumesChapitres[$volumesName[$i]]); $j++){
-                $chapitresmanga[$i][] = $chapitresmangas[$k];
-                $quantitechapitre = $quantite[$k];
-                $stocks[$i][] = [$stockchapitre[$k], $quantitechapitre];
-                $k = $k+1;
+                    $nomManga = $chapterclass->getProduct()->getProductName();
+
+                    if ($nomManga == $volumeName) {
+                        array_push($volumesChapitres[$volumeName], $chapitre[0]);
+                        array_push($idchapvolume[$volumeName], $chapterclass->getChapterName());
+                    }
+                }
             }
-        }
 
-        $manga = [];
-        for($i = 0; $i<count($volumesName); $i++){
-            $manga[$i] = [$volumesName[$i], $idchapvolume[$volumesName[$i]], $chapitresmanga[$i], $stocks[$i]];
+            $quantitechapitre = [];
+            for ($i = 0; $i < count($quantite); $i++) {
+                $quantitechapitre[$i] = $quantite[$i];
+            }
+
+            $k = 0;
+            $stocks = [];
+            $chapitresmanga = [];
+            for ($i = 0; $i < count($volumesChapitres); $i++) {
+                for ($j = 0; $j < count($volumesChapitres[$volumesName[$i]]); $j++) {
+                    $chapitresmanga[$i][] = $chapitresmangas[$k];
+                    $quantitechapitre = $quantite[$k];
+                    $stocks[$i][] = [$stockchapitre[$k], $quantitechapitre];
+                    $k = $k + 1;
+                }
+            }
+
+            $manga = [];
+            for ($i = 0; $i < count($volumesName); $i++) {
+                $manga[$i] = [$volumesName[$i], $idchapvolume[$volumesName[$i]], $chapitresmanga[$i], $stocks[$i]];
+            }
         }
 
         $args = ['lang' => getTextLangue($_SESSION['locale']), 'user' => isUser(), 'mangas'=>$manga];

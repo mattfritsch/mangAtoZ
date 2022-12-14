@@ -51,6 +51,7 @@ class ModifyCart{
                 }
 
                 if($_POST[$_SESSION['cart'][$i][0]] < $_SESSION['cart'][$i][1]){
+
                     /** @var ChaptersRepository$chaptersRepository */
                     $chaptersRepository = $em->getRepository(Chapter::class);
                     $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
@@ -72,9 +73,19 @@ class ModifyCart{
 
                     $em->merge($chapternewstock);
                     $em->flush();
+
                 }
                 $_SESSION['cart'][$i][1] = (int)$_POST[ $_SESSION['cart'][$i][0]];
             }
+            $test = [];
+            for($i = 0; $i<count($_SESSION['cart']); $i++){
+                if($_SESSION['cart'][$i][1] !== 0){
+                    array_push($test, $_SESSION['cart'][$i]);
+                }
+            }
+            $_SESSION['cart'] = $test;
+
+
             header("Location:/panier");
 
         }elseif(isset($_POST['validate'])){
@@ -116,38 +127,10 @@ class ModifyCart{
                     }
                 }
                 $_SESSION['prixtotal'] = $prixtotal;
+                var_dump($prixtotal);
 
 
-                /** @var UserRepository$userRepository */
-                $userRepository = $em->getRepository(User::class);
-                $userclass = $userRepository->findOneBy(['uid' => $_SESSION['user']->getUid()]);
 
-                $date = new DateTime();
-                $order = new Order();
-                $order->setUser($userclass);
-                $order->setOrderId(0);
-                $order->setOrderDateTime($date);
-                $order->setTotalPrice($prixtotal);
-                $order->setDelivered(0);
-                $em->persist($order);
-                $em->flush();
-
-                for($i = 0; $i<count($_SESSION['cart']); $i++) {
-                    /** @var ChaptersRepository$chaptersRepository */
-                    $chaptersRepository = $em->getRepository(Chapter::class);
-                    $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
-
-                    /** @var OrderRepository$orderRepository */
-                    $orderRepository = $em->getRepository(Order::class);
-                    $orderclass = $orderRepository->findOneBy(['orderDateTime' => $date ,'totalPrice' => $prixtotal]);
-
-                    $orderproduct = new OrderProduct();
-                    $orderproduct->setChapter($chapterclass);
-                    $orderproduct->setOrder($orderclass);
-                    $orderproduct->setQtt($_SESSION['cart'][$i][1]);
-                $em->persist($orderproduct);
-                $em->flush();
-                }
             }
 
             header("Location:/payement");
