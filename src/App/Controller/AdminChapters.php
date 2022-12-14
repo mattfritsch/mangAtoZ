@@ -61,6 +61,7 @@ class AdminChapters{
                         $em->flush();
 
                         $data = [];
+                        $data["msg"] = $lang["ADMINCHAPTER"]["ADDMSG"];
                         $data["name"] = $chapter->getChapterName();
                         $data["price"] = $chapter->getChapterPrice();
                         $data["stock"] = $chapter->getStock();
@@ -101,10 +102,17 @@ class AdminChapters{
                         $em->flush();
 
                         $data = [];
+                        $data["msg"] = $lang["ADMINCHAPTER"]["UPDATEMSG"];
                         $data["name"] = $chapter->getChapterName();
                         $data["price"] = $chapter->getChapterPrice();
                         $data["stock"] = $chapter->getStock();
                         echo(json_encode($data));
+                    }
+                    elseif ($_POST["method"] === "add_title"){
+                        echo $lang["ADMINCHAPTER"]["ADDTITLE"];
+                    }
+                    elseif ($_POST["method"] === "update_title"){
+                        echo $lang["ADMINCHAPTER"]["UPDATETITLE"];
                     }
                 }
             }

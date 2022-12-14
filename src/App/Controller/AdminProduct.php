@@ -40,12 +40,49 @@ class AdminProduct{
                 if (isset ($_GET["id"])) {
                     $id = $_GET["id"];
                     $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
-                    return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct, 'user' => isUser(), 'categs' => $categs]);
+                    if(!$_POST) {
+                        return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct, 'user' => isUser(), 'categs' => $categs]);
+                    } else {
+                        $categories = [];
+                        foreach ($_POST["categs"] as $categId){
+                            $categ = $categRepository->findOneBy(['categId' => $categId]);
+                            array_push($categories, $categ);
+                        }
+
+                        $selectedProduct->setResume($_POST["resume"]);
+                        $selectedProduct->setProductName($_POST["productName"]);
+                        $selectedProduct->setImg($_POST["img"]);
+                        if(isset($_POST["status"])){
+                            $selectedProduct->setStatus($_POST["status"]);
+                        } else {
+                            $selectedProduct->setStatus(0);
+                        }
+                        if(isset($_POST["ageRank"])){
+                            $selectedProduct->setAgeRank($_POST["ageRank"]);
+                        } else {
+                            $selectedProduct->setAgeRank(0);
+                        }
+                        $selectedProduct->setChapterNumber($_POST["chapterNumber"]);
+                        $selectedProduct->setAverageRating(floatval($_POST["averageRating"]));
+                        $selectedProduct->setNotAvailable(0);
+                        $selectedProduct->setCategories($categories);
+
+                        $em->persist($selectedProduct);
+                        $em->flush();
+
+                        header('Location: /admin/products');
+                    }
                 } else {
                     //AJOUT
                     if(!$_POST){
                         return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'user' => isUser(), 'categs' => $categs]);
                     } else {
+                        $categories = [];
+                        foreach ($_POST["categs"] as $categId){
+                            $categ = $categRepository->findOneBy(['categId' => $categId]);
+                            array_push($categories, $categ);
+                        }
+
                         $products = $productRepository->findBy(array(), array('productId' => 'DESC'));
                         $product = new Product();
                         $product->setProductId($products[0]->getProductId()+1);
@@ -65,6 +102,7 @@ class AdminProduct{
                         $product->setChapterNumber($_POST["chapterNumber"]);
                         $product->setAverageRating(floatval($_POST["averageRating"]));
                         $product->setNotAvailable(0);
+                        $product->setCategories($categories);
 
                         $em->persist($product);
                         $em->flush();

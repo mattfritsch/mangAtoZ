@@ -43,9 +43,11 @@ class AdminProducts{
                     $notAvailable = $product->isNotAvailable();
                     $data = [];
                     if($notAvailable){
-                        $data["btn"] = $lang["ADMIN"]["PUTBACK"];
+                        $data["btn"] = $lang["ADMINPRODUCTS"]["PUTBACK"];
+                        $data["value"] = $lang["ADMINPRODUCTS"]["NO"];
                     } else {
-                        $data["btn"] = $lang["ADMIN"]["DELETE"];
+                        $data["btn"] = $lang["ADMINPRODUCTS"]["DELETE"];
+                        $data["value"] = $lang["ADMINPRODUCTS"]["YES"];
                     }
 
                     echo(json_encode($data));

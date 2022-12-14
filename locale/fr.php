@@ -54,7 +54,6 @@ return [
         'ERRORTOS' => 'Merci d\'accepter les CGU !'
 
     ],
-
     'PRODUCT' => [
         'STORE' => 'Boutique',
         'FILTERS' => 'Filtres',
@@ -85,7 +84,7 @@ return [
         'MAIL' => 'Email',
         'FIRST_NAME'=> 'Prénom',
         'LAST_NAME'=> 'Nom de famille',
-        'ADMIN' => 'AdminProducts',
+        'ADMIN' => 'Admin',
         'ADD' => 'Ajouter',
         'DELETE' => 'Supprimer',
         'ERRORAUTO' => 'You can\'t delete your own access',
@@ -95,15 +94,21 @@ return [
         'YES' => 'Oui',
         'TITLE' => 'Utilisateurs'
     ],
-    'ADMIN' =>[
-        'ADMIN' => 'AdminProducts',
+    'ADMINPRODUCTS' =>[
+        'TITLE' => 'Produits',
+        'ADMIN' => 'Admin',
         'PRODUCTNAME' => 'Nom du produit',
         'UPDATE' => 'Modifier',
         'ADD' => 'Ajouter',
         'DELETE' => 'Supprimer',
-        'PUTBACK' => 'Remettre'
+        'PUTBACK' => 'Remettre',
+        'AVAILABLE' => 'Disponible',
+        'YES' => 'Oui',
+        'NO' => 'Non',
+        'CATEGS' => 'Catégories',
     ],
     'ADMINPRODUCT' =>[
+        'TITLE' => 'Produit',
         'TITLEADD' => 'Ajouter un nouveau produit',
         'TITLEMODIF' => 'Modification du produit',
         'RESUME' => 'Description',
@@ -142,6 +147,10 @@ return [
         'SUBMIT' => 'Valider',
         'CANCEL' => 'Annuler',
         'AVAILABLE' => 'Disponible',
+        'ADDMSG' => 'Le chapitre a bien été ajouté',
+        'UPDATEMSG' => 'Le chapitre a bien été modifié',
+        'ADDTITLE' => 'Ajouter un nouveau chapitre',
+        'UPDATETITLE' => 'Modifier le chapitre',
     ],
     'ADMINCATEG' => [
         'TITLE' => 'Catégories',
@@ -151,7 +160,11 @@ return [
         'RESUME' => 'Description',
         'SUBMIT' => 'Valider',
         'CANCEL' => 'Annuler',
-        'ERRORNAME' => 'Ce nom de catégorie est déjà utilisé'
+        'ERRORNAME' => 'Ce nom de catégorie est déjà utilisé',
+        'ADDTITLE' => 'Ajouter une nouvelle catégorie',
+        'UPDATETITLE' => 'Modifier la catégorie',
+        'ADDMSG' => 'La catégorie a bien été ajoutée',
+        'UPDATEMSG' => 'La catégorie a bien été modifiée',
     ],
     'ADMINORDER' => [
         'TITLE' => 'Commandes',
