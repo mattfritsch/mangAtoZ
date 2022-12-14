@@ -129,6 +129,8 @@ return [
         'STOCK' => 'Stock'
     ],
     'PANIER' =>[
+        'PANIER' => 'Mon panier',
+        'INFO' => 'Votre panier est actuellement vide, allez le remplir !',
         'CHAPITRE' =>'Chapitre',
         'QUANTITE' =>'Quantité',
         'MODIF' =>'Enregistrer les modifications',
