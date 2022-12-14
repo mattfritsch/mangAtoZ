@@ -58,6 +58,7 @@ class ProductRepository extends EntityRepository
                 }
             }
         }
+        $queryBuilder->andWhere('product.notAvailable = 0');
         return $queryBuilder->getQuery()->getResult();
     }
 }
