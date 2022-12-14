@@ -82,7 +82,7 @@ return [
         'MAIL' => 'Email',
         'FIRST_NAME'=> 'First name',
         'LAST_NAME'=> 'Last name',
-        'ADMIN' => 'AdminProducts',
+        'ADMIN' => 'Admin',
         'ADD' => 'Add',
         'DELETE' => 'Delete',
         'ERRORAUTO' => 'You can\'t delete your own access',
@@ -92,15 +92,21 @@ return [
         'YES' => 'Yes',
         'TITLE' => 'Users'
     ],
-    'ADMIN' =>[
-        'ADMIN' => 'AdminProducts',
+    'ADMINPRODUCTS' =>[
+        'TITLE' => 'Products',
+        'ADMIN' => 'Admin',
         'PRODUCTNAME' => 'Product name',
         'UPDATE' => 'Update',
         'ADD' => 'Add',
         'DELETE' => 'Delete',
-        'PUTBACK' => 'Put back'
+        'PUTBACK' => 'Put back',
+        'AVAILABLE' => 'Available',
+        'YES' => 'Yes',
+        'NO' => 'No',
+        'CATEGS' => 'Categories',
     ],
     'ADMINPRODUCT' =>[
+        'TITLE' => 'Product',
         'TITLEADD' => 'Add new product',
         'TITLEMODIF' => 'Update product',
         'RESUME' => 'Resume',
@@ -137,6 +143,10 @@ return [
         'SUBMIT' => 'Submit',
         'CANCEL' => 'Cancel',
         'AVAILABLE' => 'Available',
+        'ADDMSG' => 'The chapter has been added',
+        'UPDATEMSG' => 'The chapter has been updated',
+        'ADDTITLE' => 'Add new chapter',
+        'UPDATETITLE' => 'Update chapter',
     ],
     'ADMINCATEG' => [
         'TITLE' => 'Categories',
@@ -146,7 +156,11 @@ return [
         'RESUME' => 'Resume',
         'SUBMIT' => 'Submit',
         'CANCEL' => 'Cancel',
-        'ERRORNAME' => 'This categorie name is already used'
+        'ERRORNAME' => 'This categorie name is already used',
+        'ADDTITLE' => 'Add new categorie',
+        'UPDATETITLE' => 'Update categorie',
+        'ADDMSG' => 'The categorie has been added',
+        'UPDATEMSG' => 'The categorie has been updated',
     ],
     'ADMINORDER' => [
         'TITLE' => 'Orders',

@@ -31,7 +31,7 @@ class AdminOrders{
         if ($user->isAdmin()){
             if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
                 if(!$_POST){
-                    $orders = $orderRepository->findBy(array(), array('orderDateTime' => 'ASC'));
+                    $orders = $orderRepository->findBy(array(), array('orderDateTime' => 'DESC'));
 
                     return new Response('admin/adminOrders.html.twig', ['lang' => $lang, 'orders' => $orders, 'user' => isUser()]);
                 } else {

@@ -18,6 +18,8 @@
     <td><button id="add" class="btn btn-success">{{ lang.ADMINCHAPTER.ADD }}</button></td>
 </table>
 
+<div id="success" class="alert alert-success" style="display: none; width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh"></div>
+
 <div id="form-add" class="mx-auto mt-3" style="display: none; width: 50vw">
     <h3 id="form-title" class="h3 center"></h3>
     <div class="form-group" style="margin-bottom: 2vh">
@@ -26,11 +28,11 @@
     </div>
     <div class="form-group" style="margin-bottom: 2vh">
         <label for="chapter_price">{{ lang.ADMINCHAPTER.PRICE }}</label>
-        <input type="text" class="form-control" id="chapter_price" name="chapter_price" placeholder="{{ lang.ADMINCHAPTER.PRICE }}">
+        <input type="number" step="0.01" class="form-control" id="chapter_price" name="chapter_price" placeholder="{{ lang.ADMINCHAPTER.PRICE }}">
     </div>
     <div class="form-group" style="margin-bottom: 2vh">
         <label for="chapter_stock">{{ lang.ADMINCHAPTER.STOCK }}</label>
-        <input type="number" step="0.01" class="form-control" id="chapter_stock" name="chapter_stock" placeholder="{{ lang.ADMINCHAPTER.STOCK }}">
+        <input type="number" class="form-control" id="chapter_stock" name="chapter_stock" placeholder="{{ lang.ADMINCHAPTER.STOCK }}">
     </div>
     <button id="validate-form" class="btn btn-primary">{{ lang.ADMINCHAPTER.SUBMIT }}</button>
     <button id="update-form" class="btn btn-primary" style="display: none">{{ lang.ADMINCHAPTER.UPDATE }}</button>

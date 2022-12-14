@@ -33,8 +33,8 @@ class AdminCategs{
 
                     return new Response('admin/adminCategs.html.twig', ['lang' => $lang, 'categs' => $categs, 'user' => isUser()]);
                 } else {
-                    $categOfName = $categRepository->findOneBy(array("categName" => $_POST["name"]));
                     if($_POST["method"] === "add"){
+                        $categOfName = $categRepository->findOneBy(array("categName" => $_POST["name"]));
                         if($categOfName === null){
                             $categs = $categRepository->findBy(array(), array("categId" => "DESC"));
 
@@ -47,6 +47,7 @@ class AdminCategs{
                             $em->flush();
 
                             $data = [];
+                            $data["msg"] = $lang["ADMINCATEG"]["ADDMSG"];
                             $data["name"] = $categ->getCategName();
                             $data["categId"] = $categ->getCategId();
                             $data["resume"] = $categ->getCategDesc();
@@ -60,6 +61,7 @@ class AdminCategs{
                         }
                     }
                     elseif ($_POST["method"] === "update"){
+                        $categOfName = $categRepository->findOneBy(array("categName" => $_POST["name"]));
                         if($categOfName === null || strval($categOfName->getCategId()) === $_POST["categId"]){
                             $categ = $categRepository->findOneBy(['categId' => $_POST["categId"]]);
 
@@ -70,6 +72,7 @@ class AdminCategs{
                             $em->flush();
 
                             $data = [];
+                            $data["msg"] = $lang["ADMINCATEG"]["UPDATEMSG"];
                             $data["name"] = $categ->getCategName();
                             $data["categId"] = $categ->getCategId();
                             $data["resume"] = $categ->getCategDesc();
@@ -81,6 +84,12 @@ class AdminCategs{
                             $data["error"] = $lang["ADMINCATEG"]["ERRORNAME"];
                             echo json_encode($data);
                         }
+                    }
+                    elseif ($_POST["method"] === "add_title"){
+                        echo $lang["ADMINCATEG"]["ADDTITLE"];
+                    }
+                    elseif ($_POST["method"] === "update_title"){
+                        echo $lang["ADMINCATEG"]["UPDATETITLE"];
                     }
                 }
             }
