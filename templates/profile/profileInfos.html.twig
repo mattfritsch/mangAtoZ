@@ -4,7 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./../assets/style/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="./../assets/style/select2/select2.css">
+    <link rel="stylesheet" href="./../librairies/select2/dist/css/select2.css">
     <link rel="icon" type="image/x-icon" href="./../assets/img/favicon.ico">
     <link href="/assets/style/scrollToTop.css" rel="stylesheet">
     <title>{{ lang.PROFILINFOS.TITLE }}</title>
@@ -12,9 +12,9 @@
 <body>
 {% include "/header.html.twig" %}
 
-<h1 class="h1 center" style="width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh">{{ lang.PROFILINFOS.TITLE }}</h1>
+<h1 class="h1 center" style="max-width: 70%; margin-right: auto; margin-left: auto; margin-top: 3vh">{{ lang.PROFILINFOS.TITLE }}</h1>
 
-<div class="center" style="width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh; font-size: 20px">
+<div class="center bg-dark text-light p-2" style="max-width: 70%; margin-right: auto; margin-left: auto; margin-top: 3vh; font-size: 20px; border-radius: 1vw;">
     <p>{{ lang.PROFILINFOS.EMAIL }} : {{ user.email }}</p>
     <p>{{ lang.PROFILINFOS.LASTNAME }} : {{ user.lastName }}</p>
     <p>{{ lang.PROFILINFOS.FIRSTNAME }} : {{ user.firstName }}</p>

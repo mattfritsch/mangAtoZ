@@ -34,6 +34,11 @@
                                     <a href="/profile/orders" class="dropdown-item">{{ lang.HOME.USERORDERS }}</a>
                                 </li>
                             </ul>
+                            <li class="nav-item" id="">
+                                <a href="/panier" class="nav-link">
+                                    {{ lang.HOME.CART }}
+                                </a>
+                            </li>
                         </li>
                         {% if user.isAdmin == 1 %}
                         <li class="nav-item dropdown" id="">
@@ -68,7 +73,7 @@
                 {% else %}
                     <form action="/logout" method="post">
                         <div class="d-flex justify-content-start border-start border-3 p-2">
-                            <button class="btn btn-outline-success me-1" type="submit" name="logout">{{ lang.HOME.LOGOUT }}</button>
+                            <button class="btn btn-outline-danger me-1" type="submit" name="logout">{{ lang.HOME.LOGOUT }}</button>
                         </div>
                     </form>
                 {% endif %}
