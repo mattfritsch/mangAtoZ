@@ -7,6 +7,7 @@ return [
         'STORE' => 'Boutique',
         'PROFILE' => 'Profil',
         'SEARCH' => 'Rechercher',
+        'CHAPTERS' => 'Chapitres',
         'LOGIN' => 'Se connecter',
         'SIGNUP' => 'S\'inscrire',
         'LOGOUT' => 'Se déconnecter',
@@ -116,8 +117,10 @@ return [
         'SUBMIT' => 'Valider',
     ],
     'CHAPITRE' =>[
+        'CHAPITRE' => 'Chapitre',
         'PRIX' => 'Prix',
-        'PANIER' =>'Ajouter au panier'
+        'PANIER' =>'Ajouter au panier',
+        'STOCK' => 'Stock'
     ],
     'PANIER' =>[
         'CHAPITRE' =>'Chapitre',

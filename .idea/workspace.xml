@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="log-out, homepage">
+      <change afterPath="$PROJECT_DIR$/public/assets/style/chaptersPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/en.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/fr.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/style/productPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/style/productPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascript/chapterspage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascript/chapterspage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/ChaptersPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ChaptersPage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/Repository/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Repository/ProductRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Script/script.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Script/script.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/productPage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/productPage.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chapterspage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chapterspage.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +47,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="responsive-store" />
+                    <option name="lastUsedInstant" value="1671011682" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="homepage" />
                     <option name="lastUsedInstant" value="1670939006" />
                   </RecentBranch>
@@ -57,10 +65,6 @@
                   <RecentBranch>
                     <option name="branchName" value="manga2" />
                     <option name="lastUsedInstant" value="1670421182" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="manga" />
-                    <option name="lastUsedInstant" value="1669989635" />
                   </RecentBranch>
                 </list>
               </option>
@@ -183,7 +187,9 @@
       <workItem from="1670768562318" duration="10441000" />
       <workItem from="1670828742778" duration="816000" />
       <workItem from="1670839932776" duration="24378000" />
-      <workItem from="1670962461499" duration="3176000" />
+      <workItem from="1670962461499" duration="4667000" />
+      <workItem from="1671001127664" duration="4341000" />
+      <workItem from="1671022734776" duration="1076000" />
     </task>
     <task id="LOCAL-00001" summary="add getText librairies">
       <created>1669212369028</created>

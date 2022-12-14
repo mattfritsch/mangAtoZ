@@ -26,16 +26,21 @@ class ChaptersPage
 
         /** @var ChaptersRepository$chaptersRepository */
         $chaptersRepository = $em->getRepository(Chapter::class);
+        /** @var ProductRepository$productRepository */
+        $productRepository = $em->getRepository(Product::class);
+
         if (isset ($_GET["id"])) {
             $id = htmlspecialchars($_GET["id"]);
             $chapters = $chaptersRepository->findBy(['product' => $id]);
+            $product = $productRepository->findBy(['productId' => $id]);
         }
 
         $_SESSION['productid'] = $id;
 
 
 
-        $args = ['lang' => getTextLangue($_SESSION['locale']), 'chapters' =>$chapters, 'user' => isUser()];
+        $args = ['lang' => getTextLangue($_SESSION['locale']), 'chapters' =>$chapters, 'product' => $product,
+            'user' => isUser()];
         return new Response('chapterspage.html.twig', $args);
     }
 

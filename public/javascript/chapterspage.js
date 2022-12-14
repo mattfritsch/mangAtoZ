@@ -45,9 +45,9 @@ function Initialize() {
 
                 div = document.createElement('div');
                 child.appendChild(div)
-                button= document.createElement('button');
-                button.setAttribute('type', 'button')
-                button.innerText = "coucou"
+                button= document.createElement('p');
+                button.setAttribute('class', 'text-danger')
+                button.innerText = "Stock = 0"
                 button.style.pointerEvents = 'auto';
                 button.onclick = function (e) {
                     console.log("coucou")

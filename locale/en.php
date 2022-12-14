@@ -7,6 +7,7 @@ return [
         'STORE' => 'Store',
         'PROFILE' => 'Profile',
         'SEARCH' => 'Search',
+        'CHAPTERS' => 'Chapters',
         'LOGIN' => 'Log-in',
         'SIGNUP' => 'Sign-up',
         'LOGOUT' => 'Log-out',
@@ -114,8 +115,10 @@ return [
         'SUBMIT' => 'Submit'
     ],
     'CHAPITRE' =>[
+        'CHAPITRE' => 'Chapter',
         'PRIX' => 'Price',
-        'PANIER' =>'Add to cart'
+        'PANIER' =>'Add to cart',
+        'STOCK' => 'Stock'
     ],
     'PANIER' =>[
         'CHAPITRE' =>'Chapter',

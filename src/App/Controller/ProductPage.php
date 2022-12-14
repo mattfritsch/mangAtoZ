@@ -42,7 +42,7 @@ class ProductPage{
 
             /** @var ProductRepository $productRepository */
             $productRepository = $em->getRepository(Product::class);
-            $products = $productRepository->findBy(['ageRank' => '0']);
+            $products = $productRepository->findBy(['ageRank' => '0', 'notAvailable' => '0']);
 
             if (isset($_POST['submitButton']) || isset($_POST['validateButton'])) {
                 $products = $productRepository->getFilteredProducts(['search'=> $search, 'order' => $order,
