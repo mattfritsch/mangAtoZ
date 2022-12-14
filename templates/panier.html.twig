@@ -11,7 +11,9 @@
 {% include "header.html.twig" %}
 {#{{ mangas }}#}
 
-
+{% if mangas is null%}
+<div>Aucun produit dans le panier</div>
+{% else %}
 <form method="post" action="/modifycart">
 
 {% for manga in mangas %}
@@ -43,6 +45,7 @@
     <button type="submit" value="validate" name="validate">Valider le panier </button>
 
 </form>
+{% endif %}
 
 {% include "footer.html.twig" %}
 

@@ -45,7 +45,16 @@ function decrement(ele){
     }
 
     if(nombre == 0){
-        ele.parentElement.parentElement.remove();
+        $titre = ele.parentElement.parentElement.parentElement;
+        console.log($titre)
+        if ($titre.children.length == 2){
+            ele.parentElement.parentElement.remove();
+            $titre.remove();
+        }
+        else{
+            ele.parentElement.parentElement.remove();
+
+        }
     }
 
 }
