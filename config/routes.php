@@ -56,7 +56,7 @@ return [
         new Route('GET', '/payement', PaypalPayement::class),
         new Route('POST', '/language', Language::class),
         new Route('GET', '/language', Language::class),
-        new Route('GET', '/final', PayementAccept::class)
+        new Route('GET', '/final', PayementAccept::class),
         new Route('GET', '/profile/orders', ProfileOrders::class),
         new Route('GET', '/profile/infos', ProfileInfos::class),
         new Route('POST', '/profile/infos', ProfileInfos::class),
