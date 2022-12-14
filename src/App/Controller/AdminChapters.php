@@ -20,110 +20,108 @@ class AdminChapters{
 
         $lang = getTextLangue($_SESSION['locale']);
 
-        $em = EntityManager::getInstance();
+        if (isset($_SESSION["user"])) {
+            $em = EntityManager::getInstance();
 
-        /** @var UserRepository$userRepository */
-        $userRepository = $em->getRepository(User::class);
-        $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
+            /** @var UserRepository $userRepository */
+            $userRepository = $em->getRepository(User::class);
+            $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
 
-        /** @var ProductRepository$productRepository */
-        $productRepository = $em->getRepository(Product::class);
+            /** @var ProductRepository $productRepository */
+            $productRepository = $em->getRepository(Product::class);
 
-        /** @var ChaptersRepository$chaptersRepository */
-        $chaptersRepository = $em->getRepository(Chapter::class);
+            /** @var ChaptersRepository $chaptersRepository */
+            $chaptersRepository = $em->getRepository(Chapter::class);
 
-        if ($user->isAdmin()){
-            if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
-                if(!$_POST){
-                    if (isset ($_GET["id"])) {
-                        $id = htmlspecialchars($_GET["id"]);
-                        $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
+            if ($user->isAdmin()) {
+                if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
+                    if (!$_POST) {
+                        if (isset ($_GET["id"])) {
+                            $id = htmlspecialchars($_GET["id"]);
+                            $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
 
-                        $chapters = $chaptersRepository->findBy(['product' => $selectedProduct]);
+                            $chapters = $chaptersRepository->findBy(['product' => $selectedProduct]);
 
-                        return new Response('admin/adminChapters.html.twig', ['lang' => $lang, 'chapters' => $chapters, 'user' => isUser()]);
+                            return new Response('admin/adminChapters.html.twig', ['lang' => $lang, 'chapters' => $chapters, 'user' => isUser()]);
+                        } else {
+                            header("Location: /admin");
+                        }
                     } else {
-                        header("Location: /admin");
+                        if ($_POST["method"] === "add") {
+                            $currentProduct = $productRepository->findOneBy(['productId' => $_POST["productId"]]);
+                            $chapters = $chaptersRepository->findBy(array(), array('chapterId' => 'DESC'));
+                            $chapter = new Chapter();
+                            $chapter->setProduct($currentProduct);
+                            $chapter->setChapterId($chapters[0]->getChapterId() + 1);
+                            $chapter->setChapterName(intval($_POST["name"]));
+                            $chapter->setChapterPrice(floatval($_POST["price"]));
+                            $chapter->setStock(intval($_POST["stock"]));
+                            $chapter->setNotAvailable(0);
+
+                            $em->persist($chapter);
+                            $em->flush();
+
+                            $data = [];
+                            $data["msg"] = $lang["ADMINCHAPTER"]["ADDMSG"];
+                            $data["name"] = $chapter->getChapterName();
+                            $data["price"] = $chapter->getChapterPrice();
+                            $data["stock"] = $chapter->getStock();
+                            $data["delete"] = $lang["ADMINCHAPTER"]["DELETE"];
+                            $data["update"] = $lang["ADMINCHAPTER"]["UPDATE"];
+                            if ($chapter->isNotAvailable()) {
+                                $data["value"] = $lang["ADMINCHAPTER"]["NO"];
+                            } else {
+                                $data["value"] = $lang["ADMINCHAPTER"]["YES"];
+                            }
+                            echo(json_encode($data));
+                        } elseif ($_POST["method"] === "delete") {
+                            $chapter = $chaptersRepository->findOneBy(["chapterId" => $_POST["chapterId"]]);
+                            $chapter->setNotAvailable(!$chapter->isNotAvailable());
+                            $em->persist($chapter);
+                            $em->flush();
+
+                            $isNotAvaible = $chapter->isNotAvailable();
+                            $data = [];
+                            if ($isNotAvaible) {
+                                $data["value"] = $lang["ADMINCHAPTER"]["NO"];
+                                $data["btn"] = $lang["ADMINCHAPTER"]["PUTBACK"];
+                            } else {
+                                $data["value"] = $lang["ADMINCHAPTER"]["YES"];
+                                $data["btn"] = $lang["ADMINCHAPTER"]["DELETE"];
+                            }
+
+                            echo json_encode($data);
+                        } elseif ($_POST["method"] === "update") {
+                            $currentProduct = $productRepository->findOneBy(['productId' => $_POST["productId"]]);
+                            $chapter = $chaptersRepository->findOneBy(["product" => $currentProduct, "chapterName" => $_POST["chapterName"]]);
+                            $chapter->setChapterPrice(floatval($_POST["price"]));
+                            $chapter->setStock(intval($_POST["stock"]));
+
+                            $em->persist($chapter);
+                            $em->flush();
+
+                            $data = [];
+                            $data["msg"] = $lang["ADMINCHAPTER"]["UPDATEMSG"];
+                            $data["name"] = $chapter->getChapterName();
+                            $data["price"] = $chapter->getChapterPrice();
+                            $data["stock"] = $chapter->getStock();
+                            echo(json_encode($data));
+                        } elseif ($_POST["method"] === "add_title") {
+                            echo $lang["ADMINCHAPTER"]["ADDTITLE"];
+                        } elseif ($_POST["method"] === "update_title") {
+                            echo $lang["ADMINCHAPTER"]["UPDATETITLE"];
+                        }
                     }
                 } else {
-                    if($_POST["method"] === "add"){
-                        $currentProduct = $productRepository->findOneBy(['productId' => $_POST["productId"]]);
-                        $chapters = $chaptersRepository->findBy(array(), array('chapterId' => 'DESC'));
-                        $chapter = new Chapter();
-                        $chapter->setProduct($currentProduct);
-                        $chapter->setChapterId($chapters[0]->getChapterId()+1);
-                        $chapter->setChapterName(intval($_POST["name"]));
-                        $chapter->setChapterPrice(floatval($_POST["price"]));
-                        $chapter->setStock(intval($_POST["stock"]));
-                        $chapter->setNotAvailable(0);
-
-                        $em->persist($chapter);
-                        $em->flush();
-
-                        $data = [];
-                        $data["msg"] = $lang["ADMINCHAPTER"]["ADDMSG"];
-                        $data["name"] = $chapter->getChapterName();
-                        $data["price"] = $chapter->getChapterPrice();
-                        $data["stock"] = $chapter->getStock();
-                        $data["delete"] = $lang["ADMINCHAPTER"]["DELETE"];
-                        $data["update"] = $lang["ADMINCHAPTER"]["UPDATE"];
-                        if($chapter->isNotAvailable()){
-                            $data["value"] = $lang["ADMINCHAPTER"]["NO"];
-                        } else {
-                            $data["value"] = $lang["ADMINCHAPTER"]["YES"];
-                        }
-                        echo(json_encode($data));
-                    }
-                    elseif ($_POST["method"] === "delete") {
-                        $chapter = $chaptersRepository->findOneBy(["chapterId" => $_POST["chapterId"]]);
-                        $chapter->setNotAvailable(!$chapter->isNotAvailable());
-                        $em->persist($chapter);
-                        $em->flush();
-
-                        $isNotAvaible = $chapter->isNotAvailable();
-                        $data = [];
-                        if($isNotAvaible){
-                            $data["value"] = $lang["ADMINCHAPTER"]["NO"];
-                            $data["btn"] = $lang["ADMINCHAPTER"]["PUTBACK"];
-                        } else {
-                            $data["value"] = $lang["ADMINCHAPTER"]["YES"];
-                            $data["btn"] = $lang["ADMINCHAPTER"]["DELETE"];
-                        }
-
-                        echo json_encode($data);
-                    }
-                    elseif ($_POST["method"] === "update"){
-                        $currentProduct = $productRepository->findOneBy(['productId' => $_POST["productId"]]);
-                        $chapter = $chaptersRepository->findOneBy(["product" => $currentProduct, "chapterName" => $_POST["chapterName"]]);
-                        $chapter->setChapterPrice(floatval($_POST["price"]));
-                        $chapter->setStock(intval($_POST["stock"]));
-
-                        $em->persist($chapter);
-                        $em->flush();
-
-                        $data = [];
-                        $data["msg"] = $lang["ADMINCHAPTER"]["UPDATEMSG"];
-                        $data["name"] = $chapter->getChapterName();
-                        $data["price"] = $chapter->getChapterPrice();
-                        $data["stock"] = $chapter->getStock();
-                        echo(json_encode($data));
-                    }
-                    elseif ($_POST["method"] === "add_title"){
-                        echo $lang["ADMINCHAPTER"]["ADDTITLE"];
-                    }
-                    elseif ($_POST["method"] === "update_title"){
-                        echo $lang["ADMINCHAPTER"]["UPDATETITLE"];
-                    }
+                    echo($lang["ADMINUSERS"]["ERRORPWD"]);
+                    die;
                 }
-            }
-            else {
-                echo($lang["ADMINUSERS"]["ERRORPWD"]);
+            } else {
+                echo($lang["ADMINUSERS"]["ERRORADMIN"]);
                 die;
             }
-        }
-        else {
-            echo($lang["ADMINUSERS"]["ERRORADMIN"]);
-            die;
+        } else {
+            header('Location: /');
         }
     }
 }

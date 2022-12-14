@@ -20,105 +20,107 @@ class AdminProduct{
 
         $lang = getTextLangue($_SESSION["locale"]);
 
-        $em = EntityManager::getInstance();
+        if (isset($_SESSION["user"])) {
+            $em = EntityManager::getInstance();
 
-        /** @var UserRepository$userRepository */
-        $userRepository = $em->getRepository(User::class);
-        $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
+            /** @var UserRepository $userRepository */
+            $userRepository = $em->getRepository(User::class);
+            $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
 
-        /** @var ProductRepository$productRepository */
-        $productRepository = $em->getRepository(Product::class);
+            /** @var ProductRepository $productRepository */
+            $productRepository = $em->getRepository(Product::class);
 
-        /** @var CategRepository$categRepository */
-        $categRepository = $em->getRepository(Categ::class);
-        $categs = $categRepository->findBy(array(), array("categName" => "ASC"));
+            /** @var CategRepository $categRepository */
+            $categRepository = $em->getRepository(Categ::class);
+            $categs = $categRepository->findBy(array(), array("categName" => "ASC"));
 
 
-        if ($user->isAdmin()){
-            if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
-                //MODIF
-                if (isset ($_GET["id"])) {
-                    $id = $_GET["id"];
-                    $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
-                    if(!$_POST) {
-                        return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct, 'user' => isUser(), 'categs' => $categs]);
+            if ($user->isAdmin()) {
+                if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
+                    //MODIF
+                    if (isset ($_GET["id"])) {
+                        $id = $_GET["id"];
+                        $selectedProduct = $productRepository->findOneBy(['productId' => $id]);
+                        if (!$_POST) {
+                            return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'selectedProduct' => $selectedProduct, 'user' => isUser(), 'categs' => $categs]);
+                        } else {
+                            $categories = [];
+                            foreach ($_POST["categs"] as $categId) {
+                                $categ = $categRepository->findOneBy(['categId' => $categId]);
+                                array_push($categories, $categ);
+                            }
+
+                            $selectedProduct->setResume($_POST["resume"]);
+                            $selectedProduct->setProductName($_POST["productName"]);
+                            $selectedProduct->setImg($_POST["img"]);
+                            if (isset($_POST["status"])) {
+                                $selectedProduct->setStatus($_POST["status"]);
+                            } else {
+                                $selectedProduct->setStatus(0);
+                            }
+                            if (isset($_POST["ageRank"])) {
+                                $selectedProduct->setAgeRank($_POST["ageRank"]);
+                            } else {
+                                $selectedProduct->setAgeRank(0);
+                            }
+                            $selectedProduct->setChapterNumber($_POST["chapterNumber"]);
+                            $selectedProduct->setAverageRating(floatval($_POST["averageRating"]));
+                            $selectedProduct->setNotAvailable(0);
+                            $selectedProduct->setCategories($categories);
+
+                            $em->persist($selectedProduct);
+                            $em->flush();
+
+                            header('Location: /admin/products');
+                        }
                     } else {
-                        $categories = [];
-                        foreach ($_POST["categs"] as $categId){
-                            $categ = $categRepository->findOneBy(['categId' => $categId]);
-                            array_push($categories, $categ);
-                        }
-
-                        $selectedProduct->setResume($_POST["resume"]);
-                        $selectedProduct->setProductName($_POST["productName"]);
-                        $selectedProduct->setImg($_POST["img"]);
-                        if(isset($_POST["status"])){
-                            $selectedProduct->setStatus($_POST["status"]);
+                        //AJOUT
+                        if (!$_POST) {
+                            return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'user' => isUser(), 'categs' => $categs]);
                         } else {
-                            $selectedProduct->setStatus(0);
-                        }
-                        if(isset($_POST["ageRank"])){
-                            $selectedProduct->setAgeRank($_POST["ageRank"]);
-                        } else {
-                            $selectedProduct->setAgeRank(0);
-                        }
-                        $selectedProduct->setChapterNumber($_POST["chapterNumber"]);
-                        $selectedProduct->setAverageRating(floatval($_POST["averageRating"]));
-                        $selectedProduct->setNotAvailable(0);
-                        $selectedProduct->setCategories($categories);
+                            $categories = [];
+                            foreach ($_POST["categs"] as $categId) {
+                                $categ = $categRepository->findOneBy(['categId' => $categId]);
+                                array_push($categories, $categ);
+                            }
 
-                        $em->persist($selectedProduct);
-                        $em->flush();
+                            $products = $productRepository->findBy(array(), array('productId' => 'DESC'));
+                            $product = new Product();
+                            $product->setProductId($products[0]->getProductId() + 1);
+                            $product->setResume($_POST["resume"]);
+                            $product->setProductName($_POST["productName"]);
+                            $product->setImg($_POST["img"]);
+                            if (isset($_POST["status"])) {
+                                $product->setStatus($_POST["status"]);
+                            } else {
+                                $product->setStatus(0);
+                            }
+                            if (isset($_POST["ageRank"])) {
+                                $product->setAgeRank($_POST["ageRank"]);
+                            } else {
+                                $product->setAgeRank(0);
+                            }
+                            $product->setChapterNumber($_POST["chapterNumber"]);
+                            $product->setAverageRating(floatval($_POST["averageRating"]));
+                            $product->setNotAvailable(0);
+                            $product->setCategories($categories);
 
-                        header('Location: /admin/products');
+                            $em->persist($product);
+                            $em->flush();
+
+                            header('Location: /admin/products');
+                        }
                     }
                 } else {
-                    //AJOUT
-                    if(!$_POST){
-                        return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'user' => isUser(), 'categs' => $categs]);
-                    } else {
-                        $categories = [];
-                        foreach ($_POST["categs"] as $categId){
-                            $categ = $categRepository->findOneBy(['categId' => $categId]);
-                            array_push($categories, $categ);
-                        }
-
-                        $products = $productRepository->findBy(array(), array('productId' => 'DESC'));
-                        $product = new Product();
-                        $product->setProductId($products[0]->getProductId()+1);
-                        $product->setResume($_POST["resume"]);
-                        $product->setProductName($_POST["productName"]);
-                        $product->setImg($_POST["img"]);
-                        if(isset($_POST["status"])){
-                            $product->setStatus($_POST["status"]);
-                        } else {
-                            $product->setStatus(0);
-                        }
-                        if(isset($_POST["ageRank"])){
-                            $product->setAgeRank($_POST["ageRank"]);
-                        } else {
-                            $product->setAgeRank(0);
-                        }
-                        $product->setChapterNumber($_POST["chapterNumber"]);
-                        $product->setAverageRating(floatval($_POST["averageRating"]));
-                        $product->setNotAvailable(0);
-                        $product->setCategories($categories);
-
-                        $em->persist($product);
-                        $em->flush();
-
-                        header('Location: /admin/products');
-                    }
+                    echo($lang["ADMINUSERS"]["ERRORPWD"]);
+                    die;
                 }
-            }
-            else {
-                echo($lang["ADMINUSERS"]["ERRORPWD"]);
+            } else {
+                echo($lang["ADMINUSERS"]["ERRORADMIN"]);
                 die;
             }
-        }
-        else {
-            echo($lang["ADMINUSERS"]["ERRORADMIN"]);
-            die;
+        } else {
+            header('Location: /');
         }
     }
 }
