@@ -7,6 +7,7 @@ return [
         'STORE' => 'Boutique',
         'PROFILE' => 'Profil',
         'SEARCH' => 'Rechercher',
+        'CART' => 'Panier',
         'CHAPTERS' => 'Chapitres',
         'LOGIN' => 'Se connecter',
         'SIGNUP' => 'S\'inscrire',

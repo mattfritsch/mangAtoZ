@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
-    <link rel="stylesheet" href="./assets/style/bootstrap/bootstrap.css">
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    {% include "layoutStyle.html.twig" %}
 
     <link href="./assets/style/productPage.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
     <title>{{ lang.PRODUCT.STORE }}</title>
 </head>
 <body>
@@ -28,8 +23,13 @@
                             <section class="mb-4 me-4" data-filter="categories">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CATEGORIES }}</h6>
 
-                                <select name="selectCategories" id="categories" multiple>
-                                    {% for key, categ in categs %}
+                                <select class="multiple-categ-select" name="categs[]" multiple="multiple">
+                                    {% for categ in categs %}
+                                        {# {% for selectedCateg in selectedCategs %}
+                                            <option value="{{ categ.categId }}"
+                                                    {% if selectedCateg == categ %}selected{% endif %}>
+                                                {{ categ.categName }}</option>
+                                        {% endfor %} #}
                                         <option value="{{ categ.categId }}">{{ categ.categName }}</option>
                                     {% endfor %}
                                 </select>
@@ -41,17 +41,18 @@
                                 <div id="select-wrapper-301599" class="select-wrapper d-inline-flex">
                                     <select class="form-select m-1" aria-label="Default select example" name="order">
                                         {% if order == 'alphabetical' %}
-                                        <option value="neutral">{{ lang.PRODUCT.ORDER }}</option>
-                                        <option value="alphabetical" selected>{{ lang.PRODUCT.ALPHABETICAL }}</option>
-                                        <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
+                                            <option value="neutral">{{ lang.PRODUCT.ORDER }}</option>
+                                            <option value="alphabetical"
+                                                    selected>{{ lang.PRODUCT.ALPHABETICAL }}</option>
+                                            <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
                                         {% elseif order == 'popularity' %}
-                                        <option value="neutral">{{ lang.PRODUCT.ORDER }}</option>
-                                        <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
-                                        <option value="popularity" selected>{{ lang.PRODUCT.POPULARITY }}</option>
+                                            <option value="neutral">{{ lang.PRODUCT.ORDER }}</option>
+                                            <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
+                                            <option value="popularity" selected>{{ lang.PRODUCT.POPULARITY }}</option>
                                         {% else %}
-                                        <option value="neutral" selected>{{ lang.PRODUCT.ORDER }}</option>
-                                        <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
-                                        <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
+                                            <option value="neutral" selected>{{ lang.PRODUCT.ORDER }}</option>
+                                            <option value="alphabetical">{{ lang.PRODUCT.ALPHABETICAL }}</option>
+                                            <option value="popularity">{{ lang.PRODUCT.POPULARITY }}</option>
                                         {% endif %}
                                     </select>
                                 </div>
@@ -105,28 +106,28 @@
                                             {{ lang.PRODUCT.FINISHED }}
                                         </label>
                                     </div>
-                                    {% else %}
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="radioStatus"
-                                                   id="statusBoth" value="both" checked>
-                                            <label class="form-check-label" for="statusBoth">
-                                                {{ lang.PRODUCT.BOTH }}
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="radioStatus"
-                                                   id="statusInprogress" value="inprogress">
-                                            <label class="form-check-label" for="statusInprogress">
-                                                {{ lang.PRODUCT.INPROGRESS }}
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="radioStatus"
-                                                   id="statusFinished" value="finished">
-                                            <label class="form-check-label" for="statusFinished">
-                                                {{ lang.PRODUCT.FINISHED }}
-                                            </label>
-                                        </div>
+                                {% else %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusBoth" value="both" checked>
+                                        <label class="form-check-label" for="statusBoth">
+                                            {{ lang.PRODUCT.BOTH }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusInprogress" value="inprogress">
+                                        <label class="form-check-label" for="statusInprogress">
+                                            {{ lang.PRODUCT.INPROGRESS }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="radioStatus"
+                                               id="statusFinished" value="finished">
+                                        <label class="form-check-label" for="statusFinished">
+                                            {{ lang.PRODUCT.FINISHED }}
+                                        </label>
+                                    </div>
                                 {% endif %}
 
                             </section>
@@ -184,8 +185,10 @@
                             <div class="input-group d-inline-flex">
                                 {% if search != '' %}
                                     <input type="text" class="form-control rounded"
-                                           placeholder="{{ lang.PRODUCT.SEARCH  }}" aria-label="{{ lang.PRODUCT.SEARCH }}"
-                                           aria-describedby="search-addon" id="searchBar" name="searchBar" value="{{ search }}"/>
+                                           placeholder="{{ lang.PRODUCT.SEARCH }}"
+                                           aria-label="{{ lang.PRODUCT.SEARCH }}"
+                                           aria-describedby="search-addon" id="searchBar" name="searchBar"
+                                           value="{{ search }}"/>
                                 {% else %}
                                     <input type="text" class="form-control rounded"
                                            placeholder="{{ lang.PRODUCT.SEARCH }}"
@@ -244,5 +247,5 @@
 
 {% include "layoutScript.html.twig" %}
 <script src="./javascript/productPage.js"></script>
-
+<script src="./javascript/scrollToTop.js"></script>
 </html>

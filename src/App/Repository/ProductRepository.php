@@ -32,7 +32,7 @@ class ProductRepository extends EntityRepository
                     $queryBuilder->leftJoin('product.categories', 'pc');
                     $queryBuilder->addSelect('pc');
                     foreach($value as $category){
-                        $queryBuilder->andWhere('pc.categName = :categValue');
+                        $queryBuilder->andWhere('pc.categId = :categValue');
                         $queryBuilder->setParameter('categValue', $category);
                     }
                 }

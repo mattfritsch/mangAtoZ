@@ -20,14 +20,7 @@ class Panier{
     {
         startSession();
 //        clearCart();
-        var_dump($_SESSION['cart']);
-        echo'<br/>';
 
-        foreach($_SESSION['cart'] as $product){
-    var_dump($product);
-    echo'<br/>';
-}
-//        var_dump($_SESSION['cart']);
         if(!empty($_SESSION['cart'])){
 
 
@@ -44,7 +37,6 @@ class Panier{
             foreach ($chapitres as $chapitre) {
                 array_push($quantite, $chapitre[1]);
 
-                var_dump($chapitre[0]);
                 array_push($chapitresmangas, $chapitre[0]);
 
                 /** @var ChaptersRepository $chaptersRepository */
