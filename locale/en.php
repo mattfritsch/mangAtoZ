@@ -9,7 +9,15 @@ return [
         'SEARCH' => 'Search',
         'LOGIN' => 'Log-in',
         'SIGNUP' => 'Sign-up',
-        'LOGOUT' => 'Log-out'
+        'LOGOUT' => 'Log-out',
+        'POPULARITY' => 'Our most popular manga',
+        'USERPROFIL' => 'Informations',
+        'USERORDERS' => 'My Orders',
+        'ADMIN' => 'Admin',
+        'ADMINCATEGS' => 'Categories',
+        'ADMINPRODUCTS' => 'Mangas',
+        'ADMINUSERS' => 'Users',
+        'ADMINORDERS' => 'Orders',
     ],
     'CONNECTION' => [
         'EMAIL' => 'E-mail',
@@ -152,12 +160,24 @@ return [
         'NOTDELIVERED' => 'In progress'
     ],
     'PROFILORDER' => [
-        'TITLE' => 'Your orders',
+        'TITLE' => 'My orders',
         'DATETIME' => 'Date and time',
         'PRICE' => 'Price',
         'DELIVERED' => 'Delivered',
         'STATUS' => 'Status',
         'YES' => 'Yes',
         'NOTDELIVERED' => 'In progress',
+    ],
+    'PROFILINFOS' => [
+        'TITLE' => 'Informations',
+        'BIRTHDATE' => 'Birth Date',
+        'FIRSTNAME' => 'First Name',
+        'LASTNAME' => 'Last Name',
+        'EMAIL'=> 'E-mail',
+        'STREETNUMBER'=> 'Street number',
+        'STREET'=> 'Street',
+        'POSTCODE'=> 'Postcode',
+        'CITY'=> 'City',
+        'APPLY' => 'Apply'
     ],
 ];

@@ -146,7 +146,7 @@ class Registration{
             if(!isset($_POST["tos"])){
                 $_POST["tos"] = '';
             }
-            $formErrors = validate($_POST, $rules, $language);
+            $formErrors = validate($_POST, $rules);
 
             // the form is valid
             if (empty($formErrors)) {

@@ -27,22 +27,35 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="profileDropDown">
                             <li>
-                                <a href="#" class="dropdown-item"></a>
+                                <a href="/profile/infos" class="dropdown-item">{{ lang.HOME.USERPROFIL }}</a>
                             </li>
                             <li>
-                                <a href="#" class="dropdown-item"></a>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item"></a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-item"></a>
+                                <a href="/profile/orders" class="dropdown-item">{{ lang.HOME.USERORDERS }}</a>
                             </li>
                         </ul>
                     </li>
+                    {% if user.isAdmin == 1 %}
+                    <li class="nav-item dropdown" id="">
+                        <a href="#" class="nav-link dropdown-toggle" id="adminDropDown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ lang.HOME.ADMIN }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="adminDropDown">
+                            <li>
+                                <a href="/admin/categs" class="dropdown-item">{{ lang.HOME.ADMINCATEGS }}</a>
+                            </li>
+                            <li>
+                                <a href="/admin/products" class="dropdown-item">{{ lang.HOME.ADMINPRODUCTS }}</a>
+                            </li>
+                            <li>
+                                <a href="/admin/users" class="dropdown-item">{{ lang.HOME.ADMINUSERS }}</a>
+                            </li>
+                            <li>
+                                <a href="/admin/orders" class="dropdown-item">{{ lang.HOME.ADMINORDERS }}</a>
+                            </li>
+                        </ul>
+                    </li>
+                    {% endif %}
                 </ul>
                 {% if user == '' %}
                     <div class="d-flex justify-content-start border-start border-3 p-2">
