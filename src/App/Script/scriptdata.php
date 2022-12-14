@@ -6,8 +6,10 @@ use App\Entity\Product;
 use App\Entity\Chapter;
 use App\Entity\ProductCateg;
 use App\Entity\Categ;
+use App\Entity\User;
 use App\Repository\ProductRepository;
 use App\Repository\CategRepository;
+use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 
 $manga = [];
@@ -83,6 +85,7 @@ function getCategories($id, $m){
     }
     $categories[$m] = $categ;
     array_push($manga[$m], $categories[$m]);
+    var_dump($categories[$m]);
 }
 
 function getChapitres($id, $m){
@@ -154,7 +157,7 @@ function insertIntoDB()
     $em = EntityManager::getInstance();
     for ($i = 0; $i < count($mangafinal); $i++) {
 
-        var_dump($mangafinal[$i][0]);
+        var_dump($mangafinal[$i][3]);
         $product = new Product();
 
         $product->setProductId($mangafinal[$i][0]);
@@ -167,7 +170,15 @@ function insertIntoDB()
         }
         $product->setStatus($mangafinal[$i][4]);
         $product->setChapterNumber($mangafinal[$i][5]);
-//        $product->setCateg($mangafinal[$i][8][0]);
+        $categmangaclass = [];
+        foreach($mangafinal[$i][8] as $coucou){
+            /** @var CategRepository$categRepository */
+            $categRepository = $em->getRepository(Categ::class);
+            $categclass = $categRepository->findOneBy(['categId' => $coucou]);
+            var_dump($categclass);
+            array_push($categmangaclass, $categclass);
+        }
+        $product->setCategories($categmangaclass);
         $product->setAverageRating($mangafinal[$i][6]);
         $product->setAgeRank($mangafinal[$i][7]);
         $product->setNotAvailable(0);
@@ -181,22 +192,22 @@ function insertIntoDB()
         $productclass = $productRepository->findOneBy(['productId' => $mangafinal[$i][0]]);
 
 
-        $em3 = EntityManager::getInstance();
-        for($k = 0; $k < count($mangafinal[$i][8]); $k++){
-            var_dump(($mangafinal[$i][8][$k]));
-            /** @var CategRepository$categRepository */
-            $categRepository = $em->getRepository(Categ::class);
-            $categclass = $categRepository->findOneBy(['categId' => $mangafinal[$i][8][$k]]);
-
-            $productcateg = new ProductCateg();
-
-//            $productcateg->setProductCategId();
-            $productcateg->setProduct($productclass);
-            $productcateg->setCateg($categclass);
-
-            $em3->persist($productcateg);
-            $em3->flush();
-        }
+//        $em3 = EntityManager::getInstance();
+//        for($k = 0; $k < count($mangafinal[$i][8]); $k++){
+//            var_dump(($mangafinal[$i][8][$k]));
+//            /** @var CategRepository$categRepository */
+//            $categRepository = $em->getRepository(Categ::class);
+//            $categclass = $categRepository->findOneBy(['categId' => $mangafinal[$i][8][$k]]);
+//
+//            $productcateg = new ProductCateg();
+//
+////            $productcateg->setProductCategId();
+//            $productcateg->setProduct($productclass);
+//            $productcateg->setCateg($categclass);
+//
+//            $em3->persist($productcateg);
+//            $em3->flush();
+//        }
 
         $em2 = EntityManager::getInstance();
 

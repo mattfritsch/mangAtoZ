@@ -14,6 +14,7 @@ let btns_delete = document.getElementsByClassName("delete")
 let btns_update = document.getElementsByClassName("update")
 
 let title_form = document.getElementById("form-title")
+let div_success = document.getElementById("success")
 
 let lastChapterName = chapter_table_body.lastElementChild.firstElementChild.innerText
 
@@ -21,12 +22,20 @@ const urlParams = new URLSearchParams(window.location.search);
 let productId = urlParams.get('id')
 
 btn_add.addEventListener('click', function () {
+    resetDivSuccess()
     div_form_add.style.display = 'block'
-    if(btn_add.innerText === "Add"){
-        title_form.innerText = "Add new chapter";
-    } else {
-        title_form.innerText = "Ajouter un nouveau chapitre";
-    }
+    let url = '/admin/chapters'
+    let formData = new FormData();
+    formData.append('method', 'add_title');
+
+    fetch(url, { method: 'POST', body: formData })
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (body) {
+            title_form.innerText = body
+        });
+
     chapter_name.value = (parseInt(lastChapterName) + 1).toString();
     resetStockAndPrice()
 })
@@ -85,6 +94,8 @@ btn_form_validate.addEventListener('click', function () {
             tr.append(td_name, td_price, td_stock, td_available, td_btn_delete, td_btn_update)
             chapter_table_body.appendChild(tr)
             div_form_add.style.display = 'none'
+            div_success.innerText = data["msg"]
+            div_success.style.display = 'block'
         });
 })
 
@@ -122,13 +133,17 @@ btn_form_update.addEventListener("click", function () {
                 }
             }
 
+            div_success.innerText = data["msg"]
+            div_success.style.display = 'block'
             div_form_add.style.display = 'none'
             btnAddOrUpdate("add")
         });
 })
 
-
-
+function resetDivSuccess(){
+    div_success.innerText = ""
+    div_success.style.display = 'none'
+}
 
 function resetStockAndPrice(){
     chapter_price.value = ""
@@ -147,13 +162,23 @@ function btnAddOrUpdate(value){
 }
 
 function displayUpdateForm(btn){
+    resetDivSuccess()
+    //back to Top
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    if(btn.innerText === "Update"){
-        title_form.innerText = "Update chapter";
-    } else {
-        title_form.innerText = "Modifier le chapitre";
-    }
+
+    let url = '/admin/chapters'
+    let formData = new FormData();
+    formData.append('method', 'update_title');
+
+    fetch(url, { method: 'POST', body: formData })
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (body) {
+            title_form.innerText = body
+        });
+
     div_form_add.style.display = 'block'
     let td_name = btn.parentNode.parentNode.firstElementChild
     let td_price = td_name.nextElementSibling;
@@ -165,6 +190,7 @@ function displayUpdateForm(btn){
 }
 
 function deleteChapter(btn){
+    resetDivSuccess()
     let chapterId = btn.id.substr(3)
     let url = '/admin/chapters?id=' + productId;
     let formData = new FormData();

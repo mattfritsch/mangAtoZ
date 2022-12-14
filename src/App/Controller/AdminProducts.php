@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
 use function App\getTextLangue;
+use function App\isUser;
 use function App\startSession;
 
 class AdminProducts{
@@ -17,47 +18,51 @@ class AdminProducts{
 
         $lang = getTextLangue($_SESSION["locale"]);
 
-        $em = EntityManager::getInstance();
+        if (isset($_SESSION["user"])) {
+            $em = EntityManager::getInstance();
 
-        /** @var UserRepository$userRepository */
-        $userRepository = $em->getRepository(User::class);
-        $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
+            /** @var UserRepository $userRepository */
+            $userRepository = $em->getRepository(User::class);
+            $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
 
-        /** @var ProductRepository$productRepository */
-        $productRepository = $em->getRepository(Product::class);
+            /** @var ProductRepository $productRepository */
+            $productRepository = $em->getRepository(Product::class);
 
-        if ($user->isAdmin()){
-            if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
-                if(!$_POST){
-                    $products = $productRepository->findBy(array(), array('productName' => 'ASC'));
+            if ($user->isAdmin()) {
+                if ($_SESSION["user"]->getPassword() === $user->getPassword()) {
+                    if (!$_POST) {
+                        $products = $productRepository->findBy(array(), array('productName' => 'ASC'));
 
-                    return new Response('/admin/adminProducts.html.twig', ['lang' => $lang, 'products' => $products]);
-                } else {
-                    $product = $productRepository->findOneBy(['productId' => $_POST["id"]]);
-                    $product->setNotAvailable(!$product->isNotAvailable());
-                    $em->persist($product);
-                    $em->flush();
-
-
-                    $notAvailable = $product->isNotAvailable();
-                    $data = [];
-                    if($notAvailable){
-                        $data["btn"] = $lang["ADMIN"]["PUTBACK"];
+                        return new Response('/admin/adminProducts.html.twig', ['lang' => $lang, 'products' => $products, 'user' => isUser()]);
                     } else {
-                        $data["btn"] = $lang["ADMIN"]["DELETE"];
-                    }
+                        $product = $productRepository->findOneBy(['productId' => $_POST["id"]]);
+                        $product->setNotAvailable(!$product->isNotAvailable());
+                        $em->persist($product);
+                        $em->flush();
 
-                    echo(json_encode($data));
+
+                        $notAvailable = $product->isNotAvailable();
+                        $data = [];
+                        if ($notAvailable) {
+                            $data["btn"] = $lang["ADMINPRODUCTS"]["PUTBACK"];
+                            $data["value"] = $lang["ADMINPRODUCTS"]["NO"];
+                        } else {
+                            $data["btn"] = $lang["ADMINPRODUCTS"]["DELETE"];
+                            $data["value"] = $lang["ADMINPRODUCTS"]["YES"];
+                        }
+
+                        echo(json_encode($data));
+                    }
+                } else {
+                    echo($lang["ADMINUSERS"]["ERRORPWD"]);
+                    die;
                 }
-            }
-            else {
-                echo($lang["ADMINUSERS"]["ERRORPWD"]);
+            } else {
+                echo($lang["ADMINUSERS"]["ERRORADMIN"]);
                 die;
             }
-        }
-        else {
-            echo($lang["ADMINUSERS"]["ERRORADMIN"]);
-            die;
+        } else {
+            header('Location: /');
         }
     }
 }

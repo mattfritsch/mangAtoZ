@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="refont login.html.twig" />
+    <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="log-out, homepage">
+      <change afterPath="$PROJECT_DIR$/public/assets/style/chaptersPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/en.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locale/fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/fr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/style/productPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/style/productPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/javascript/chapterspage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascript/chapterspage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/ChaptersPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ChaptersPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Repository/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Repository/ProductRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chapterspage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/chapterspage.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,24 +47,24 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="responsive-store" />
+                    <option name="lastUsedInstant" value="1671011682" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="homepage" />
+                    <option name="lastUsedInstant" value="1670939006" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="store" />
+                    <option name="lastUsedInstant" value="1670845217" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="category" />
                     <option name="lastUsedInstant" value="1670779768" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="manga2" />
                     <option name="lastUsedInstant" value="1670421182" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="manga" />
-                    <option name="lastUsedInstant" value="1669989635" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="dev" />
-                    <option name="lastUsedInstant" value="1669890290" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="registrationRefont" />
-                    <option name="lastUsedInstant" value="1669888969" />
                   </RecentBranch>
                 </list>
               </option>
@@ -175,6 +186,10 @@
       <workItem from="1670617791902" duration="101000" />
       <workItem from="1670768562318" duration="10441000" />
       <workItem from="1670828742778" duration="816000" />
+      <workItem from="1670839932776" duration="24378000" />
+      <workItem from="1670962461499" duration="4667000" />
+      <workItem from="1671001127664" duration="4341000" />
+      <workItem from="1671022734776" duration="1076000" />
     </task>
     <task id="LOCAL-00001" summary="add getText librairies">
       <created>1669212369028</created>
@@ -218,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669739363979</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="log-out, homepage">
+      <created>1670948707541</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1670948707542</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,6 +273,7 @@
     <MESSAGE value="add getText folders" />
     <MESSAGE value="add home and login templates" />
     <MESSAGE value="refont login.html.twig" />
-    <option name="LAST_COMMIT_MESSAGE" value="refont login.html.twig" />
+    <MESSAGE value="log-out, homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="log-out, homepage" />
   </component>
 </project>

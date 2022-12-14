@@ -38,19 +38,24 @@ function addCategoryToArray(){
 
 
     select[0].addEventListener("click", function () {
+        let url = '/store'
+        let formData = new FormData();
         for (const child of elements) {
             child.onclick = function (e) {
-                categories.push(child.innerText)
+                categories.push(child.innerText).toString()
+
+                formData.append('categories', JSON.stringify(categories))
+
+                fetch(url, {method: 'POST', body: formData})
+                    .then(function (response){
+                        return response.text()
+                    })
+                    .then(function (body){
+                        console.log(body)
+                    })
             }
         }
     })
-
-    let okButton = document.getElementById('okButton')
-    okButton.addEventListener('click', function (){
-        console.log(categories)
-    })
-
-
 }
 addCategoryToArray()
 

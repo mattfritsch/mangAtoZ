@@ -13,18 +13,28 @@ let btns_update = document.getElementsByClassName("update")
 
 let title_form = document.getElementById("form-title")
 let div_error = document.getElementById("error")
+let div_success = document.getElementById("success")
 
 let tr_update;
 let actual_categId_update;
 let actual_name_update;
 
 btn_add.addEventListener('click', function () {
+    resetDivSuccess()
     div_form_add.style.display = 'block'
-    if(btn_add.innerText === "Add"){
-        title_form.innerText = "Add new categorie";
-    } else {
-        title_form.innerText = "Ajouter une nouvelle catégorie";
-    }
+
+    let url = '/admin/categs'
+    let formData = new FormData();
+    formData.append('method', 'add_title');
+
+    fetch(url, { method: 'POST', body: formData })
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (body) {
+            title_form.innerText = body
+        });
+
     resetFields()
     btnAddOrUpdate('add')
     resetDivError()
@@ -57,6 +67,9 @@ btn_form_validate.addEventListener('click', function () {
                 div_error.style.display = "block"
             } else {
                 addNewTr(data["name"], data["resume"], data["categId"], data["update"])
+                div_form_add.style.display = 'none'
+                div_success.innerText = data["msg"]
+                div_success.style.display = 'block'
             }
         });
 })
@@ -102,16 +115,14 @@ btn_form_update.addEventListener("click", function () {
                         }
                     }
                     addNewTr(data["name"], data["resume"], data["categId"], data["update"])
+                    div_form_add.style.display = 'none'
+                    btnAddOrUpdate('add')
                 }
-                div_form_add.style.display = 'none'
-                btnAddOrUpdate('add')
+                div_success.innerText = data["msg"]
+                div_success.style.display = 'block'
             }
         });
 })
-
-
-
-
 
 function getAlphabeticallyPreviousTr(name) {
     let td = document.getElementsByTagName("tbody")[2].children;
@@ -123,6 +134,11 @@ function getAlphabeticallyPreviousTr(name) {
         previousTr = item
     }
     return previousTr;
+}
+
+function resetDivSuccess(){
+    div_success.innerText = ""
+    div_success.style.display = 'none'
 }
 
 function resetFields() {
@@ -147,17 +163,26 @@ function btnAddOrUpdate(value){
 
 
 function displayUpdateForm(btn) {
+    resetDivSuccess()
     resetDivError()
     actual_categId_update = btn.id.substr(3)
     actual_name_update = btn.parentNode.parentNode.firstElementChild.innerText
     //remonter en haut de la page
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    if(btn.innerText === "Update"){
-        title_form.innerText = "Update categorie";
-    } else {
-        title_form.innerText = "Modifier la catégorie";
-    }
+
+    let url = '/admin/categs'
+    let formData = new FormData();
+    formData.append('method', 'update_title');
+
+    fetch(url, { method: 'POST', body: formData })
+        .then(function (response) {
+            return response.text();
+        })
+        .then(function (body) {
+            title_form.innerText = body
+        });
+
     div_form_add.style.display = 'block'
     let td_name = btn.parentNode.parentNode.firstElementChild
     let td_resume = td_name.nextElementSibling;

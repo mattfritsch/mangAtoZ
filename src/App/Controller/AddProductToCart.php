@@ -4,15 +4,43 @@ namespace App\Controller;
 
 
 use App\Entity\Chapter;
-use App\Entity\User;
 use App\Repository\ChaptersRepository;
-use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use App\Entity\CartProduct;
+use Framework\Response\Response;
+use function App\clearCart;
+use function App\getTextLangue;
+use function App\startSession;
 
 class AddProductToCart{
     public function __invoke()
     {
+
+        startSession();
+//        clearCart();
+
+        function setNewStock($id){
+            $em = EntityManager::getInstance();
+            /** @var ChaptersRepository$chaptersRepository */
+            $chaptersRepository = $em->getRepository(Chapter::class);
+            $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $id]);
+            $productchapter = $chapterclass->getProduct();
+            $stockchapter = $chapterclass->getStock();
+            $chapterprice = $chapterclass->getChapterPrice();
+            $chapteridvolume = $chapterclass->getChapterName();
+            $chapteravailable = $chapterclass->isNotAvailable();
+
+            $chapternewstock = new Chapter();
+            $chapternewstock->setChapterId($id);
+            $chapternewstock->setStock($stockchapter - 1);
+            $chapternewstock->setChapterPrice($chapterprice);
+            $chapternewstock->setProduct($productchapter);
+            $chapternewstock->setChapterName($chapteridvolume);
+            $chapternewstock->setNotAvailable($chapteravailable);
+
+            $em->merge($chapternewstock);
+            $em->flush();
+        }
 
         $cartproduct = $_POST;
 
@@ -23,39 +51,58 @@ class AddProductToCart{
                 if(is_int($key))
                     array_push($chapterids, $key);
             }
-            var_dump($chapterids);
 
             $em = EntityManager::getInstance();
 
-            /** @var UserRepository$userRepository */
-            $userRepository = $em->getRepository(User::class);
-            $userclass = $userRepository->findOneBy(['uid' => 1]);
-
-
-
+            $chaptersclass = [];
             foreach ($chapterids as $id) {
                 /** @var ChaptersRepository$chaptersRepository */
                 $chaptersRepository = $em->getRepository(Chapter::class);
-                $chapters = $chaptersRepository->findBy(['product' => '12']);
+                $chapters = $chaptersRepository->findBy(['product' => $_SESSION['productid']]);
 
                 $chapterid = $chapters[$id-1]->getChapterId();
+                array_push($chaptersclass, [$chapterid, 1]);
 
-                /** @var ChaptersRepository$chaptersRepository */
-                $chaptersRepository = $em->getRepository(Chapter::class);
-                $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $chapterid]);
+            }
+
+            $testt = [];
+            if(empty($_SESSION['cart'])){
+                $_SESSION['cart'] = [];
+                foreach($chaptersclass as $chapter){
+                    $expire = time() + (60*1);
+                    array_push($chapter, $expire);
+                    array_push($_SESSION['cart'], $chapter);
+                }
+                foreach($_SESSION['cart'] as $product){
+                    setNewStock($product[0]);
+                }
+            }
+            else {
+                $truc=[];
+                foreach ($_SESSION['cart'] as $product) {
+                    array_push($testt, $product);
+                    unset($product[2]);
+                    $truc[] = $product;
+                }
+                foreach($chaptersclass as $chapter){
+                    if(!in_array($chapter, $truc)){
+                        array_push($chapter, time() + (60*1));
+                        array_push($testt, $chapter);
+                    }
+                }
 
 
-//                $cart_product = new CartProduct();
-//                $cart_product->setChapter($chapterclass);
-//                $cart_product->setUser($userclass);
-//                $cart_product->setQtt(1);
-//
-//                $em->persist($cart_product);
-//                $em->flush();
+
+
+                $_SESSION['cart'] = $testt;
+            }
+            foreach($_SESSION['cart'] as $product){
+                var_dump($product);
+                echo'<br/>';
             }
         }
+
         AddProductToCart($cartproduct);
-
-
+        header("Location:/chapterspage?id=".$_SESSION['productid']);
     }
 }

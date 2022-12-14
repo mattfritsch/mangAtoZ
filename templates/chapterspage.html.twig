@@ -8,46 +8,69 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
     <link rel="icon" type="image/x-icon" href="./assets/img/favicon.ico">
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+    <link href="./assets/style/chaptersPage.css" rel="stylesheet">
     <script src="./javascript/chapterspage.js"></script>
-    <title>Title</title>
+    <title>{{ lang.HOME.CHAPTERS }}</title>
 </head>
 
 {% include "header.html.twig" %}
 
-{{ chapters[0].product.productId }}
 
 <form method="post" action="/addproduct" id="chapitre">
-    <select id="countries" multiple>
-    {% for key, chapter in chapters %}
-        {% set numero = key+1 %}
-        {% set numerolength = numero | json_encode(constant('JSON_PRETTY_PRINT'))|length%}
+    <div class="text-center row justify-content-center mt-3">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ product[0].img }}" class="img-fluid rounded-start" alt="{{ product[0].productName }}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ product[0].productName }}</h5>
+                    </div>
+                    <div class="card-body m-1">
+                        <div class="overflow-auto mb-2 text-scrollable" id="text-scrollable">
+                            <p class="text-left">{{ product[0].resume }}</p>
+                        </div>
+                        <select id="chapters" multiple>
+                            {% for key, chapter in chapters %}
+                                {% set numero = key+1 %}
+                                {% set numerolength = numero | json_encode(constant('JSON_PRETTY_PRINT'))|length%}
 
-        {% set values = [] %}
-                {% for i in 0..numerolength-1 %}
-                    {% set values = values|merge([numero|slice(i)]) %}
-                {% endfor %}
+                                {% set values = [] %}
+                                {% for i in 0..numerolength-1 %}
+                                    {% set values = values|merge([numero|slice(i)]) %}
+                                {% endfor %}
 
-        {% if not chapter.stock == 0 %}
+                                {% if not chapter.stock == 0 %}
 
-            <option value={{ key+1 }}>{{ key+1 }} Prix : {{ chapter.chapterPrice }}</option>
+                                    <option value={{ key+1 }}>{{ lang.CHAPITRE.CHAPITRE }} {{ key+1 }} ➔ {{ lang.CHAPITRE.PRIX }} : {{ chapter.chapterPrice }} € |
+                                        {{ lang.CHAPITRE.STOCK }} : {{ chapter.stock }}</option>
 
-        {% else %}
+                                {% else %}
 
-            <option value={{ key+1 }}>{{ key+1 }}</option>
-            <script>
+                                    <option class="bg-danger" value={{ key+1 }}>{{ lang.CHAPITRE.CHAPITRE }} {{ key+1 }} ➔ {{ lang.CHAPITRE.PRIX }} : {{ chapter.chapterPrice }} € |
+                                        {{ lang.CHAPITRE.STOCK }} : {{ chapter.stock }}</option>
+                                    {#<script>
                 AddPasDispo({{ key+1 }})
-            </script>
+            </script>#}
 
-        {% endif %}
-    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
 
-    </select>
-
-    <button type="submit" >Ajouter au panier</button>
+                        </select>
+                    </div>
+                    <div class="card-footer text-center">
+                        <button type="submit" class="btn btn-outline-primary">{{ lang.CHAPITRE.PANIER }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 {% include "footer.html.twig" %}
 <script>
-    new MultiSelectTag('countries', {
+    new MultiSelectTag('chapters', {
         rounded: true,    // default true
         shadow: true,     // default false
     })  // id

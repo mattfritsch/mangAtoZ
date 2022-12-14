@@ -53,7 +53,6 @@ class Login{
                         window.location.href = "/";
                     </script>
                     <?php
-                    die;
 //                    header('Location: /');
                 } else {
                     $errors["password"] = $lang['CONNECTION']['ERRORPASSWORD'];
@@ -85,7 +84,9 @@ class Login{
                 if ($password === $user->getPassword()) {
                     startSession();
                     $_SESSION['user'] = $user;
-                    header('Location: /');
+                    /*header('Location: /');*/
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    exit;
                 }
             }
         }
