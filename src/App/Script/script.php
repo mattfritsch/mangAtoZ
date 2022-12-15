@@ -4,7 +4,7 @@ include('scriptCategories.php');
 
 getCategoriesDesc();
 
-for($i = 0; $i<150; $i = $i+10) {
+for($i = 0; $i<20; $i = $i+10) {
     getData($i);
 }
 
