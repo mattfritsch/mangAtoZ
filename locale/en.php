@@ -188,6 +188,11 @@ return [
         'STATUS' => 'Status',
         'YES' => 'Yes',
         'NOTDELIVERED' => 'In progress',
+        'ORDER' => 'Your order',
+        'CHAPTER' => 'Chapter',
+        'QUANTITY' => 'Quantity',
+        'TOTAL' => 'Total',
+        'CLOSE' => 'Close',
     ],
     'PROFILINFOS' => [
         'TITLE' => 'Informations',
@@ -200,5 +205,21 @@ return [
         'POSTCODE'=> 'Postcode',
         'CITY'=> 'City',
         'APPLY' => 'Apply'
+    ],
+    'PAYMENT' => [
+        'TITLE' => 'Payment',
+        'RECAP' => 'Summary of your order',
+        'CHAPTER' => 'Chapter',
+        'QUANTITY' => 'Quantity',
+        'FEES' => 'Shipping fees',
+        'SUBTOTAL' => 'Subtotal',
+        'PRICE' => 'Price',
+        'TOTAL' => 'Total',
+    ],
+    'SUCCESSPAYMENT' => [
+        'TITLE' => 'Payment',
+        'VALID' => 'Payment validate',
+        'THANKS' => 'Thanks for your purchase',
+        'HOME' => 'Back to home',
     ],
 ];

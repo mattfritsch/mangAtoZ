@@ -189,6 +189,11 @@ return [
         'STATUS' => 'Statut',
         'YES' => 'Oui',
         'NOTDELIVERED' => 'En cours',
+        'ORDER' => 'Votre commande',
+        'CHAPTER' => 'Chapitre',
+        'QUANTITY' => 'Quantité',
+        'TOTAL' => 'Total',
+        'CLOSE' => 'Fermer'
     ],
     'PROFILINFOS' => [
         'TITLE' => 'Informations',
@@ -201,5 +206,21 @@ return [
         'POSTCODE'=> 'Code postal',
         'CITY'=> 'Ville',
         'APPLY' => 'Appliquer'
+    ],
+    'PAYMENT' => [
+        'TITLE' => 'Paiement',
+        'RECAP' => 'Récapitulatif de votre commande',
+        'CHAPTER' => 'Chapitre',
+        'QUANTITY' => 'Quantité',
+        'FEES' => 'Frais de port',
+        'SUBTOTAL' => 'Sous total',
+        'PRICE' => 'Prix',
+        'TOTAL' => 'Total',
+    ],
+    'SUCCESSPAYMENT' => [
+        'TITLE' => 'Paiement',
+        'VALID' => 'Paiement validé',
+        'THANKS' => 'Merci pour votre achat',
+        'HOME' => 'Retour à l\'accueil',
     ],
 ];
