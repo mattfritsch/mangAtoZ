@@ -4,12 +4,10 @@
 
     {% include "layoutStyle.html.twig" %}
     <link href="./assets/style/chaptersPage.css" rel="stylesheet">
-    <script src="./javascript/chapterspage.js"></script>
     <title>{{ lang.HOME.CHAPTERS }}</title>
 </head>
 
 {% include "header.html.twig" %}
-
 
 <form method="post" action="/addproduct" id="chapitre">
     <div class="text-center row justify-content-center mt-3">
@@ -26,7 +24,7 @@
                         <div class="overflow-auto mb-2 text-scrollable" id="text-scrollable">
                             <p class="text-left">{{ product[0].resume }}</p>
                         </div>
-                        <select id="chapters" multiple>
+                        <select class="js-example-basic-multiple" name="chapters[]" multiple="multiple">
                             {% for key, chapter in chapters %}
                                 {% set numero = key+1 %}
                                 {% set numerolength = numero | json_encode(constant('JSON_PRETTY_PRINT'))|length%}
@@ -43,11 +41,8 @@
 
                                 {% else %}
 
-                                    <option class="bg-danger" value={{ key+1 }}>{{ lang.CHAPITRE.CHAPITRE }} {{ key+1 }} ➔ {{ lang.CHAPITRE.PRIX }} : {{ chapter.chapterPrice }} € |
-                                        {{ lang.CHAPITRE.STOCK }} : {{ chapter.stock }}</option>
-                                    {#<script>
-                AddPasDispo({{ key+1 }})
-            </script>#}
+                                    <option value={{ key+1 }} id='options{{ key+1 }}' class='pasdispo' disabled >{{ lang.CHAPITRE.CHAPITRE }} {{ key+1 }} ➔ {{ lang.CHAPITRE.PRIX }} : {{ chapter.chapterPrice }} € |
+                                        {{ lang.CHAPITRE.STOCK }} : {{ chapter.stock }} </option>
 
                                 {% endif %}
                             {% endfor %}
@@ -63,14 +58,7 @@
     </div>
 </form>
 {% include "footer.html.twig" %}
-<script>
-    new MultiSelectTag('chapters', {
-        rounded: true,    // default true
-        shadow: true,     // default false
-    })  // id
-    Initialize()
 
-</script>
 
 </body>
 {% include "layoutScript.html.twig" %}

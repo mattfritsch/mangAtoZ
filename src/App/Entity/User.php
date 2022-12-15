@@ -45,6 +45,7 @@ class User
     #[ORM\Column(type: 'datetime')]
     protected DateTime $birthDate;
 
+
     /**
      * @return string
      */
