@@ -7,6 +7,7 @@ return [
         'STORE' => 'Store',
         'PROFILE' => 'Profile',
         'SEARCH' => 'Search',
+        'CART' => 'Cart',
         'CHAPTERS' => 'Chapters',
         'LOGIN' => 'Log-in',
         'SIGNUP' => 'Sign-up',
@@ -127,6 +128,8 @@ return [
         'STOCK' => 'Stock'
     ],
     'PANIER' =>[
+        'PANIER' => 'My shopping cart',
+        'INFO' => 'Your shopping cart is currently empty, go and fill it ! ',
         'CHAPITRE' =>'Chapter',
         'QUANTITE' =>'Amount',
         'MODIF' =>'Save changes',

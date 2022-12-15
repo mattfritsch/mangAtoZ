@@ -3,6 +3,7 @@
 <head>
     {% include "layoutStyle.html.twig" %}
     <link href="./assets/style/categoriesPage.css" rel="stylesheet">
+    <link href="./assets/style/scrollToTop.css" rel="stylesheet">
     <title>{{ lang.HOME.CATEGORIES }}</title>
 </head>
 <body>
@@ -31,8 +32,10 @@
             {% endfor %}
         </div>
     </div>
+    {% include 'scrollToTop.html.twig' %}
 </main>
 {% include "footer.html.twig" %}
 </body>
 {% include "layoutScript.html.twig" %}
+<script src="./javascript/scrollToTop.js"></script>
 </html>
