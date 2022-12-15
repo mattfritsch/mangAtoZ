@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 
 use App\Entity\CartProduct;
 use App\Entity\Chapter;
@@ -11,36 +9,24 @@ use App\Repository\ChaptersRepository;
 use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
-use function App\clearCart;
 use function App\getTextLangue;
 use function App\isUser;
 use function App\startSession;
 use DateTime;
 
-
-
 class Panier{
     public function __invoke()
     {
         startSession();
-//        clearCart();
-        var_dump($_SESSION['cart']);
-        echo'<br/>';
+
         $volumesName = [];
-        var_dump($volumesName);
         $premierChapitres = [];
         $stockchapitre = [];
         $quantite = [];
         $chapitresmangas = [];
         $idchapvolume = [];
 
-        foreach($_SESSION['cart'] as $product){
-    var_dump($product);
-    echo'<br/>';
-
-}
         $em = EntityManager::getInstance();
-//        var_dump($_SESSION['cart']);
         if(isset($_SESSION['user'])){
             /** @var UserRepository $userRepository */
             $userRepository = $em->getRepository(User::class);
@@ -49,63 +35,61 @@ class Panier{
             /** @var CartProductRepository $cartproductRepository */
             $cartproductRepository = $em->getRepository(CartProduct::class);
             $cartproductclass = $cartproductRepository->findBy(['user' => $userclass]);
-//            var_dump($cartproductclass);
 
+            if(!isset($_SESSION['cart'])){
+                $_SESSION['cart'] = [];
+                /** @var CartProductRepository $cartproductRepository */
+                $cartproductRepository = $em->getRepository(CartProduct::class);
+                $cartproductclass = $cartproductRepository->findBy(['user' => $userclass]);
+                foreach($cartproductclass as $cartproduct){
+                    array_push($_SESSION['cart'], [$cartproduct->getChapter()->getChapterId(), $cartproduct->getQuantite()]);
+                }
+            }
 
-            var_dump($_SESSION['cart']);
             if(isset($_SESSION['cart'])){
                 $chapitrecartsession = [];
                 $chapitrecartbdd = [];
                 foreach($_SESSION['cart'] as $product){
                     /** @var ChaptersRepository $chaptersRepository */
                     $chaptersRepository = $em->getRepository(Chapter::class);
-                    $chapterclass = $chaptersRepository->findBy(['chapterId' => $product[0]]);
+                    $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $product[0]]);
                     array_push($chapitrecartsession,$chapterclass );
+                    var_dump($chapterclass->getStock());
                 }
-//                var_dump($chapitrecartsession);
+
                 foreach($cartproductclass as $cartproduct){
                     array_push($chapitrecartbdd , $cartproduct->getChapter());
+                    var_dump($cartproduct->getChapter()->getChapterId());
                 }
-echo '<br/>';
-//                var_dump($userclass);
 
+                for($i=0; $i<count($chapitrecartsession); $i++){
+                    var_dump($i);
+                    if(in_array($chapitrecartsession[$i], $chapitrecartbdd)){
+                        /** @var CartProductRepository $cartproductRepository */
+                        $cartproductRepository = $em->getRepository(CartProduct::class);
+                        $cartproductclass = $cartproductRepository->findOneBy(['user' => $userclass, 'chapter'=>$chapitrecartsession[$i]]);
 
-                foreach($chapitrecartsession as $chapitresession){
-                    if(!in_array($chapitresession[0], $chapitrecartbdd)){
-//                        var_dump($chapitresession);
                         $cartproduct = new CartProduct();
                         $cartproduct->setUser($userclass);
-                        $cartproduct->setChapter($chapitresession[0]);
-                        $cartproduct->setQuantite(1);
-                        $cartproduct->setCartTime(new DateTime());
+                        $cartproduct->setChapter($chapitrecartsession[$i]);
+                        $cartproduct->setQuantite((int)$_SESSION['cart'][$i][1]);
+                        $cartproduct->setCartTime($cartproductclass->getCartTime());
 
+                        $em->merge($cartproduct);
+                        $em->flush();
+                    }
+
+                    if(!in_array($chapitrecartsession[$i], $chapitrecartbdd)){
+                        $cartproduct = new CartProduct();
+                        $cartproduct->setUser($userclass);
+                        $cartproduct->setChapter($chapitrecartsession[$i]);
+                        $cartproduct->setQuantite((int)$_SESSION['cart'][$i][1]);
+                        $cartproduct->setCartTime(new DateTime());
 
                         $em->persist($cartproduct);
                         $em->flush();
-
-                    }
-                    for($i=0; $i<count($_SESSION['cart']); $i++){
-                        /** @var ChaptersRepository $chaptersRepository */
-                        $chaptersRepository = $em->getRepository(Chapter::class);
-                        $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
-//                        var_dump($chapterclass);
-                        if(in_array($chapterclass, $chapitrecartbdd)){
-                            /** @var CartProductRepository $cartproductRepository */
-                            $cartproductRepository = $em->getRepository(CartProduct::class);
-                            $cartproductclass = $cartproductRepository->findOneBy(['user' => $userclass, 'chapter'=>$chapterclass]);
-                            $_SESSION['cart'][$i][1] = $cartproductclass->getQuantite();
-                            echo'<br/>';
-
-//                            var_dump($product[1]);
-                        }
                     }
                 }
-                echo'<br/>';
-                echo'<br/>';
-                    var_dump($_SESSION['cart']);
-                echo'<br/>';
-                echo'<br/>';
-
             }
 
             /** @var CartProductRepository $cartproductRepository */
@@ -114,31 +98,17 @@ echo '<br/>';
 
 
             foreach ($cartproductclass as $chapitre) {
-//                var_dump($chapitre->getChapter()->getStock());
+
                 $quantite[] = $chapitre->getQuantite();
 
                 var_dump($chapitre->getChapter()->getProduct()->getProductId());
                 $chapitresmangas[] = $chapitre->getChapter()->getChapterId();
 
-
-                $idvolume = $chapitre->getChapter()->getProduct()->getProductId();
-
-//
                 $stock = $chapitre->getChapter()->getStock();
                 $stockchapitre[] = $stock;
-//
-//                /** @var ChaptersRepository $chaptersRepository */
-//                $chaptersRepository = $em->getRepository(Chapter::class);
-//                $allchapters = $chaptersRepository->findBy(['product' => $idvolume]);
-//
-//                $firstchaptervolume = $allchapters[0]->getChapterId();
-//
-//                if (!in_array($firstchaptervolume, $premierChapitres)) {
-//                    array_push($premierChapitres, $firstchaptervolume);
-//                }
-//
+
                 $nomManga = $chapitre->getChapter()->getProduct()->getProductName();
-                var_dump($volumesName);
+
                 if (!in_array($nomManga, $volumesName)) {
                     array_push($volumesName, $nomManga);
                 }
@@ -175,23 +145,20 @@ echo '<br/>';
                         $k = $k + 1;
                     }
                 }
+
                 $manga = [];
                 for ($i = 0; $i < count($volumesName); $i++) {
                     $manga[$i] = [$volumesName[$i], $idchapvolume[$volumesName[$i]], $chapitresmanga[$i], $stocks[$i]];
                 }
             }
-            var_dump($quantite);
-
-
         }
         else {
             if (!empty($_SESSION['cart'])) {
 
-
                 $chapitres = $_SESSION['cart'];
 
-
                 foreach ($chapitres as $chapitre) {
+                    var_dump($chapitre[1]);
                     array_push($quantite, $chapitre[1]);
 
                     var_dump($chapitre[0]);

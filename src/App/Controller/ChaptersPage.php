@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Chapter;
 use App\Entity\Product;
 use App\Entity\User;
@@ -11,7 +10,6 @@ use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
-use function App\clearCart;
 use function App\getTextLangue;
 use function App\isUser;
 use function App\startSession;
@@ -22,7 +20,9 @@ class ChaptersPage
     public function __invoke()
     {
         startSession();
+
         $lang = getTextLangue($_SESSION['locale']);
+
 
         $em = EntityManager::getInstance();
 
@@ -58,6 +58,7 @@ class ChaptersPage
                             $chapter->setEmail($users);
                             $em->persist($chapter);
                             $em->flush();
+
 
                             $data["response"] = "success";
                             $data["msg"] = $lang["CHAPITRE"]["MSGSUCCESS"];
