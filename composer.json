@@ -5,7 +5,10 @@
         "nyholm/psr7-server": "^1.0",
         "twig/twig": "^3.0",
         "doctrine/orm": "^2.13",
-        "symfony/cache": "^6.1"
+        "symfony/cache": "^6.1",
+        "twbs/bootstrap": "^5.2",
+        "select2/select2": "^4.0",
+        "components/jquery": "^3.6"
     },
     "autoload": {
       "files": ["src/App/utils.php"],

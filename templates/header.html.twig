@@ -20,41 +20,48 @@
                             {{ lang.HOME.STORE }}
                         </a>
                     </li>
-                    <li class="nav-item dropdown" id="">
-                        <a href="#" class="nav-link dropdown-toggle" id="profileDropDown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ lang.HOME.PROFILE }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="profileDropDown">
-                            <li>
-                                <a href="/profile/infos" class="dropdown-item">{{ lang.HOME.USERPROFIL }}</a>
+                        {% if user != '' %}
+                        <li class="nav-item dropdown" id="">
+                            <a href="#" class="nav-link dropdown-toggle" id="profileDropDown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ lang.HOME.PROFILE }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="profileDropDown">
+                                <li>
+                                    <a href="/profile/infos" class="dropdown-item">{{ lang.HOME.USERPROFIL }}</a>
+                                </li>
+                                <li>
+                                    <a href="/profile/orders" class="dropdown-item">{{ lang.HOME.USERORDERS }}</a>
+                                </li>
+                            </ul>
+                            <li class="nav-item" id="">
+                                <a href="/panier" class="nav-link">
+                                    {{ lang.HOME.CART }}
+                                </a>
                             </li>
-                            <li>
-                                <a href="/profile/orders" class="dropdown-item">{{ lang.HOME.USERORDERS }}</a>
-                            </li>
-                        </ul>
-                    </li>
-                    {% if user.isAdmin == 1 %}
-                    <li class="nav-item dropdown" id="">
-                        <a href="#" class="nav-link dropdown-toggle" id="adminDropDown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ lang.HOME.ADMIN }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="adminDropDown">
-                            <li>
-                                <a href="/admin/categs" class="dropdown-item">{{ lang.HOME.ADMINCATEGS }}</a>
-                            </li>
-                            <li>
-                                <a href="/admin/products" class="dropdown-item">{{ lang.HOME.ADMINPRODUCTS }}</a>
-                            </li>
-                            <li>
-                                <a href="/admin/users" class="dropdown-item">{{ lang.HOME.ADMINUSERS }}</a>
-                            </li>
-                            <li>
-                                <a href="/admin/orders" class="dropdown-item">{{ lang.HOME.ADMINORDERS }}</a>
-                            </li>
-                        </ul>
-                    </li>
+                        </li>
+                        {% if user.isAdmin == 1 %}
+                        <li class="nav-item dropdown" id="">
+                            <a href="#" class="nav-link dropdown-toggle" id="adminDropDown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ lang.HOME.ADMIN }}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="adminDropDown">
+                                <li>
+                                    <a href="/admin/categs" class="dropdown-item">{{ lang.HOME.ADMINCATEGS }}</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/products" class="dropdown-item">{{ lang.HOME.ADMINPRODUCTS }}</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/users" class="dropdown-item">{{ lang.HOME.ADMINUSERS }}</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/orders" class="dropdown-item">{{ lang.HOME.ADMINORDERS }}</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% endif %}
                     {% endif %}
                 </ul>
                 {% if user == '' %}
@@ -66,7 +73,7 @@
                 {% else %}
                     <form action="/logout" method="post">
                         <div class="d-flex justify-content-start border-start border-3 p-2">
-                            <button class="btn btn-outline-success me-1" type="submit" name="logout">{{ lang.HOME.LOGOUT }}</button>
+                            <button class="btn btn-outline-danger me-1" type="submit" name="logout">{{ lang.HOME.LOGOUT }}</button>
                         </div>
                     </form>
                 {% endif %}

@@ -7,6 +7,7 @@ return [
         'STORE' => 'Boutique',
         'PROFILE' => 'Profil',
         'SEARCH' => 'Rechercher',
+        'CART' => 'Panier',
         'CHAPTERS' => 'Chapitres',
         'LOGIN' => 'Se connecter',
         'SIGNUP' => 'S\'inscrire',
@@ -128,6 +129,8 @@ return [
         'STOCK' => 'Stock'
     ],
     'PANIER' =>[
+        'PANIER' => 'Mon panier',
+        'INFO' => 'Votre panier est actuellement vide, allez le remplir !',
         'CHAPITRE' =>'Chapitre',
         'QUANTITE' =>'Quantité',
         'MODIF' =>'Enregistrer les modifications',
