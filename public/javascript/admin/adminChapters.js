@@ -121,6 +121,7 @@ btn_form_update.addEventListener("click", function () {
             return response.text();
         })
         .then(function (body) {
+            console.log(body)
             let data = JSON.parse(body)
             let tr = document.getElementsByTagName("tr");
             for (let item of tr) {

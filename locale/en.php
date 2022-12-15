@@ -126,7 +126,11 @@ return [
         'CHAPITRE' => 'Chapter',
         'PRIX' => 'Price',
         'PANIER' =>'Add to cart',
-        'STOCK' => 'Stock'
+        'STOCK' => 'Stock',
+        'NOTIFY' => 'Notify me',
+        'NOTAVAILABLE' => 'Chapters not available',
+        'MSGSUCCESS' => 'You will be notified by mail when this chapter is restocked.',
+        'MSGERROR' => 'You will already be notified by mail when this chapter is restocked.',
     ],
     'PANIER' =>[
         'PANIER' => 'My shopping cart',
@@ -188,6 +192,11 @@ return [
         'STATUS' => 'Status',
         'YES' => 'Yes',
         'NOTDELIVERED' => 'In progress',
+        'ORDER' => 'Your order',
+        'CHAPTER' => 'Chapter',
+        'QUANTITY' => 'Quantity',
+        'TOTAL' => 'Total',
+        'CLOSE' => 'Close',
     ],
     'PROFILINFOS' => [
         'TITLE' => 'Informations',
@@ -200,5 +209,21 @@ return [
         'POSTCODE'=> 'Postcode',
         'CITY'=> 'City',
         'APPLY' => 'Apply'
+    ],
+    'PAYMENT' => [
+        'TITLE' => 'Payment',
+        'RECAP' => 'Summary of your order',
+        'CHAPTER' => 'Chapter',
+        'QUANTITY' => 'Quantity',
+        'FEES' => 'Shipping fees',
+        'SUBTOTAL' => 'Subtotal',
+        'PRICE' => 'Price',
+        'TOTAL' => 'Total',
+    ],
+    'SUCCESSPAYMENT' => [
+        'TITLE' => 'Payment',
+        'VALID' => 'Payment validate',
+        'THANKS' => 'Thanks for your purchase',
+        'HOME' => 'Back to home',
     ],
 ];

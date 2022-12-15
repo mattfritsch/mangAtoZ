@@ -12,17 +12,32 @@ use Doctrine\ORM\Mapping\ManyToOne;
 class OrderProduct
 {
     #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    protected int $orderProductId;
+
     #[ManyToOne(targetEntity: Chapter::class)]
     #[JoinColumn(name: 'chapter', referencedColumnName: 'chapterId')]
     protected Chapter $chapter;
 
-    #[ORM\Id]
-    #[ManyToOne(targetEntity: Order::class)]
-    #[JoinColumn(name: '`order`', referencedColumnName: 'orderId')]
-    protected Order $order;
-
     #[ORM\Column(type: 'integer')]
     protected int $qtt;
+
+    /**
+     * @return int
+     */
+    public function getOrderProductId(): int
+    {
+        return $this->orderProductId;
+    }
+
+    /**
+     * @param int $orderProductId
+     */
+    public function setOrderProductId(int $orderProductId): void
+    {
+        $this->orderProductId = $orderProductId;
+    }
 
     /**
      * @return Chapter
@@ -38,22 +53,6 @@ class OrderProduct
     public function setChapter(Chapter $chapter): void
     {
         $this->chapter = $chapter;
-    }
-
-    /**
-     * @return Order
-     */
-    public function getOrder(): Order
-    {
-        return $this->order;
-    }
-
-    /**
-     * @param Order $order
-     */
-    public function setOrder(Order $order): void
-    {
-        $this->order = $order;
     }
 
     /**

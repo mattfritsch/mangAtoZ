@@ -1,11 +1,14 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\CartProduct;
 use App\Entity\Chapter;
 use App\Entity\Order;
 use App\Entity\OrderProduct;
 use App\Entity\User;
+use App\Repository\CartProductRepository;
 use App\Repository\ChaptersRepository;
+use App\Repository\OrderRepository;
 use App\Repository\UserRepository;
 use DateTime;
 use Framework\Doctrine\EntityManager;
@@ -24,35 +27,50 @@ class PayementAccept{
         $userRepository = $em->getRepository(User::class);
         $userclass = $userRepository->findOneBy(['uid' => $_SESSION['user']->getUid()]);
 
-        $date = new DateTime();
-        $order = new Order();
-        $order->setUser($userclass);
-        $order->setOrderId(0);
-        $order->setOrderDateTime($date);
-        $order->setTotalPrice($_SESSION['prixtotal']);
-        $order->setDelivered(0);
-        $em->persist($order);
-        $em->flush();
+        /** @var CartProductRepository $cartProductRepository */
+        $cartProductRepository = $em->getRepository(CartProduct::class);
+        $cart = $cartProductRepository->findBy(array('user' => $userclass));
 
-        for($i = 0; $i<count($_SESSION['cart']); $i++) {
-            /** @var ChaptersRepository$chaptersRepository */
-            $chaptersRepository = $em->getRepository(Chapter::class);
-            $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
+        if (sizeof($cart) !== 0){
+            foreach ($cart as $product) {
+                $em->remove($product);
+            }
+            $em->flush();
 
-            /** @var OrderRepository$orderRepository */
-            $orderRepository = $em->getRepository(Order::class);
-            $orderclass = $orderRepository->findOneBy(['orderDateTime' => $date ,'totalPrice' => $_SESSION['prixtotal']]);
+            $date = new DateTime();
 
-            $orderproduct = new OrderProduct();
-            $orderproduct->setChapter($chapterclass);
-            $orderproduct->setOrder($orderclass);
-            $orderproduct->setQtt($_SESSION['cart'][$i][1]);
-            $em->persist($orderproduct);
+            $orderProducts = [];
+
+            for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+                /** @var ChaptersRepository $chaptersRepository */
+                $chaptersRepository = $em->getRepository(Chapter::class);
+                $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
+
+
+                $orderproduct = new OrderProduct();
+                $orderproduct->setChapter($chapterclass);
+                $orderproduct->setQtt($_SESSION['cart'][$i][1]);
+                $orderProducts[] = $orderproduct;
+                $em->persist($orderproduct);
+                $em->flush();
+            }
+            $_SESSION['cart'] = [];
+
+
+            $order = new Order();
+            $order->setUser($userclass);
+            $order->setOrderId(0);
+            $order->setOrderDateTime($date);
+            $order->setTotalPrice($_SESSION['prixtotal']);
+            $order->setDelivered(0);
+            $order->setOrderProducts($orderProducts);
+            $em->persist($order);
             $em->flush();
         }
-        $_SESSION['cart'] = [];
 
-        $args = ['lang' => getTextLangue($_SESSION['locale'])];
+
+
+        $args = ['lang' => getTextLangue($_SESSION['locale']), 'user' => isUser()];
         return new Response('pagepayementaccept.html.twig', $args );
 
     }

@@ -127,7 +127,11 @@ return [
         'CHAPITRE' => 'Chapitre',
         'PRIX' => 'Prix',
         'PANIER' =>'Ajouter au panier',
-        'STOCK' => 'Stock'
+        'STOCK' => 'Stock',
+        'NOTIFY' => 'Me prévenir',
+        'NOTAVAILABLE' => 'Chapitres indisponibles',
+        'MSGSUCCESS' => 'Vous serez notifié par mail lorsque ce chapitre sera réapprovisionné',
+        'MSGERROR' => 'Vous serez déjà notifié par mail lorsque ce chapitre sera réapprovisionné',
     ],
     'PANIER' =>[
         'PANIER' => 'Mon panier',
@@ -189,6 +193,11 @@ return [
         'STATUS' => 'Statut',
         'YES' => 'Oui',
         'NOTDELIVERED' => 'En cours',
+        'ORDER' => 'Votre commande',
+        'CHAPTER' => 'Chapitre',
+        'QUANTITY' => 'Quantité',
+        'TOTAL' => 'Total',
+        'CLOSE' => 'Fermer'
     ],
     'PROFILINFOS' => [
         'TITLE' => 'Informations',
@@ -201,5 +210,21 @@ return [
         'POSTCODE'=> 'Code postal',
         'CITY'=> 'Ville',
         'APPLY' => 'Appliquer'
+    ],
+    'PAYMENT' => [
+        'TITLE' => 'Paiement',
+        'RECAP' => 'Récapitulatif de votre commande',
+        'CHAPTER' => 'Chapitre',
+        'QUANTITY' => 'Quantité',
+        'FEES' => 'Frais de port',
+        'SUBTOTAL' => 'Sous total',
+        'PRICE' => 'Prix',
+        'TOTAL' => 'Total',
+    ],
+    'SUCCESSPAYMENT' => [
+        'TITLE' => 'Paiement',
+        'VALID' => 'Paiement validé',
+        'THANKS' => 'Merci pour votre achat',
+        'HOME' => 'Retour à l\'accueil',
     ],
 ];
