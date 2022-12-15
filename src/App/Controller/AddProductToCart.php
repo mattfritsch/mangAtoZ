@@ -16,6 +16,7 @@ use Framework\Response\Response;
 use function App\clearCart;
 use function App\getTextLangue;
 use function App\startSession;
+use DateTime;
 
 class AddProductToCart{
     public function __invoke()
@@ -82,6 +83,7 @@ class AddProductToCart{
                 $cartproduct->setUser($userclass);
                 $cartproduct->setChapter($chapter);
                 $cartproduct->setQuantite(1);
+                $cartproduct->setCartTime(new DateTime());
 
                 $em->persist($cartproduct);
                 $em->flush();
@@ -160,6 +162,6 @@ class AddProductToCart{
         }
 
         AddProductToCart($cartproduct);
-        header("Location:/chapterspage?id=".$_SESSION['productid']);
+//        header("Location:/chapterspage?id=".$_SESSION['productid']);
     }
 }

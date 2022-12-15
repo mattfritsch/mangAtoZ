@@ -15,6 +15,7 @@ use function App\clearCart;
 use function App\getTextLangue;
 use function App\isUser;
 use function App\startSession;
+use DateTime;
 
 
 
@@ -76,6 +77,8 @@ echo '<br/>';
                         $cartproduct->setUser($userclass);
                         $cartproduct->setChapter($chapitresession[0]);
                         $cartproduct->setQuantite(1);
+                        $cartproduct->setCartTime(new DateTime());
+
 
                         $em->persist($cartproduct);
                         $em->flush();
