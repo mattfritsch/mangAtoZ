@@ -126,7 +126,11 @@ return [
         'CHAPITRE' => 'Chapter',
         'PRIX' => 'Price',
         'PANIER' =>'Add to cart',
-        'STOCK' => 'Stock'
+        'STOCK' => 'Stock',
+        'NOTIFY' => 'Notify me',
+        'NOTAVAILABLE' => 'Chapters not available',
+        'MSGSUCCESS' => 'You will be notified by mail when this chapter is restocked.',
+        'MSGERROR' => 'You will already be notified by mail when this chapter is restocked.',
     ],
     'PANIER' =>[
         'PANIER' => 'My shopping cart',

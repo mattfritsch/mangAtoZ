@@ -127,7 +127,11 @@ return [
         'CHAPITRE' => 'Chapitre',
         'PRIX' => 'Prix',
         'PANIER' =>'Ajouter au panier',
-        'STOCK' => 'Stock'
+        'STOCK' => 'Stock',
+        'NOTIFY' => 'Me prévenir',
+        'NOTAVAILABLE' => 'Chapitres indisponibles',
+        'MSGSUCCESS' => 'Vous serez notifié par mail lorsque ce chapitre sera réapprovisionné',
+        'MSGERROR' => 'Vous serez déjà notifié par mail lorsque ce chapitre sera réapprovisionné',
     ],
     'PANIER' =>[
         'PANIER' => 'Mon panier',
