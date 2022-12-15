@@ -9,7 +9,6 @@ use App\Entity\Categ;
 use App\Entity\User;
 use App\Repository\ProductRepository;
 use App\Repository\CategRepository;
-use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 
 $manga = [];
@@ -26,8 +25,7 @@ $id = [];
 $mangafinal = [];
 $m = 0;
 
-function getData($i){
-    global $m, $id, $resume, $titre, $image, $status, $nmbrChapitre, $rating, $manga, $mangafinal;
+function getData($i,$m, $id, $resume, $titre, $image, $status, $nmbrChapitre, $rating, $manga, $mangafinal, $categories, $agerating,$chapitres){
     $mangafinal = [];
     $json = file_get_contents('https://kitsu.io/api/edge/manga?page[limit]=10&page[offset]='.$i);
     $arr = json_decode($json, true);
@@ -41,10 +39,11 @@ function getData($i){
         $rating[$m] = (float) $row['attributes']['averageRating'];
         $agerating[$m] = $row['attributes']['ageRating'];
         $manga[$m] = [$id[$m], $resume[$m], $titre[$m], $image[$m], $status[$m], $nmbrChapitre[$m], $rating[$m], $agerating[$m]];
-        getCategories($row['id'],$m);
-
-        getChapitres($row['id'], $m);
-
+        $categmanga = getCategories($row['id'],$m,$categories,$manga);
+        array_push($manga[$m], $categmanga);
+        $chapitremanga = getChapitres($row['id'], $m,$nmbrChapitre, $chapitres);
+        array_push($manga[$m], $chapitremanga);
+        var_dump($manga[$m]);
         if($manga[$m][4] == 'finished'){
             $manga[$m][4] = true;
         }
@@ -67,33 +66,28 @@ function getData($i){
         }
         $m++;
     }
-    insertIntoDB();
-    echo '<br/>';
-    echo '<br/>';
+    insertIntoDB($mangafinal);
 }
 
 
-function getCategories($id, $m){
-    global $categories, $manga;
+function getCategories($id, $m,$categories, $manga){
     $categ = [];
     $json = file_get_contents('https://kitsu.io/api/edge/manga/' . $id . '/categories');
-//    var_dump($json);
     $arr = json_decode($json, true);
 
     foreach($arr['data'] as $row){
         array_push($categ, (int) $row['id']);
     }
     $categories[$m] = $categ;
-    array_push($manga[$m], $categories[$m]);
-    var_dump($categories[$m]);
+    return $categories[$m];
+
 }
 
-function getChapitres($id, $m){
-    global $nmbrChapitre, $chapitres, $manga;
+function getChapitres($id, $m,$nmbrChapitre, $chapitres){
+
     $chap = [];
     if($nmbrChapitre[$m] > 20) {
         $x = intdiv($nmbrChapitre[$m], 20);
-        $y = $nmbrChapitre[$m] % 20;
         $n = 0;
         while($n < $x) {
             $a = $n*20;
@@ -126,34 +120,12 @@ function getChapitres($id, $m){
         }
     }
     $chapitres[$m] = $chap;
-    array_push($manga[$m], $chapitres[$m]);
+    return $chapitres[$m];
 }
 
 
-
-
-
-//$count = 0;
-//
-//foreach($mangafinal as $rows){
-//    $count = $count + count($rows[8]);
-////    var_dump($rows);
-////    echo '<br/>';
-////    echo '<br/>';
-//}
-
-//var_dump($count);
-//$categid = [];
-//foreach($mangafinal[0][8] as $value){
-//    array_push($categid, $value);
-//    print($value);
-//}
-//var_dump($mangafinal);
-//var_dump($categid);
-
-function insertIntoDB()
+function insertIntoDB($mangafinal)
 {
-    global $mangafinal;
     $em = EntityManager::getInstance();
     for ($i = 0; $i < count($mangafinal); $i++) {
 
@@ -191,24 +163,6 @@ function insertIntoDB()
         $productRepository = $em->getRepository(Product::class);
         $productclass = $productRepository->findOneBy(['productId' => $mangafinal[$i][0]]);
 
-
-//        $em3 = EntityManager::getInstance();
-//        for($k = 0; $k < count($mangafinal[$i][8]); $k++){
-//            var_dump(($mangafinal[$i][8][$k]));
-//            /** @var CategRepository$categRepository */
-//            $categRepository = $em->getRepository(Categ::class);
-//            $categclass = $categRepository->findOneBy(['categId' => $mangafinal[$i][8][$k]]);
-//
-//            $productcateg = new ProductCateg();
-//
-////            $productcateg->setProductCategId();
-//            $productcateg->setProduct($productclass);
-//            $productcateg->setCateg($categclass);
-//
-//            $em3->persist($productcateg);
-//            $em3->flush();
-//        }
-
         $em2 = EntityManager::getInstance();
 
         $idchapitrevolume = 1;
@@ -232,14 +186,5 @@ function insertIntoDB()
             $em2->flush();
             $idchapitrevolume = $idchapitrevolume +1;
         }
-
-
     }
 }
-//
-//        /** @var \App\Repository\ProductRepository$productRepository */
-//      $productRepository = $em->getRepository(Product::class);
-//      // $users = $userRepository->findAll();
-//      $product = $productRepository->findOneBy(['productId'=>'1']);
-//      var_dump($product);
-//      die;

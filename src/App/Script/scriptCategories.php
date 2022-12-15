@@ -6,9 +6,8 @@ require_once dirname(__DIR__) . '/../../vendor/autoload.php';
 use App\Entity\Categ;
 use Framework\Doctrine\EntityManager;
 
-$categorie = [];
-function getCategoriesDesc(){
-    global $categorie;
+
+function getCategoriesDesc($categorie){
 
     for($i=0; $i<200; $i = $i +20) {
         $json = file_get_contents('https://kitsu.io/api/edge/categories?page[limit]=20&page[offset]=' . $i);
@@ -22,15 +21,13 @@ function getCategoriesDesc(){
     foreach($arr['data'] as $row){
         array_push($categorie, [$row['id'], $row['attributes']['title'], $row['attributes']['description']]);
     }
-    var_dump($categorie);
 
-    insertCategIntoDB();
+    insertCategIntoDB($categorie);
 }
 
 
-function insertCategIntoDB()
+function insertCategIntoDB($categorie)
 {
-    global $categorie;
     $em = EntityManager::getInstance();
     for ($i = 0; $i < count($categorie); $i++) {
         $categ = new Categ();
