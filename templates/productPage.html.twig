@@ -204,34 +204,40 @@
                     {% if nothing == true %}
                         <p>Aucun résultat correspondant a votre recherche</p>
                     {% else %}
-                        {% for key, product in products %}
-                            <div class="card me-2 mb-2 text-center">
-                                <img class="card-img-top" src="{{ product.img }}" alt="Card image cap">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-2">{{ product.productName }}</h5>
-                                    {% if product.chapterNumber > 1 %}
-                                        <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTERS }}</small>
-                                    {% else %}
-                                        <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTER }}</small>
-                                    {% endif %}
-                                </div>
-                                <div class="card-body mt-2">
-                                    <h5 class="card-title mt-2 mb-2">{{ lang.PRODUCT.DESCRIPTION }}</h5>
-                                    <div class="overflow-auto mb-2 text-scrollable">
-                                        <p class="card-text text-justify">{{ product.resume }}</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    {% if product.chapterNumber > 1 %}
-                                        <a href="/chapterspage?id={{ product.productId }}"
-                                           class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTERS }}</a>
-                                    {% else %}
-                                        <a href="/chapterspage?id={{ product.productId }}"
-                                           class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTER }}</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% endfor %}
+                        <div id="scroll" class="card me-2 mb-2 text-center"></div>
+
+
+{#                        {% for key, product in products %}#}
+{#                            <div class="card me-2 mb-2 text-center">#}
+{#                                <img class="card-img-top" src="{{ product.img }}" alt="Card image cap">#}
+{#                                <div class="card-header">#}
+{#                                    <h5 class="card-title mb-2">{{ product.productName }}</h5>#}
+{#                                    {% if product.chapterNumber > 1 %}#}
+{#                                        <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTERS }}</small>#}
+{#                                    {% else %}#}
+{#                                        <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTER }}</small>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                                <div class="card-body mt-2">#}
+{#                                    <h5 class="card-title mt-2 mb-2">{{ lang.PRODUCT.DESCRIPTION }}</h5>#}
+{#                                    <div class="overflow-auto mb-2 text-scrollable">#}
+{#                                        <p class="card-text text-justify">{{ product.resume }}</p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="card-footer">#}
+{#                                    {% if product.chapterNumber > 1 %}#}
+{#                                        <a href="/chapterspage?id={{ product.productId }}"#}
+{#                                           class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTERS }}</a>#}
+{#                                    {% else %}#}
+{#                                        <a href="/chapterspage?id={{ product.productId }}"#}
+{#                                           class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTER }}</a>#}
+{#                                    {% endif %}#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        {% endfor %}#}
+
+
+
                     {% endif %}
                 </div>
                 {% include "scrollToTop.html.twig" %}
