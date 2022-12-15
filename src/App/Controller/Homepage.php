@@ -7,6 +7,7 @@ use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Framework\Doctrine\EntityManager;
 use Framework\Response\Response;
+use function App\createJsonFile;
 use function App\getTextLangue;
 use function App\isUser;
 use function App\startSession;
@@ -23,6 +24,7 @@ class Homepage
       <?php
 
       startSession();
+      createJsonFile();
 
       $em = EntityManager::getInstance();
 

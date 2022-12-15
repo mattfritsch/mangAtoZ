@@ -44,6 +44,7 @@ class ProductRepository extends EntityRepository
                 else if($value === 'popularity')
                     $queryBuilder->addOrderBy('product.averageRating', 'DESC');
             }
+
             if($name === 'status'){
                 if($value === 'inprogress'){
                     $queryBuilder->andWhere('product.status = 0');

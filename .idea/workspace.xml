@@ -5,25 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="log-out, homepage">
-      <change afterPath="$PROJECT_DIR$/public/assets/img/banniere.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_12_2022_14_51_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_12_2022_14_51__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/offline.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/offline.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locale/en.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/en.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locale/fr.php" beforeDir="false" afterPath="$PROJECT_DIR$/locale/fr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/javascript/productPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/javascript/productPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Controller/Panier.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/Panier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/ProductPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Repository/CategRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Repository/CategRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Controller/Homepage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Controller/Homepage.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/Repository/ProductRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Repository/ProductRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/categoriesPage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categoriesPage.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/footer.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/utils.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/utils.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/home.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/panier.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/panier.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/productPage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/productPage.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile/profileInfos.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/profileInfos.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile/profileOrders.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/profileOrders.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +25,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
         <option value="HTML File" />
         <option value="JavaScript File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -56,6 +44,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="pwa" />
+                    <option name="lastUsedInstant" value="1671112583" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="store3" />
                     <option name="lastUsedInstant" value="1671034349" />
                   </RecentBranch>
@@ -70,10 +62,6 @@
                   <RecentBranch>
                     <option name="branchName" value="homepage" />
                     <option name="lastUsedInstant" value="1670939006" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="store" />
-                    <option name="lastUsedInstant" value="1670845217" />
                   </RecentBranch>
                 </list>
               </option>
@@ -143,7 +131,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "last_opened_file_path": "C:/wamp64/www/LP/mangAtoZ/public/assets/img",
+    "last_opened_file_path": "C:/wamp64/www/LP/mangAtoZ/public",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -156,15 +144,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\LP\mangAtoZ\public" />
+      <recent name="C:\wamp64\www\LP\mangAtoZ\public\assets" />
+      <recent name="C:\wamp64\www\LP\mangAtoZ\public\assets\logos" />
       <recent name="C:\wamp64\www\LP\mangAtoZ\public\assets\img" />
       <recent name="C:\wamp64\www\LP\mangAtoZ\public\librairies" />
-      <recent name="C:\wamp64\www\LP\mangAtoZ\public\librairies\select" />
-      <recent name="C:\wamp64\www\LP\mangAtoZ\public\javascript" />
-      <recent name="C:\wamp64\www\LP\mangAtoZ\public\assets\style" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\LP\mangAtoZ\public\assets\img" />
       <recent name="C:\wamp64\www\LP\mangAtoZ\public" />
+      <recent name="C:\wamp64\www\LP\mangAtoZ\public\assets\img" />
       <recent name="C:\wamp64\www\LP\mangAtoZ" />
       <recent name="C:\wamp64\www\LP\mangAtoZ\public\assets" />
       <recent name="C:\wamp64\www\LP\mangAtoZ\templates" />
@@ -204,6 +192,7 @@
       <workItem from="1671001127664" duration="4341000" />
       <workItem from="1671022734776" duration="1076000" />
       <workItem from="1671046306084" duration="6061000" />
+      <workItem from="1671096344333" duration="25327000" />
     </task>
     <task id="LOCAL-00001" summary="add getText librairies">
       <created>1669212369028</created>
