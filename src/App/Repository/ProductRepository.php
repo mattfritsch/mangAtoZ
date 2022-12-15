@@ -53,10 +53,7 @@ class ProductRepository extends EntityRepository
                 }
             }
             if($name === 'censure'){
-                if($value === 'nocensure'){
-                    $queryBuilder->andWhere('product.ageRank = 1');
-                }
-                else{
+                if($value !== 'nocensure'){
                     $queryBuilder->andWhere('product.ageRank = 0');
                 }
             }
