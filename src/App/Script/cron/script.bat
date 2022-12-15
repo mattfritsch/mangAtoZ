@@ -1,0 +1,1 @@
+"C:\wamp64\bin\php\php8.1.0\php.exe" -f "C:\Users\user\projet tut\mangAtoZ\src\App\Script\scriptcron.php"

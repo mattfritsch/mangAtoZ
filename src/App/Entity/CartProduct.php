@@ -6,6 +6,8 @@ use App\Repository\CartProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\ManyToOne;
+use DateTime;
+
 
 #[ORM\Entity(repositoryClass: CartProductRepository::class)]
 #[ORM\Table(name: 'cart_product')]
@@ -25,6 +27,9 @@ class CartProduct
 
     #[ORM\Column(type: 'integer')]
     protected int $quantite;
+
+    #[ORM\Column(type: 'datetime')]
+    protected DateTime $cartTime;
 
     /**
      * @return User
@@ -72,6 +77,22 @@ class CartProduct
     public function setQuantite(int $quantite): void
     {
         $this->quantite = $quantite;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCartTime(): DateTime
+    {
+        return $this->cartTime;
+    }
+
+    /**
+     * @param DateTime $cartTime
+     */
+    public function setCartTime(DateTime $cartTime): void
+    {
+        $this->cartTime = $cartTime;
     }
 
 
