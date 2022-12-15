@@ -22,6 +22,10 @@ class ProductPage
         startSession();
         $lang = getTextLangue($_SESSION["locale"]);
 
+        if (isset($_SESSION['user']))
+            $age = age();
+        else
+            $age = 0;
 
         $search = null;
         $search = $this->getValue('submitButton', 'searchBar', $search);
@@ -47,6 +51,8 @@ class ProductPage
         $categRepository = $em->getRepository(Categ::class);
         $categs = $categRepository->findBy(array(), array('categName' => 'asc'));
 
+        $filtered = false;
+
         if (isset($_POST['submitButton']) || isset($_POST['validateButton'])) {
             if(isset($_POST['categs'])){
                 $categ = $_POST['categs'];
@@ -54,18 +60,43 @@ class ProductPage
             else{
                 $categ = '';
             }
-            $_SESSION['category'] = $categ;
-            $products = $productRepository->getFilteredProducts(['search' => $search, 'order' => $order,
+            $filtered = true;
+            $productsFiltered = $productRepository->getFilteredProducts(['search' => $search, 'order' => $order,
                 'status' => $status, 'censure' => $censure, 'categories' => $categ]);
         }
 
 
             if (isset($_POST["method"])) {
                 if ($_POST["method"] === "getProducts"){
-//                    $query = $productRepository->getFilteredProducts(['search' => $search, 'order' => $order,
-//                        'status' => $status, 'censure' => $censure])
-                    $dql = "SELECT p FROM App\Entity\Product p";
-                    $query = $em->createQuery($dql)
+                    //categs
+                    if($_POST["categ0"] != ""){
+                        for($i = 0; $i < intval($_POST["nb_categs"]); $i++){
+                            $categs[] = $_POST["categ" . $i];
+                        }
+                    } else {
+                        $categs = '';
+                    }
+
+                    $search = null;
+                    if($_POST["search"] !== "")
+                        $search = $_POST["search"];
+
+
+                    $order = null;
+                    if($_POST["order"] !== "neutral")
+                        $order = $_POST["order"];
+
+                    $status = null;
+                    if(isset($_POST["status"]))
+                        $status = $_POST["status"];
+
+                    $censure = null;
+                    if(isset($_POST["censure"]))
+                        $censure = $_POST["censure"];
+
+
+                    $query = $productRepository->getFilteredProducts(['search' => $search, 'order' => $order,
+                        'status' => $status, 'censure' => $censure, 'categories' => $categs])
                         ->setFirstResult($_POST["min"])
                         ->setMaxResults($_POST["max"]);
 
@@ -93,36 +124,31 @@ class ProductPage
                     echo json_encode($data);
                 }
             } else {
+                if(isset($_POST['categs'])){
+                    $selectedCategs = $_POST['categs'];
+                }
+                else{
+                    $selectedCategs = '';
+                }
+
+                $nothing = null;
+
+                if($filtered === true){
+                    if (sizeof($productsFiltered->getResult()) === 0){
+                        $nothing = true;
+                    }
+                } else {
+                    if (sizeof($products) === 0){
+                        $nothing = true;
+                    }
+                }
+
 
                 $args = ['lang' => $lang, 'products' => $products, 'categs' => $categs,
                     'search' => $search, 'age' => $age, 'order' => $order, 'radioStatus' => $status, 'censureAdd' => $censure,
-                    'user' => isUser()];
+                    'user' => isUser(), 'selectedCategs' => $selectedCategs, 'nothing' => $nothing];
                 return new Response('productPage.html.twig', $args);
-
-        //if(isset($_SESSION['category'])){
-        //    $categories = $_SESSION['category'];
-          //  foreach ($categories as $category){
-            //    $selectedCateg = $categRepository->getSelectedCategories($category);
-              //  $selectedCategs[] = $selectedCateg;
-                //$_SESSION['categories'] = $selectedCategs;
-            //}
-          //else{
-            //  $selectedCategs = null;
-              //$_SESSION['categories'] = $selectedCategs;
-          //}
-        }
-
-        if (isset($_SESSION['user']))
-            $age = age();
-        else
-            $age = 0;
-
-        $args = ['lang' => getTextLangue($_SESSION['locale']), 'products' => $products, 'categs' => $categs,
-            'search' => $search, 'age' => $age, 'order' => $order, 'radioStatus' => $status, 'censureAdd' => $censure,
-            'user' => isUser(), 'selectedCategs' => $_SESSION['categories']];
-        return new Response('productPage.html.twig', $args);
-
-
+            }
     }
 
     public function getValue(string $buttonName, string $fieldName, ?string $value): ?string

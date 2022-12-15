@@ -3,11 +3,15 @@ $(document).ready(function() {
 });
 
 
-
-
 //Infinite Scroll
 
 let div_scroll = document.getElementById("scroll")
+let div_categs = document.getElementById("categs")
+let input_search = document.getElementById("searchBar")
+let select_order = document.getElementById("order")
+let radio_in_progress = document.getElementById("statusInprogress")
+let radio_finished = document.getElementById("statusFinished")
+let radio_censure = document.getElementById("removeCensure")
 let counter = 0;
 let counter_displayed = 0;
 let nb_results = 0;
@@ -42,6 +46,8 @@ async function loadProducts(number){
     for (let i = 0; i < number; i++){
         let container = document.createElement('div')
         container.className = "card me-2 mb-2 text-center"
+        container.style.maxHeight = "45%"
+        container.style.maxWidth = "40%"
 
         let img = document.createElement('img')
         img.className = "card-img-top"
@@ -101,57 +107,41 @@ async function loadProducts(number){
 
         div_footer.appendChild(a_chapters_page)
         container.appendChild(div_footer)
-
-        // div_scroll.innerHTML += "<div class=\"card me-2 mb-2 text-center\">" +
-        //                             "<img class=\"card-img-top\" src=\"" + products["img" + i.toString()] + "\" alt=\"Card image cap\">" +
-        //                             "<div class=\"card-header\">" +
-        //                                 "<h5 class=\"card-title mb-2\">" + products["name" + i.toString()] + "</h5>"
-        //     // "                                    {% if product.chapterNumber > 1 %}\n" +
-        //     // "                                        <small class=\"text-muted\">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTERS }}</small>\n" +
-        //     // "                                    {% else %}\n" +
-        //     // "                                        <small class=\"text-muted\">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTER }}</small>\n" +
-        //     // "                                    {% endif %}\n" +
-        // div_scroll.innerHTML +=     "</div>" +
-        //                             "<div class=\"card-body mt-2\">" +
-        //                                 "<h5 class=\"card-title mt-2 mb-2\">" + products["resume"] + "</h5>" +
-        //                                 "<div class=\"overflow-auto mb-2 text-scrollable\">" +
-        //                                     "<p class=\"card-text text-justify\">" + products["resume" + i.toString()] + "</p>" +
-        //                                 "</div>" +
-        //                             "</div>" +
-        //                             "<div class=\"card-footer\">"
-        //     // "                                    {% if product.chapterNumber > 1 %}\n" +
-        //     // "                                        <a href=\"/chapterspage?id={{ product.productId }}\"\n" +
-        //     // "                                           class=\"btn btn-outline-primary\">{{ lang.PRODUCT.GO_CHAPTERS }}</a>\n" +
-        //     // "                                    {% else %}\n" +
-        //     // "                                        <a href=\"/chapterspage?id={{ product.productId }}\"\n" +
-        //     // "                                           class=\"btn btn-outline-primary\">{{ lang.PRODUCT.GO_CHAPTER }}</a>\n" +
-        //     // "                                    {% endif %}\n" +
-        // div_scroll.innerHTML +=     "</div>" +
-        //                         "</div>"
-
-
-
-        // let p = document.createElement('p')
-        // p.innerText = products["name" + i.toString()]
-        // p.style.marginBottom = "200px"
-        // p.style.marginTop = "200px"
         div_scroll.appendChild(container)
         counter ++;
     }
 }
 
 function getProducts(number){
+    let categs = div_categs.innerText.replaceAll(' ', '').replaceAll('\n', '').split(",")
+
     let url = '/store'
     let formData = new FormData();
     formData.append('method', 'getProducts');
     formData.append('min', counter.toString());
     formData.append('max', (counter + number).toString());
+    formData.append('nb_categs', categs.length.toString());
+    for (let i = 0; i < categs.length; i++){
+        formData.append('categ' + i.toString(), categs[i].toString());
+    }
+    formData.append('search', input_search.value);
+    formData.append('order', select_order.value);
+    if(radio_in_progress.checked){
+        formData.append('status', radio_in_progress.value);
+    }
+    if(radio_finished.checked){
+        formData.append('status', radio_finished.value);
+    }
+    if(radio_censure.checked){
+        formData.append('censure', radio_censure.value);
+    }
 
     return fetch(url, { method: 'POST', body: formData })
         .then(function (response) {
             return response.text();
         })
         .then(function (body) {
+            console.log(body)
             let data = JSON.parse(body)
             nb_results = data["nbResults"]
             delete data["nbResults"]

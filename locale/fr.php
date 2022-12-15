@@ -77,6 +77,7 @@ return [
         'DISPLAYNONE' => 'Ne pas afficher',
         'GO_CHAPTERS' => 'Voir les chapitres',
         'GO_CHAPTER' => 'Voir le chapitre',
+        'NORESULT' => 'Aucun résultat correspondant a votre recherche',
     ],
     'CATEGORIES' => [
         'DESCRIPTION' => 'Aucune description',

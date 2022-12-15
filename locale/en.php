@@ -76,6 +76,7 @@ return [
         'DESCRIPTION' => 'Description',
         'GO_CHAPTERS' => 'See chapters',
         'GO_CHAPTER' => 'See chapter',
+        'NORESULT' => 'No results',
     ],
     'CATEGORIES' => [
         'DESCRIPTION' => 'No description',
