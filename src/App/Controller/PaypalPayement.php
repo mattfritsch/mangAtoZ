@@ -15,6 +15,7 @@ use Framework\Response\Response;
 use function App\getTextLangue;
 use function App\isUser;
 use function App\startSession;
+use function Symfony\Component\String\s;
 
 class PaypalPayement{
     public function __invoke()
@@ -33,13 +34,18 @@ class PaypalPayement{
 
             $cart = $cartProductRepository->findBy(array('user' => $user));
 
-            $shippingFees = sizeof($cart) + 1;
+            $shippingFees = 0;
             $subtotal = 0;
 
             foreach ($cart as $product){
+                $shippingFees += $product->getQuantite();
                 $price = $product->getChapter()->getChapterPrice();
                 $qtt = $product->getQuantite();
                 $subtotal += $price * $qtt;
+            }
+
+            if ($shippingFees !== 0){
+                $shippingFees += 1;
             }
 
             $total = $subtotal + $shippingFees;

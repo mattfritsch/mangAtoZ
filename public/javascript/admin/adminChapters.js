@@ -77,7 +77,7 @@ btn_form_validate.addEventListener('click', function () {
 
             let td_btn_delete = document.createElement("td")
             let btn_delete = document.createElement("button")
-            btn_delete.id = "del" + data["name"].toString();
+            btn_delete.id = "del" + data["id"].toString();
             btn_delete.className = "btn btn-danger delete";
             btn_delete.innerText = data["delete"]
             btn_delete.addEventListener("click", () => deleteChapter(btn_delete))
@@ -121,7 +121,6 @@ btn_form_update.addEventListener("click", function () {
             return response.text();
         })
         .then(function (body) {
-            console.log(body)
             let data = JSON.parse(body)
             let tr = document.getElementsByTagName("tr");
             for (let item of tr) {

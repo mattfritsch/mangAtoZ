@@ -17,10 +17,22 @@
 <form method="post" action="/modifycart" class="text-center">
 
 {% for manga in mangas %}
-    <div  class="text-center">
+    {% set img = 0 %}
+    <div  class="text-center mb-5">
 <div class="mt-3">
 
     <h4>{{ manga[0] }}</h4>
+
+    {% if user != "" %}
+        {% for product in cartProduct %}
+            {% if product.chapter.product.productName == manga[0] %}
+                {% if img == 0 %}
+                    <img src="{{ product.chapter.product.img }}" style="height: 300px">
+                    {% set img = 1 %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 
 </div>
 

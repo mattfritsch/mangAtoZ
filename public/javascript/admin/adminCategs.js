@@ -115,9 +115,9 @@ btn_form_update.addEventListener("click", function () {
                         }
                     }
                     addNewTr(data["name"], data["resume"], data["categId"], data["update"])
-                    div_form_add.style.display = 'none'
-                    btnAddOrUpdate('add')
                 }
+                div_form_add.style.display = 'none'
+                btnAddOrUpdate('add')
                 div_success.innerText = data["msg"]
                 div_success.style.display = 'block'
             }

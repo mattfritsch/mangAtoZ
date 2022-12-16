@@ -19,6 +19,8 @@ class Panier{
     {
         startSession();
 
+        error_reporting(E_ERROR | E_PARSE);
+
         $volumesName = [];
         $premierChapitres = [];
         $stockchapitre = [];
@@ -54,16 +56,13 @@ class Panier{
                     $chaptersRepository = $em->getRepository(Chapter::class);
                     $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $product[0]]);
                     array_push($chapitrecartsession,$chapterclass );
-                    var_dump($chapterclass->getStock());
                 }
 
                 foreach($cartproductclass as $cartproduct){
                     array_push($chapitrecartbdd , $cartproduct->getChapter());
-                    var_dump($cartproduct->getChapter()->getChapterId());
                 }
 
                 for($i=0; $i<count($chapitrecartsession); $i++){
-                    var_dump($i);
                     if(in_array($chapitrecartsession[$i], $chapitrecartbdd)){
                         /** @var CartProductRepository $cartproductRepository */
                         $cartproductRepository = $em->getRepository(CartProduct::class);
@@ -101,7 +100,6 @@ class Panier{
 
                 $quantite[] = $chapitre->getQuantite();
 
-                var_dump($chapitre->getChapter()->getProduct()->getProductId());
                 $chapitresmangas[] = $chapitre->getChapter()->getChapterId();
 
                 $stock = $chapitre->getChapter()->getStock();
@@ -158,10 +156,8 @@ class Panier{
                 $chapitres = $_SESSION['cart'];
 
                 foreach ($chapitres as $chapitre) {
-                    var_dump($chapitre[1]);
                     array_push($quantite, $chapitre[1]);
 
-                    var_dump($chapitre[0]);
                     array_push($chapitresmangas, $chapitre[0]);
 
                     /** @var ChaptersRepository $chaptersRepository */
@@ -230,7 +226,7 @@ class Panier{
             }
         }
 
-        $args = ['lang' => getTextLangue($_SESSION['locale']), 'user' => isUser(), 'mangas'=>$manga];
+        $args = ['lang' => getTextLangue($_SESSION['locale']), 'user' => isUser(), 'mangas'=> $manga, 'cartProduct' => $cartproductclass];
         return new Response('panier.html.twig', $args);
 
     }

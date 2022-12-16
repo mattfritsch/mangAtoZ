@@ -25,17 +25,16 @@
 
                                 <select id="multi-select" class="multiple-categ-select" name="categs[]" multiple="multiple">
                                     {% for categ in categs %}
-                                        {% for selectedCateg in selectedCategs %}
-                                            <option value="{{ categ.categId }}"
-                                                    {% if selectedCateg == categ.categId %}selected{% endif %}>
-                                                {{ categ.categName }}</option>
-                                        {% endfor %}
-                                        <option value="{{ categ.categId }}">{{ categ.categName }}</option>
+                                        {% if categ.categId in selectedCategs %}
+                                            <option value="{{ categ.categId }}"selected>{{ categ.categName }}</option>
+                                        {% else %}
+                                            <option value="{{ categ.categId }}">{{ categ.categName }}</option>
+                                        {% endif %}
                                     {% endfor %}
                                 </select>
                             </section>
 
-{#                            hidden div for categs to js#}
+{#                            hidden div for categs for js#}
                             <div id="categs" style="display: none">
                                 {% for key, selectedCateg in selectedCategs %}
                                     {{ selectedCateg }}

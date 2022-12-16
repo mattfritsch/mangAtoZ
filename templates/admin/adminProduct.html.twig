@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=yes"/>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./../assets/style/bootstrap/bootstrap.css">
-    <link rel="stylesheet" href="./../assets/style/select2/select2.css">
-    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+    {% include "/layoutStyle.html.twig" %}
     <title>{{ lang.ADMINPRODUCT.TITLE }}</title>
 </head>
 <body>
@@ -73,13 +69,11 @@
             <select class="js-example-basic-multiple" name="categs[]" multiple="multiple">
                 {% for categ in categs %}
                     {% if selectedProduct != null %}
-                        {% for selectedCateg in selectedProduct.getCategories %}
-                            {% if selectedCateg == categ %}
-                                <option value="{{ categ.categId }}" selected>{{ categ.categName }}</option>
-                            {% else %}
-                                <option value="{{ categ.categId }}">{{ categ.categName }}</option>
-                            {% endif %}
-                        {% endfor %}
+                        {% if categ in selectedProduct.getCategories  %}
+                            <option value="{{ categ.categId }}" selected>{{ categ.categName }}</option>
+                        {% else %}
+                            <option value="{{ categ.categId }}">{{ categ.categName }}</option>
+                        {% endif %}
                     {% else %}
                         <option value="{{ categ.categId }}">{{ categ.categName }}</option>
                     {% endif %}
@@ -115,8 +109,6 @@
 {% include "/footer.html.twig" %}
 
 </body>
-<script src="./../javascript/bootstrap/bootstrap.bundle.js"></script>
-<script src="./../javascript/jquery/jquery.js"></script>
-<script src="./../librairies/select2/dist/js/select2.js"></script>
+{% include "/layoutScript.html.twig" %}
 <script src="./../javascript/admin/adminProduct.js"></script>
 </html>

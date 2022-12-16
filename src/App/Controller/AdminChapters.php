@@ -64,6 +64,7 @@ class AdminChapters{
                             $data = [];
                             $data["msg"] = $lang["ADMINCHAPTER"]["ADDMSG"];
                             $data["name"] = $chapter->getChapterName();
+                            $data["id"] = $chapter->getChapterId();
                             $data["price"] = $chapter->getChapterPrice();
                             $data["stock"] = $chapter->getStock();
                             $data["delete"] = $lang["ADMINCHAPTER"]["DELETE"];
