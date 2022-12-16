@@ -4,7 +4,7 @@ include('scriptCategories.php');
 $categorie = [];
 getCategoriesDesc($categorie);
 
-for($i = 0; $i<20; $i = $i+10) {
+for($i = 0; $i<1000; $i = $i+10) {
     $manga = [];
     $resume = [];
     $titre = [];

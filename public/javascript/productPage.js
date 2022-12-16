@@ -132,8 +132,11 @@ function getProducts(number){
     if(radio_finished.checked){
         formData.append('status', radio_finished.value);
     }
-    if(radio_censure.checked){
-        formData.append('censure', radio_censure.value);
+
+    if(radio_censure !== null){
+        if(radio_censure.checked){
+            formData.append('censure', radio_censure.value);
+        }
     }
 
     return fetch(url, { method: 'POST', body: formData })
@@ -141,7 +144,6 @@ function getProducts(number){
             return response.text();
         })
         .then(function (body) {
-            console.log(body)
             let data = JSON.parse(body)
             nb_results = data["nbResults"]
             delete data["nbResults"]

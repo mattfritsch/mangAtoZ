@@ -46,11 +46,11 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <table class="text-center mx-auto">
+                                <table class="table text-center mx-auto">
                                 {% for orderProduct in order.getOrderProducts %}
                                         <tr class="text-center">
                                             <td class="p-3"><img src="{{ orderProduct.chapter.product.img }}" style="height: 200px"></td>
-                                            <td class="p-3"><a style="color: #0a53be" href="/chapterspage?id={{ orderProduct.chapter.product.productId }}">{{ orderProduct.chapter.product.productName }}</a></td>
+                                            <td class="p-3"><a class="h3" style="color: black" href="/chapterspage?id={{ orderProduct.chapter.product.productId }}">{{ orderProduct.chapter.product.productName }}</a></td>
                                         </tr>
                                         <tr class="text-center">
                                             <td class="p-3">

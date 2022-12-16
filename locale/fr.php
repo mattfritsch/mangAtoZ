@@ -89,7 +89,7 @@ return [
         'ADMIN' => 'Admin',
         'ADD' => 'Ajouter',
         'DELETE' => 'Supprimer',
-        'ERRORAUTO' => 'You can\'t delete your own access',
+        'ERRORAUTO' => 'Vous ne pouvez pas supprimer votre votre propre accès',
         'ERRORPWD' => 'Bien essayé, mais non',
         'ERRORADMIN' => 'Non non, ça ne marchera pas petit malin',
         'NO' => 'Non',

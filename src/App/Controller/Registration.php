@@ -164,8 +164,6 @@ class Registration{
                 </script>
                 <?php
                 die;
-//                header('Location: /login');
-//                die;
             }
             else{
                 $errors = $formErrors;

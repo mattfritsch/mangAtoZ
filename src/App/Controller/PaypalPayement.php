@@ -44,6 +44,8 @@ class PaypalPayement{
 
             $total = $subtotal + $shippingFees;
 
+            $_SESSION["prixtotal"] = $total;
+
             $args = ['lang' => getTextLangue($_SESSION['locale']), 'user' => isUser(), 'cart' => $cart,
                 'total' => $total, 'shippingFees' => $shippingFees, 'subtotal' => $subtotal];
             return new Response('pagepayement.html.twig', $args );

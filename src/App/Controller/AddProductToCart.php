@@ -70,7 +70,6 @@ class AddProductToCart{
             foreach($cartproductclass as $cartproduct){
                 array_push($bidule, $cartproduct->getChapter());
             }
-//            var_dump($bidule);
 
             foreach($chaptersclass2 as $chapter){
                 if(!in_array($chapter, $bidule)) {;

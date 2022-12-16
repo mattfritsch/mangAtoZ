@@ -10,11 +10,11 @@
 <h1 class="h1 text-center" style="width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh">{{ lang.PAYMENT.RECAP }}</h1>
 
 <div class="mx-auto mt-3">
-    <table class="text-center mx-auto">
+    <table class="table text-center mx-auto" style="width: 50vw">
         {% for cartProduct in cart %}
             <tr class="text-center">
                 <td class="p-3"><img src="{{ cartProduct.chapter.product.img }}" style="height: 200px"></td>
-                <td class="p-3"><a style="color: #0a53be" href="/chapterspage?id={{ cartProduct.chapter.product.productId }}">{{ cartProduct.chapter.product.productName }}</a></td>
+                <td class="p-3"><a class="h3" style="color: black" href="/chapterspage?id={{ cartProduct.chapter.product.productId }}">{{ cartProduct.chapter.product.productName }}</a></td>
             </tr>
             <tr class="text-center">
                 <td class="p-3">
