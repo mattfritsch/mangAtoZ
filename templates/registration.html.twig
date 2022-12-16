@@ -59,7 +59,11 @@
                                                 </div>
                                                 <div class="mb-4 pb-2">
                                                     <input type="text" id="first_name" name="first_name"
-                                                           class="form-control form-control-lg" maxlength="50"/>
+                                                           class="form-control form-control-lg" maxlength="50"
+                                                    {% if user != '' %}
+                                                        value="{{ user.first_name }}"
+                                                    {% endif %}
+                                                    />
                                                     <label class="form-label"
                                                            for="first_name">{{ lang.REGISTRATION.FIRST_NAME }}</label>
                                                     {% if errors.first_name != null %}
@@ -70,7 +74,11 @@
                                                 </div>
                                                 <div class="mb-4 pb-2">
                                                     <input type="text" id="last_name" name="last_name"
-                                                           class="form-control form-control-lg" maxlength="50"/>
+                                                           class="form-control form-control-lg" maxlength="50"
+                                                    {% if user != '' %}
+                                                        value="{{ user.last_name }}"
+                                                    {% endif %}
+                                                    />
                                                     <label class="form-label"
                                                            for="last_name">{{ lang.REGISTRATION.LAST_NAME }}</label>
                                                     {% if errors.last_name != null %}

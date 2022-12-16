@@ -77,6 +77,7 @@ return [
         'DISPLAYNONE' => 'Ne pas afficher',
         'GO_CHAPTERS' => 'Voir les chapitres',
         'GO_CHAPTER' => 'Voir le chapitre',
+        'NORESULT' => 'Aucun résultat correspondant a votre recherche',
     ],
     'CATEGORIES' => [
         'DESCRIPTION' => 'Aucune description',
@@ -88,7 +89,7 @@ return [
         'ADMIN' => 'Admin',
         'ADD' => 'Ajouter',
         'DELETE' => 'Supprimer',
-        'ERRORAUTO' => 'You can\'t delete your own access',
+        'ERRORAUTO' => 'Vous ne pouvez pas supprimer votre votre propre accès',
         'ERRORPWD' => 'Bien essayé, mais non',
         'ERRORADMIN' => 'Non non, ça ne marchera pas petit malin',
         'NO' => 'Non',
@@ -126,7 +127,11 @@ return [
         'CHAPITRE' => 'Chapitre',
         'PRIX' => 'Prix',
         'PANIER' =>'Ajouter au panier',
-        'STOCK' => 'Stock'
+        'STOCK' => 'Stock',
+        'NOTIFY' => 'Me prévenir',
+        'NOTAVAILABLE' => 'Chapitres indisponibles',
+        'MSGSUCCESS' => 'Vous serez notifié par mail lorsque ce chapitre sera réapprovisionné',
+        'MSGERROR' => 'Vous serez déjà notifié par mail lorsque ce chapitre sera réapprovisionné',
     ],
     'PANIER' =>[
         'PANIER' => 'Mon panier',
@@ -188,6 +193,11 @@ return [
         'STATUS' => 'Statut',
         'YES' => 'Oui',
         'NOTDELIVERED' => 'En cours',
+        'ORDER' => 'Votre commande',
+        'CHAPTER' => 'Chapitre',
+        'QUANTITY' => 'Quantité',
+        'TOTAL' => 'Total',
+        'CLOSE' => 'Fermer'
     ],
     'PROFILINFOS' => [
         'TITLE' => 'Informations',
@@ -200,5 +210,21 @@ return [
         'POSTCODE'=> 'Code postal',
         'CITY'=> 'Ville',
         'APPLY' => 'Appliquer'
+    ],
+    'PAYMENT' => [
+        'TITLE' => 'Paiement',
+        'RECAP' => 'Récapitulatif de votre commande',
+        'CHAPTER' => 'Chapitre',
+        'QUANTITY' => 'Quantité',
+        'FEES' => 'Frais de port',
+        'SUBTOTAL' => 'Sous total',
+        'PRICE' => 'Prix',
+        'TOTAL' => 'Total',
+    ],
+    'SUCCESSPAYMENT' => [
+        'TITLE' => 'Paiement',
+        'VALID' => 'Paiement validé',
+        'THANKS' => 'Merci pour votre achat',
+        'HOME' => 'Retour à l\'accueil',
     ],
 ];

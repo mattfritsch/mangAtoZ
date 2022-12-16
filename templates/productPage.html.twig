@@ -23,23 +23,32 @@
                             <section class="mb-4 me-4" data-filter="categories">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.CATEGORIES }}</h6>
 
-                                <select class="multiple-categ-select" name="categs[]" multiple="multiple">
+                                <select id="multi-select" class="multiple-categ-select" name="categs[]" multiple="multiple">
                                     {% for categ in categs %}
-                                        {# {% for selectedCateg in selectedCategs %}
+                                        {% for selectedCateg in selectedCategs %}
                                             <option value="{{ categ.categId }}"
-                                                    {% if selectedCateg == categ %}selected{% endif %}>
+                                                    {% if selectedCateg == categ.categId %}selected{% endif %}>
                                                 {{ categ.categName }}</option>
-                                        {% endfor %} #}
+                                        {% endfor %}
                                         <option value="{{ categ.categId }}">{{ categ.categName }}</option>
                                     {% endfor %}
                                 </select>
                             </section>
-                            <!-- Section: Categories -->
+
+{#                            hidden div for categs to js#}
+                            <div id="categs" style="display: none">
+                                {% for key, selectedCateg in selectedCategs %}
+                                    {{ selectedCateg }}
+                                    {% if key != selectedCategs|length-1 %}
+                                        ,
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                             <!-- Section: OrderBy -->
                             <section class="mb-4 me-4" data-filter="orderby">
                                 <h6 class="font-weight-bold mb-3">{{ lang.PRODUCT.ORDER }}</h6>
                                 <div id="select-wrapper-301599" class="select-wrapper d-inline-flex">
-                                    <select class="form-select m-1" aria-label="Default select example" name="order">
+                                    <select id="order" class="form-select m-1" aria-label="Default select example" name="order">
                                         {% if order == 'alphabetical' %}
                                             <option value="neutral">{{ lang.PRODUCT.ORDER }}</option>
                                             <option value="alphabetical"
@@ -203,38 +212,9 @@
                         </div>
                     </form>
                 </div>
-                <div class="row mb-4">
+                <div id="scroll" class="row mb-4">
                     {% if nothing == true %}
-                        <p>Aucun résultat correspondant a votre recherche</p>
-                    {% else %}
-                        {% for key, product in products %}
-                            <div class="card me-2 mb-2 text-center">
-                                <img class="card-img-top" src="{{ product.img }}" alt="Card image cap">
-                                <div class="card-header">
-                                    <h5 class="card-title mb-2">{{ product.productName }}</h5>
-                                    {% if product.chapterNumber > 1 %}
-                                        <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTERS }}</small>
-                                    {% else %}
-                                        <small class="text-muted">{{ product.chapterNumber }} {{ lang.PRODUCT.CHAPTER }}</small>
-                                    {% endif %}
-                                </div>
-                                <div class="card-body mt-2">
-                                    <h5 class="card-title mt-2 mb-2">{{ lang.PRODUCT.DESCRIPTION }}</h5>
-                                    <div class="overflow-auto mb-2 text-scrollable">
-                                        <p class="card-text text-justify">{{ product.resume }}</p>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    {% if product.chapterNumber > 1 %}
-                                        <a href="/chapterspage?id={{ product.productId }}"
-                                           class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTERS }}</a>
-                                    {% else %}
-                                        <a href="/chapterspage?id={{ product.productId }}"
-                                           class="btn btn-outline-primary">{{ lang.PRODUCT.GO_CHAPTER }}</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        {% endfor %}
+                        <div id="error" class="alert alert-danger" style="width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh">{{ lang.PRODUCT.NORESULT }}</div>
                     {% endif %}
                 </div>
                 {% include "scrollToTop.html.twig" %}

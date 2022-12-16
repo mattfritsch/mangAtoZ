@@ -17,6 +17,7 @@
         <th>{{ lang.PROFILORDER.DATETIME }}</th>
         <th>{{ lang.PROFILORDER.PRICE }}</th>
         <th>{{ lang.PROFILORDER.STATUS }}</th>
+        <th></th>
     </tr>
     {% for order in orders %}
         <tr class="text-center">
@@ -27,6 +28,54 @@
             {% else %}
                 <td>{{ lang.PROFILORDER.NOTDELIVERED }}</td>
             {% endif %}
+            <td><!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{ order.orderId }}">
+                    Details
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal{{ order.orderId }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="h5 center" style="color: #0a53be">{{ lang.PROFILORDER.ORDER }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table text-center mx-auto">
+                                {% for orderProduct in order.getOrderProducts %}
+                                        <tr class="text-center">
+                                            <td class="p-3"><img src="{{ orderProduct.chapter.product.img }}" style="height: 200px"></td>
+                                            <td class="p-3"><a class="h3" style="color: black" href="/chapterspage?id={{ orderProduct.chapter.product.productId }}">{{ orderProduct.chapter.product.productName }}</a></td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td class="p-3">
+                                                <p style="color: black">{{ lang.PROFILORDER.CHAPTER }}: </p>
+                                                <p style="color: black">{{ orderProduct.chapter.chapterName }}</p>
+                                            </td>
+                                            <td class="p-3">
+                                                <p style="color: black">{{ lang.PROFILORDER.QUANTITY }}: </p>
+                                                <p style="color: black">{{ orderProduct.qtt }}</p>
+                                            </td>
+                                            <td class="p-3">
+                                                <p style="color: black">{{ lang.PROFILORDER.PRICE }}: </p>
+                                                <p style="color: black">{{ orderProduct.chapter.chapterPrice }}€</p>
+                                            </td>
+                                        </tr>
+                                {% endfor %}
+                                    <tr class="text-center">
+                                        <td colspan="3" class="center p-3">
+                                            <p style="color: black">{{ lang.PROFILORDER.TOTAL }}: {{ order.totalPrice }}€</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ lang.PROFILORDER.CLOSE }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div></td>
         </tr>
     {% endfor %}
 </table>

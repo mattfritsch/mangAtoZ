@@ -94,6 +94,25 @@ class AdminChapters{
                         } elseif ($_POST["method"] === "update") {
                             $currentProduct = $productRepository->findOneBy(['productId' => $_POST["productId"]]);
                             $chapter = $chaptersRepository->findOneBy(["product" => $currentProduct, "chapterName" => $_POST["chapterName"]]);
+
+                            $oldStock = $chapter->getStock();
+                            if($oldStock === 0 && intval($_POST["stock"]) !== 0){
+                                $users = $chapter->getEmail();
+                                foreach ($users as $user){
+                                    $mailAddress = $user->getEmail();
+                                    $subject = $currentProduct->getProductName() . ": chapter " . $chapter->getChapterName() . " is now avaible";
+                                    $message = 'Hi ' . $user->getFirstName() . "\n" .
+                                                "\n" .
+                                                $currentProduct->getProductName() . ": chapter " . $chapter->getChapterName() . " is now avaible. \n" .
+                                                "\n" .
+                                                'You can get it on MangAtoZ!' . "\n" .
+                                                "\n" .
+                                                "See you soon";
+                                    mail($mailAddress, $subject, $message);
+                                }
+                            }
+
+                            $chapter->setEmail(array());
                             $chapter->setChapterPrice(floatval($_POST["price"]));
                             $chapter->setStock(intval($_POST["stock"]));
 

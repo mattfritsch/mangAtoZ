@@ -2,14 +2,12 @@
 <html lang="fr">
 <head>
 
-    {% include "layoutStyle.html.twig" %}
     <link href="./assets/style/chaptersPage.css" rel="stylesheet">
-    <script src="./javascript/chapterspage.js"></script>
+    {% include "layoutStyle.html.twig" %}
     <title>{{ lang.HOME.CHAPTERS }}</title>
 </head>
 
 {% include "header.html.twig" %}
-
 
 <form method="post" action="/addproduct" id="chapitre">
     <div class="text-center row justify-content-center mt-3">
@@ -26,7 +24,7 @@
                         <div class="overflow-auto mb-2 text-scrollable" id="text-scrollable">
                             <p class="text-left">{{ product[0].resume }}</p>
                         </div>
-                        <select id="chapters" multiple>
+                        <select class="js-example-basic-multiple" name="chapters[]" multiple="multiple">
                             {% for key, chapter in chapters %}
                                 {% set numero = key+1 %}
                                 {% set numerolength = numero | json_encode(constant('JSON_PRETTY_PRINT'))|length%}
@@ -43,11 +41,8 @@
 
                                 {% else %}
 
-                                    <option class="bg-danger" value={{ key+1 }}>{{ lang.CHAPITRE.CHAPITRE }} {{ key+1 }} ➔ {{ lang.CHAPITRE.PRIX }} : {{ chapter.chapterPrice }} € |
-                                        {{ lang.CHAPITRE.STOCK }} : {{ chapter.stock }}</option>
-                                    {#<script>
-                AddPasDispo({{ key+1 }})
-            </script>#}
+                                    <option value={{ key+1 }} id='options{{ key+1 }}' class='pasdispo' disabled >{{ lang.CHAPITRE.CHAPITRE }} {{ key+1 }} ➔ {{ lang.CHAPITRE.PRIX }} : {{ chapter.chapterPrice }} € |
+                                        {{ lang.CHAPITRE.STOCK }} : {{ chapter.stock }} </option>
 
                                 {% endif %}
                             {% endfor %}
@@ -62,17 +57,33 @@
         </div>
     </div>
 </form>
-{% include "footer.html.twig" %}
-<script>
-    new MultiSelectTag('chapters', {
-        rounded: true,    // default true
-        shadow: true,     // default false
-    })  // id
-    Initialize()
+{% if thisUser != "" %}
+    {% if notAvailable == 1 %}
+        <div class="text-center mx-auto mt-3" style="width: 50vw">
+            <h1 class="h1">{{ lang.CHAPITRE.NOTAVAILABLE }}</h1>
 
-</script>
+            <div id="error" class="alert alert-danger" style="display: none; width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh"></div>
+
+            <div id="success" class="alert alert-success" style="display: none; width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh"></div>
+
+            <table class="table text-center mx-auto mt-3" style="width: 30vw">
+                {% for chapter in chapters %}
+                    {% if chapter.stock == 0 %}
+                        <tr class="text-center">
+                            <td style="width: 10vw">{{ chapter.chapterName }}</td>
+                            <td style="width: 10vw"><button id="notify{{ chapter.chapterId }}" class="btn btn-outline-primary notify">{{ lang.CHAPITRE.NOTIFY }}</button></td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+{% endif %}
+{% include "footer.html.twig" %}
+
 
 </body>
 {% include "layoutScript.html.twig" %}
+<script src="./javascript/chapterspage.js"></script>
 
 </html>
