@@ -57,3 +57,45 @@ php -S localhost:8000
 
 Le script permettant de supprimer le panier à une fréquence défini se situe dans
 `src/App/Script/scriptcron.php`
+
+
+-------
+Compte admin:
+
+username: admin@admin.fr
+
+password: admin
+
+Compte client:
+
+username: client@client.fr
+
+password: client
+
+-------
+
+## Config SMTP
+
+smtp_server=smtp.gmail.com
+
+smtp_port=587
+
+default_domain=gmail.com
+
+error_logfile=error.log
+
+auth_username=arthurbecker57420@gmail.com
+
+auth_password=igalbvwqgomecebb
+
+pop3_server=
+
+pop3_username=
+
+pop3_password=
+
+force_sender=arthurbecker57420@gmail.com
+
+force_recipient=
+
+hostname=

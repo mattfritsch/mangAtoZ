@@ -9,6 +9,7 @@ use App\Entity\Categ;
 use App\Entity\User;
 use App\Repository\ProductRepository;
 use App\Repository\CategRepository;
+use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 
 $manga = [];
@@ -24,6 +25,43 @@ $chapitres = [];
 $id = [];
 $mangafinal = [];
 $m = 0;
+
+$em = EntityManager::getInstance();
+
+/** @var UserRepository $userRepository */
+$userRepository = $em->getRepository(User::class);
+
+$user = new User();
+$user->setEmail("admin@admin.fr");
+$user->setPassword(password_hash("admin", PASSWORD_ARGON2I));
+$user->setLastName("admin");
+$user->setFirstName("admin");
+$user->setAdmin(1);
+$user->setNbStreet(1);
+$user->setStreet("admin");
+$user->setCity("admin");
+$user->setPostcode(00000);
+$birthdate = DateTime::createFromFormat('Y-m-j', '1970-01-01');
+$user->setBirthDate($birthdate);
+
+$em->persist($user);
+$em->flush();
+
+$user = new User();
+$user->setEmail("client@client.fr");
+$user->setPassword(password_hash("client", PASSWORD_ARGON2I));
+$user->setLastName("client");
+$user->setFirstName("client");
+$user->setAdmin(0);
+$user->setNbStreet(1);
+$user->setStreet("client");
+$user->setCity("client");
+$user->setPostcode(00000);
+$birthdate = DateTime::createFromFormat('Y-m-j', '1970-01-01');
+$user->setBirthDate($birthdate);
+
+$em->persist($user);
+$em->flush();
 
 function getData($i,$m, $id, $resume, $titre, $image, $status, $nmbrChapitre, $rating, $manga, $mangafinal, $categories, $agerating,$chapitres){
     $mangafinal = [];
