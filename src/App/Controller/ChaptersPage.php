@@ -31,6 +31,7 @@ class ChaptersPage
         /** @var ProductRepository$productRepository */
         $productRepository = $em->getRepository(Product::class);
 
+
         /** @var UserRepository$userRepository */
         $userRepository = $em->getRepository(User::class);
 

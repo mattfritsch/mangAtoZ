@@ -22,6 +22,7 @@ class Homepage
           document.cookie="password=" + localStorage.getItem('password');
       </script>
       <?php
+      error_reporting(E_ERROR | E_PARSE);
 
       startSession();
       createJsonFile();

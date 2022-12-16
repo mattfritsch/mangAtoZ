@@ -18,11 +18,80 @@ class ModifyCart
     {
 
         startSession();
-//        clearCart();
-        var_dump($_POST);
+
         $em = EntityManager::getInstance();
         if (isset($_POST['modify'])) {
+
             for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+                if(isset($_SESSION['user'])) {
+                    if ($_POST[$_SESSION['cart'][$i][0]] > $_SESSION['cart'][$i][1]) {
+                        echo'plus';
+                        /** @var UserRepository $userRepository */
+                        $userRepository = $em->getRepository(User::class);
+                        $userclass = $userRepository->findOneBy(['uid' => $_SESSION['user']->getUid()]);
+
+
+                        /** @var ChaptersRepository $chaptersRepository */
+                        $chaptersRepository = $em->getRepository(Chapter::class);
+                        $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
+
+                        /** @var CartProductRepository $cartproductRepository */
+                        $cartproductRepository = $em->getRepository(CartProduct::class);
+                        $cartproductclass = $cartproductRepository->findOneBy(['user' => $userclass, 'chapter' => $chapterclass]);
+
+                        $cartproductnewquantite = new CartProduct();
+
+                        $cartproductnewquantite->setQuantite($_POST[$_SESSION['cart'][$i][0]]);
+                        $cartproductnewquantite->setChapter($chapterclass);
+                        $cartproductnewquantite->setUser($userclass);
+                        $cartproductnewquantite->setCartTime($cartproductclass->getCartTime());
+
+                        $em->merge($cartproductnewquantite);
+                        $em->flush();
+                        $_SESSION['cart'][$i] = [$_SESSION['cart'][$i][0], $_POST[$_SESSION['cart'][$i][0]]];
+
+                    }
+                    if ($_POST[$_SESSION['cart'][$i][0]] < $_SESSION['cart'][$i][1]) {
+                        echo'moins';
+                        /** @var UserRepository $userRepository */
+                        $userRepository = $em->getRepository(User::class);
+                        $userclass = $userRepository->findOneBy(['uid' => $_SESSION['user']->getUid()]);
+
+
+                        /** @var ChaptersRepository $chaptersRepository */
+                        $chaptersRepository = $em->getRepository(Chapter::class);
+                        $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
+
+                        /** @var CartProductRepository $cartproductRepository */
+                        $cartproductRepository = $em->getRepository(CartProduct::class);
+                        $cartproductclass = $cartproductRepository->findOneBy(['user' => $userclass, 'chapter' => $chapterclass]);
+
+                        $cartproductnewquantite = new CartProduct();
+
+                        if($_POST[$_SESSION['cart'][$i][0]]==0){
+                            echo'yes';
+                            $cartproductnewquantite->setQuantite($cartproductclass->getQuantite());
+                            $cartproductnewquantite->setChapter($chapterclass);
+                            $cartproductnewquantite->setUser($userclass);
+                            $cartproductnewquantite->setCartTime($cartproductclass->getCartTime());
+
+                            $entity = $em->merge($cartproductnewquantite);
+                            $em->remove($entity);
+                            $em->flush();
+                        }
+                        else {
+
+                            $cartproductnewquantite->setQuantite($_POST[$_SESSION['cart'][$i][0]]);
+                            $cartproductnewquantite->setChapter($chapterclass);
+                            $cartproductnewquantite->setUser($userclass);
+                            $cartproductnewquantite->setCartTime($cartproductclass->getCartTime());
+
+                            $em->merge($cartproductnewquantite);
+                            $em->flush();
+                        }
+                        $_SESSION['cart'][$i] = [$_SESSION['cart'][$i][0], $_POST[$_SESSION['cart'][$i][0]]];
+                    }
+                }
                 if ($_POST[$_SESSION['cart'][$i][0]] > $_SESSION['cart'][$i][1]) {
                     /** @var ChaptersRepository $chaptersRepository */
                     $chaptersRepository = $em->getRepository(Chapter::class);
@@ -75,82 +144,22 @@ class ModifyCart
                     $em->flush();
                 }
 
-                if(isset($_SESSION['user'])) {
-                    if ($_POST[$_SESSION['cart'][$i][0]] > $_SESSION['cart'][$i][1]) {
-                        echo'plus';
-                        /** @var UserRepository $userRepository */
-                        $userRepository = $em->getRepository(User::class);
-                        $userclass = $userRepository->findOneBy(['uid' => $_SESSION['user']->getUid()]);
-
-
-                        /** @var ChaptersRepository $chaptersRepository */
-                        $chaptersRepository = $em->getRepository(Chapter::class);
-                        $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
-
-                        /** @var CartProductRepository $cartproductRepository */
-                        $cartproductRepository = $em->getRepository(CartProduct::class);
-                        $cartproductclass = $cartproductRepository->findOneBy(['user' => $userclass, 'chapter' => $chapterclass]);
-
-                        $cartproductnewquantite = new CartProduct();
-
-                        $cartproductnewquantite->setQuantite($_POST[$_SESSION['cart'][$i][0]]);
-                        $cartproductnewquantite->setChapter($chapterclass);
-                        $cartproductnewquantite->setUser($userclass);
-                        $cartproductnewquantite->setCartTime($cartproductclass->getCartTime());
-
-                        $em->merge($cartproductnewquantite);
-                        $em->flush();
-                        $_SESSION['cart'][$i] = [$_SESSION['cart'][$i][0], $_POST[$_SESSION['cart'][$i][0]]];
-
-                    }
-                    if ($_POST[$_SESSION['cart'][$i][0]] < $_SESSION['cart'][$i][1]) {
-                        echo'moins';
-                        /** @var UserRepository $userRepository */
-                        $userRepository = $em->getRepository(User::class);
-                        $userclass = $userRepository->findOneBy(['uid' => $_SESSION['user']->getUid()]);
-
-
-                        /** @var ChaptersRepository $chaptersRepository */
-                        $chaptersRepository = $em->getRepository(Chapter::class);
-                        $chapterclass = $chaptersRepository->findOneBy(['chapterId' => $_SESSION['cart'][$i][0]]);
-
-                        /** @var CartProductRepository $cartproductRepository */
-                        $cartproductRepository = $em->getRepository(CartProduct::class);
-                        $cartproductclass = $cartproductRepository->findOneBy(['user' => $userclass, 'chapter' => $chapterclass]);
-
-                        $cartproductnewquantite = new CartProduct();
-
-                        if($_POST[$_SESSION['cart'][$i][0]]==0){
-                            $cartproductnewquantite->setQuantite($cartproductclass->getQuantite());
-                            $cartproductnewquantite->setChapter($chapterclass);
-                            $cartproductnewquantite->setUser($userclass);
-                            $cartproductnewquantite->setCartTime($cartproductclass->getCartTime());
-
-                            $entity = $em->merge($cartproductnewquantite);
-                            $em->remove($entity);
-                            $em->flush();
-                        }
-                        else {
-
-                            $cartproductnewquantite->setQuantite($_POST[$_SESSION['cart'][$i][0]]);
-                            $cartproductnewquantite->setChapter($chapterclass);
-                            $cartproductnewquantite->setUser($userclass);
-                            $cartproductnewquantite->setCartTime($cartproductclass->getCartTime());
-
-                            $em->merge($cartproductnewquantite);
-                            $em->flush();
-                        }
-                        $_SESSION['cart'][$i] = [$_SESSION['cart'][$i][0], $_POST[$_SESSION['cart'][$i][0]]];
-                    }
-                }
             }
 
             for ($i = 0; $i < count($_SESSION['cart']); $i++) {
-                if($_POST[$_SESSION['cart'][$i][0]] == 0){
-                    array_splice($_SESSION['cart'], $i,$i);
+                if($_POST[$_SESSION['cart'][$i][0]] == null){
+                    if($i == 0){
+                        array_shift($_SESSION['cart']);
+                    }
+                    else {
+                        array_splice($_SESSION['cart'], $i, $i);
+                    }
                 }
-
             }
+            header("Location:/panier");
+        }
+        else{
+            header("Location:/payement");
         }
     }
 }
