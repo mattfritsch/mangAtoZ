@@ -53,3 +53,7 @@ dans le dossier `public` et exécuter cette commande.
 ```script
 php -S localhost:8000
 ```
+---------------------------------
+
+Le script permettant de supprimer le panier à une fréquence défini se situe dans
+`src/App/Script/scriptcron.php`
