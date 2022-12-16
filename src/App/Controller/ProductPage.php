@@ -143,7 +143,6 @@ class ProductPage
                     }
                 }
 
-
                 $args = ['lang' => $lang, 'products' => $products, 'categs' => $categs,
                     'search' => $search, 'age' => $age, 'order' => $order, 'radioStatus' => $status, 'censureAdd' => $censure,
                     'user' => isUser(), 'selectedCategs' => $selectedCategs, 'nothing' => $nothing];

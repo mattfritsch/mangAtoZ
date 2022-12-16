@@ -69,13 +69,11 @@
             <select class="js-example-basic-multiple" name="categs[]" multiple="multiple">
                 {% for categ in categs %}
                     {% if selectedProduct != null %}
-                        {% for selectedCateg in selectedProduct.getCategories %}
-                            {% if selectedCateg == categ %}
-                                <option value="{{ categ.categId }}" selected>{{ categ.categName }}</option>
-                            {% else %}
-                                <option value="{{ categ.categId }}">{{ categ.categName }}</option>
-                            {% endif %}
-                        {% endfor %}
+                        {% if categ in selectedProduct.getCategories  %}
+                            <option value="{{ categ.categId }}" selected>{{ categ.categName }}</option>
+                        {% else %}
+                            <option value="{{ categ.categId }}">{{ categ.categName }}</option>
+                        {% endif %}
                     {% else %}
                         <option value="{{ categ.categId }}">{{ categ.categName }}</option>
                     {% endif %}
