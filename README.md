@@ -84,9 +84,9 @@ default_domain=gmail.com
 
 error_logfile=error.log
 
-auth_username=arthurbecker57420@gmail.com
+auth_username=mangatoz.projettut@gmail.com
 
-auth_password=igalbvwqgomecebb
+auth_password=wqymizokwntliyyw
 
 pop3_server=
 
@@ -94,7 +94,7 @@ pop3_username=
 
 pop3_password=
 
-force_sender=arthurbecker57420@gmail.com
+force_sender=mangatoz.projettut@gmail.com
 
 force_recipient=
 
