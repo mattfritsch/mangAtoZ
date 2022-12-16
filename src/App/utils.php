@@ -204,7 +204,7 @@ function createJsonFile(): void
     $productRepository = $em->getRepository(Product::class);
     $products = $productRepository->findBy(['ageRank' => '0', 'notAvailable' => '0']);
 
-    $json = 'C:\wamp64\www\LP\mangAtoZ\public\product.json';
+    $json = '..\public\product.json';
     if (file_exists($json))
         unlink($json);
 
