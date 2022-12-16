@@ -36,10 +36,6 @@ class ProfileOrders{
 
 
             $orders = $orderRepository->findBy(array('user' => $user), array('orderDateTime' => 'DESC'));
-//            $orders = $orderRepository->getOrdersWithChapters($user);
-//
-//            var_dump($orders);
-//            die;
 
             return new Response('profile/profileOrders.html.twig', ['lang' => $lang, 'orders' => $orders,
                 'user' => isUser()]);

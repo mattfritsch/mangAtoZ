@@ -79,9 +79,11 @@ class AdminProduct{
                             return new Response('admin/adminProduct.html.twig', ['lang' => $lang, 'user' => isUser(), 'categs' => $categs]);
                         } else {
                             $categories = [];
-                            foreach ($_POST["categs"] as $categId) {
-                                $categ = $categRepository->findOneBy(['categId' => $categId]);
-                                array_push($categories, $categ);
+                            if(isset($_POST["categs"])){
+                                foreach ($_POST["categs"] as $categId) {
+                                    $categ = $categRepository->findOneBy(['categId' => $categId]);
+                                    $categories[] = $categ;
+                                }
                             }
 
                             $products = $productRepository->findBy(array(), array('productId' => 'DESC'));

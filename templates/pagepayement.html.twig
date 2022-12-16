@@ -2,43 +2,77 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Title</title>
+    {% include "layoutStyle.html.twig" %}
+    <title>{{ lang.PAYMENT.TITLE }}</title>
 </head>
 <body>
 {% include "header.html.twig" %}
-<!-- Replace "test" with your own sandbox Business account app client ID -->
-<script src="https://www.paypal.com/sdk/js?client-id=AZMLh-a3G5AJzoj4dN0Ls5IewyK8o031PSxSku9qlG1dhpS1gAomc-dNOwqs2KvP2L6DEGmLkzpl6G3a&currency=EUR"></script>
-<!-- Set up a container element for the button -->
-<div id="paypal-button-container"></div><!-- Set up a container element for the button -->
-<script>
-    paypal.Buttons({
-        // Sets up the transaction when a payment button is clicked
-        createOrder: (data, actions) => {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: {{ info }}// Can also reference a variable or function
-                    }
-                }]
-            });
-        },
-        // Finalize the transaction after payer approval
-        onApprove: (data, actions) => {
-            return actions.order.capture().then(function(orderData) {
-                // Successful capture! For dev/demo purposes:
-                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                const transaction = orderData.purchase_units[0].payments.captures[0];
-                window.location.href = "/final";
+<h1 class="h1 text-center" style="width: 50vw; margin-right: auto; margin-left: auto; margin-top: 3vh">{{ lang.PAYMENT.RECAP }}</h1>
 
-            });
-        }
-    }).render('#paypal-button-container');
-</script>
+<div class="mx-auto mt-3">
+    <table class="table text-center mx-auto" style="width: 50vw">
+        {% for cartProduct in cart %}
+            <tr class="text-center">
+                <td class="p-3"><img src="{{ cartProduct.chapter.product.img }}" style="height: 200px"></td>
+                <td class="p-3"><a class="h3" style="color: black" href="/chapterspage?id={{ cartProduct.chapter.product.productId }}">{{ cartProduct.chapter.product.productName }}</a></td>
+            </tr>
+            <tr class="text-center">
+                <td class="p-3">
+                    <p style="color: black">{{ lang.PAYMENT.CHAPTER }}: </p>
+                    <p style="color: black">{{ cartProduct.chapter.chapterName }}</p>
+                </td>
+                <td class="p-3">
+                    <p style="color: black">{{ lang.PAYMENT.QUANTITY }}: </p>
+                    <p style="color: black">{{ cartProduct.quantite }}</p>
+                </td>
+                <td class="p-3">
+                    <p style="color: black">{{ lang.PAYMENT.PRICE }}: </p>
+                    <p style="color: black">{{ cartProduct.chapter.chapterPrice }}€</p>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr class="text-center">
+            <td></td>
+            <td></td>
+            <td class="center p-3">
+                <p style="color: black">{{ lang.PAYMENT.SUBTOTAL }}: {{ subtotal }}€</p>
+                <p style="color: black">{{ lang.PAYMENT.FEES }}: {{ shippingFees }}€</p>
+                <p style="color: black">{{ lang.PAYMENT.TOTAL }}: {{ total }}€</p>
+            </td>
+        </tr>
+    </table>
+    <!-- Replace "test" with your own sandbox Business account app client ID -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZMLh-a3G5AJzoj4dN0Ls5IewyK8o031PSxSku9qlG1dhpS1gAomc-dNOwqs2KvP2L6DEGmLkzpl6G3a&currency=EUR"></script>
+    <!-- Set up a container element for the button -->
+    <div id="paypal-button-container" class="text-center"></div><!-- Set up a container element for the button -->
+    <script>
+        paypal.Buttons({
+            // Sets up the transaction when a payment button is clicked
+            createOrder: (data, actions) => {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: {{ total }}// Can also reference a variable or function
+                        }
+                    }]
+                });
+            },
+            // Finalize the transaction after payer approval
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(function(orderData) {
+                    // Successful capture! For dev/demo purposes:
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    const transaction = orderData.purchase_units[0].payments.captures[0];
+                    window.location.href = "/final";
+
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+</div>
+
 </script>{% include "footer.html.twig" %}
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+{% include "layoutScript.html.twig" %}
 </html>

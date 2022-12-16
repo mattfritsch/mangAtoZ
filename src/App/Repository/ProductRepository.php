@@ -32,7 +32,7 @@ class ProductRepository extends EntityRepository
                     $queryBuilder->leftJoin('product.categories', 'pc');
                     $queryBuilder->addSelect('pc');
                     foreach($value as $category){
-                        $queryBuilder->andWhere('pc.categName = :categValue');
+                        $queryBuilder->andWhere('pc.categId = :categValue');
                         $queryBuilder->setParameter('categValue', $category);
                     }
                 }
@@ -44,6 +44,7 @@ class ProductRepository extends EntityRepository
                 else if($value === 'popularity')
                     $queryBuilder->addOrderBy('product.averageRating', 'DESC');
             }
+
             if($name === 'status'){
                 if($value === 'inprogress'){
                     $queryBuilder->andWhere('product.status = 0');
@@ -53,12 +54,12 @@ class ProductRepository extends EntityRepository
                 }
             }
             if($name === 'censure'){
-                if($value === 'nocensure'){
-                    $queryBuilder->andWhere('product.ageRank = 1');
+                if($value !== 'nocensure'){
+                    $queryBuilder->andWhere('product.ageRank = 0');
                 }
             }
         }
         $queryBuilder->andWhere('product.notAvailable = 0');
-        return $queryBuilder->getQuery()->getResult();
+        return $queryBuilder->getQuery();
     }
 }

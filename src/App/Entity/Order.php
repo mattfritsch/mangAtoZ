@@ -30,6 +30,28 @@ class Order
     #[ORM\Column(type: 'boolean')]
     protected bool $delivered;
 
+    #[ORM\ManyToMany(targetEntity: OrderProduct::class)]
+    #[ORM\JoinColumn(name: "orders", referencedColumnName: "orderId")]
+    #[ORM\InverseJoinColumn(name: "order_product", referencedColumnName: "orderProductId")]
+    #[ORM\JoinTable(name: "order_order_product")]
+    protected $orderProducts;
+
+    /**
+     * @return mixed
+     */
+    public function getOrderProducts()
+    {
+        return $this->orderProducts;
+    }
+
+    /**
+     * @param mixed $orderProducts
+     */
+    public function setOrderProducts($orderProducts): void
+    {
+        $this->orderProducts = $orderProducts;
+    }
+
     /**
      * @return int
      */

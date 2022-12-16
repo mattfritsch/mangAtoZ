@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Entity\Product;
 use App\Entity\User;
+use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Framework\Doctrine\EntityManager;
 
@@ -32,24 +34,24 @@ function startSession(): void {
 
 function clearCart() : void {
     if(isset($_SESSION['cart'])){
-        $now = time();
-//        for($i=0; $i<count($_SESSION['cart']); $i++){
-//            if($now > $_SESSION['cart'][$i][2]){
+//        $now = time();
+////        for($i=0; $i<count($_SESSION['cart']); $i++){
+////            if($now > $_SESSION['cart'][$i][2]){
+////                unset($_SESSION['cart'][$i]);
+////            }
+////        }
+//        $i=0;
+//        foreach($_SESSION['cart'] as $product){
+//            if($now > $product[2]){
 //                unset($_SESSION['cart'][$i]);
+//
 //            }
+//            $i++;
 //        }
-        $i=0;
-        foreach($_SESSION['cart'] as $product){
-            if($now > $product[2]){
-                unset($_SESSION['cart'][$i]);
-
-            }
-            $i++;
-        }
-        var_dump($_SESSION['cart']);
-echo'<br/>';
-echo'<br/>';
-        var_dump($now);
+//        var_dump($_SESSION['cart']);
+//echo'<br/>';
+//echo'<br/>';
+//        var_dump($now);
         echo'<br/>';
         echo'<br/>';
     }
@@ -193,4 +195,30 @@ function isMailUniq($email)
         return false;
     }
     return true;
+}
+
+function createJsonFile(): void
+{
+    $em = EntityManager::getInstance();
+    /** @var ProductRepository $productRepository */
+    $productRepository = $em->getRepository(Product::class);
+    $products = $productRepository->findBy(['ageRank' => '0', 'notAvailable' => '0']);
+
+    $json = 'C:\wamp64\www\PHP\mangAtoZ\public\product.json';
+    if (file_exists($json))
+        unlink($json);
+
+    fopen($json, 'c+');
+    $productsJson = [];
+    foreach ($products as $product){
+        $productsJson[] = [
+            'productId' => $product->getProductId(),
+            'resume' => $product->getResume(),
+            'productName' => $product->getProductName(),
+            'img' => $product->getImg(),
+            'chapterNumber' => $product->getChapterNumber(),
+        ];
+    }
+    $final = json_encode($productsJson);
+    file_put_contents($json, $final);
 }
