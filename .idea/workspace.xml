@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="log-out, homepage">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/utils.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/utils.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/adminCategs.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/adminCategs.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/adminChapters.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/adminChapters.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/adminOrders.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/adminOrders.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/adminProduct.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/adminProduct.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/adminProducts.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/adminProducts.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/adminUsers.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin/adminUsers.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/header.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layoutScript.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layoutScript.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layoutStyle.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layoutStyle.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/pagepayementaccept.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pagepayementaccept.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile/profileInfos.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/profileInfos.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile/profileOrders.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/profileOrders.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="25f9d17a-ef31-4ad9-88ec-b642a4709b80" name="Changes" comment="log-out, homepage" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
