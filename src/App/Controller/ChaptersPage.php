@@ -33,7 +33,13 @@ class ChaptersPage
 
         /** @var UserRepository$userRepository */
         $userRepository = $em->getRepository(User::class);
-        $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
+
+        if (isset($_SESSION["user"])){
+            $user = $userRepository->findOneByEmail($_SESSION["user"]->getEmail());
+        } else {
+            $user = "";
+        }
+
 
         if (isset ($_GET["id"])) {
             $id = htmlspecialchars($_GET["id"]);
@@ -82,7 +88,7 @@ class ChaptersPage
                     }
 
                     $args = ['lang' => $lang, 'chapters' =>$chapters, 'product' => $product,
-                        'user' => isUser(), 'notAvailable' => $notAvailable];
+                        'user' => isUser(), 'notAvailable' => $notAvailable, 'thisUser' => $user];
                     return new Response('chapterspage.html.twig', $args);
                 }
             }
