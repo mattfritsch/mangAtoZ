@@ -20,6 +20,11 @@
                             {{ lang.HOME.STORE }}
                         </a>
                     </li>
+                    <li class="nav-item" id="">
+                        <a href="/panier" class="nav-link">
+                            {{ lang.HOME.CART }}
+                        </a>
+                    </li>
                         {% if user != '' %}
                         <li class="nav-item dropdown" id="">
                             <a href="#" class="nav-link dropdown-toggle" id="profileDropDown" role="button"
@@ -34,11 +39,6 @@
                                     <a href="/profile/orders" class="dropdown-item">{{ lang.HOME.USERORDERS }}</a>
                                 </li>
                             </ul>
-                            <li class="nav-item" id="">
-                                <a href="/panier" class="nav-link">
-                                    {{ lang.HOME.CART }}
-                                </a>
-                            </li>
                         </li>
                         {% if user.isAdmin == 1 %}
                         <li class="nav-item dropdown" id="">
