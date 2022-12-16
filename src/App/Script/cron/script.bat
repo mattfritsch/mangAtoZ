@@ -1,1 +1,1 @@
-"C:\wamp64\bin\php\php8.1.0\php.exe" -f "C:\Users\user\projet tut\mangAtoZ\src\App\Script\scriptcron.php"
+"C:\wamp64\bin\php\php8.1.0\php.exe" -f "C:\wamp64\www\PHP\mangAtoZ\src\App\Script\scriptcron.php"

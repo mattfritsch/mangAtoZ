@@ -226,7 +226,7 @@ class Panier{
             }
         }
 
-        $args = ['lang' => getTextLangue($_SESSION['locale']), 'user' => isUser(), 'mangas'=>$manga];
+        $args = ['lang' => getTextLangue($_SESSION['locale']), 'user' => isUser(), 'mangas'=> $manga, 'cartProduct' => $cartproductclass];
         return new Response('panier.html.twig', $args);
 
     }
